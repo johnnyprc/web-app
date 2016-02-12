@@ -17,6 +17,7 @@ First Run
 
         $ npm install
         $ npm install --global gulp
+        $ npm i mongodb@~1.4 --save
 
 7. Create a folder for the MongoDB server with
 
