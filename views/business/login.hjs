@@ -24,7 +24,7 @@
             <li>
                 <p class="navbar-btn">
                    <a href="/login" class="btn custom-button" id="login-btn-navbar">Log In</a>
-                   <a href="/login" class="btn custom-button" id="login-btn-navbar">Sean Ippolito</a>
+                   <a href="/login" class="btn custom-button" id="login-btn-nav">Sean Ippolito</a>
                </p>
             </li>
         </ul>
