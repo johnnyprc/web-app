@@ -15,8 +15,7 @@
 
 </head>
 <body>
-
-  <!--Holds the main tabs for the business-->
+<!--Holds the main tabs for the business-->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
       <a class="navbar-brand" href="#" onclick='location.reload(true); return false;'>
@@ -41,7 +40,8 @@
     </div>
   </nav>
   <div class="container container-margin-no-secondary">
-
+      <!-- BUTTON WITH WESLEY -->
+      <a href="www.google.com"><button>Wesley Wong</button></a>
   </div>
 
 <div class="container"style=" box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);;">
