@@ -1,8 +1,8 @@
 {
-  "name": "robobetty",
-  "version": "0.6.0",
-  "description": "apiDoc for Robobetty",
-  "title": "Robobetty API",
+  "name": "iReceptionist",
+  "version": "1.0.0",
+  "description": "apiDoc for iReceptionist",
+  "title": "iReceptionist API",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
