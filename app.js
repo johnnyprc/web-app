@@ -21,6 +21,7 @@ global.__base = __dirname + '/';
 //Database
 var monk = require('monk');
 var mongoURI = process.env.MONGOLAB_URI || 'localhost:27017/robobetty';
+console.log('I AM HERE')
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
 
