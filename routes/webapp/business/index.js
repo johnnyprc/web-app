@@ -4,6 +4,7 @@ var router = express.Router();
 
 //Define the controllers for checkin process
 var landing = require('./landing');
+var registerprocess = require('./registerprocess');
 var theming = require('./theming');
 var login = require('./login');
 var formbuilder = require('./formbuilder');
@@ -29,6 +30,9 @@ module.exports = function (passport) {
     router.get('/', landing.get);
     router.post('/', landing.post);
 
+    router.get('/registerprocess', registerprocess.get);
+    //router.post('/registerprocess', registerprocess.post);
+
     router.get('/theming', isLoggedInBusiness, theming.get);
 
     router.get('/login', login.get);
@@ -53,7 +57,7 @@ module.exports = function (passport) {
 
     router.get('/register', register.get);
     router.post('/register',passport.authenticate('local-signup',{
-        successRedirect : '/dashboard', // redirect to the secure profile section
+        successRedirect : '/registerprocess', // redirect to the secure profile section
         failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
 
@@ -80,19 +84,19 @@ module.exports = function (passport) {
     router.post('/setdisclosure', isLoggedInBusiness, setdisclosure.post);
 
 function isLoggedIn(req,res,next){
-        if(req.isAuthenticated()){
+        //if(req.isAuthenticated()){
             return next();
-        }
+        //}
 
         res.redirect('/');
-    }
+}
 
 // route middleware to make sure a user is logged in
 function isLoggedInBusiness(req, res, next) {
     // if user is authenticated in the session, carry on
-    if (req.isAuthenticated()&& (req.user[0].admin === true)){
+    //if (req.isAuthenticated()&& (req.user[0].admin === true)){
         return next();
-    }
+    //}
     req.flash("permission", "You do not have permission to access that page");
     // if they aren't redirect them to the home page
     res.redirect('back');

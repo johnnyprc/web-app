@@ -21,36 +21,39 @@ module.exports = function (passport) {
     passport.use('local-signup', new LocalStrategy({
 
             // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) {
             var db = req.db;
-            var companyName = req.body.companyName;
+            //var companyName = req.body.companyName;
             var fname = req.body.fname;
-            var lname = req.body.lname;
-            var phone = req.body.phone;
+            var companyEmail = req.body.companyEmail;
+            var username = req.body.username;
+            //var lname = req.body.lname;
+            //var phone = req.body.phone;
+            var password = req.body.password;
+
             // Check if any field has been left blank
-            if (companyName === '' || fname === '' || lname === '' || email === ''
-                || phone === '' || password === '') {
+            if (fname === '' || companyEmail === '' || username === '' || password === '' ) {
                 res.render('business/register', {
                     error: 'You must fill in all fields.',
-                    companyName: companyName,
-                    phone: phone,
                     fname: fname,
-                    lname: lname,
-                    email: email,
+                    companyEmail: companyEmail,
+                    username: username,
+                    password: password
                 });
             } else {
 
                 var businesses = db.get('businesses');
                 var employees = db.get('employees');
-
+                //TODO: Get visitors too
+                //var visitors = db.get('visitors');
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
-                businesses.findOne({'email': email}, function (err, user) {
+                businesses.findOne({'companyEmail': companyEmail}, function (err, user) {
                     // if there are any errors, return the error
 
                     if (err) {
@@ -70,12 +73,13 @@ module.exports = function (passport) {
 
                         // save the user
                         businesses.insert({
-                            email: email,
+                            companyEmail: email,
                             password: password,
                             companyName: companyName,
                             phone: phone,
                             fname: fname,
-                            lname: lname,
+                            username: username,
+                            //lname: lname,
                             logo: '',
                             walkins: false
                         }, function (err, result) {
@@ -84,7 +88,7 @@ module.exports = function (passport) {
                             }
 
                             var businessID = result._id.toString();
-                            
+
                             employees.insert({
                                 business: ObjectId(businessID),
                                 password: result.password,
@@ -118,7 +122,7 @@ module.exports = function (passport) {
     },
         function (req,email,password,done) {
 
-       
+
 
             var db =req.db;
             var employee = db.get('employees');
@@ -129,12 +133,12 @@ module.exports = function (passport) {
              query: {registrationToken: req.query.token},
              update: { $unset: {registrationToken: 1},
                 $set: {password: password} },
-             new: true},    
-                function (err,user){  
-                if (err) { 
+             new: true},
+                function (err,user){
+                if (err) {
                      throw err; }
                 return done(null,user);
-       
+
                  }
             );
         }
@@ -156,17 +160,17 @@ module.exports = function (passport) {
         },
         function (req, email, password, done) { // callback with email and password from our form
 
-      
+
             auth.validateLogin(req.db, email, password, function (user) {
                 if (!user) {
                     return done(null, false, req.flash("login", "Invalid Email/Password Combo"));
-                } 
+                }
                 else {
                     return done(null,user);
                     }
-            });     
+            });
         }
     ));
-    
+
 
 };
