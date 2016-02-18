@@ -37,7 +37,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>Landing Page - Style 4 | Canvas</title>
+    <title>iReceptionist</title>
 
     <style>
 
@@ -124,8 +124,24 @@
                 <div class="swiper-slide dark swiper-slide-visible swiper-slide-active" style="width: 1248px; height: 359px; background-image: url(images/landing/cat2.jpg);">
                     <div class="container clearfix">
                         <div class="slider-caption slider-caption-center" style="transform: translate(0px, -6.71px); opacity: 1.60401; top: 146.5px;">
-                            <h2 data-caption-animate="fadeInUp" class="fadeInUp animated">Welcome to iReceptionist</h2>
+                            <h2 data-caption-animate="fadeInUp" class="fadeInUp animated">iReceptionist</h2>
                             <p data-caption-animate="fadeInUp" data-caption-delay="200" class="fadeInUp animated">Creating a streamlined office environment was never so Easy &amp; Interactive.</p>
+                            <form action="#" method="post" role="form" class="landing-wide-form clearfix">
+                                <div class="col_four_fifth nobottommargin">
+                                    <div class="col_one_third nobottommargin">
+                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Name*">
+                                    </div>
+                                    <div class="col_one_third nobottommargin">
+                                        <input type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
+                                    </div>
+                                    <div class="col_one_third col_last nobottommargin">
+                                        <input type="password" class="form-control input-lg not-dark" value="" placeholder="Choose Password*">
+                                    </div>
+                                </div>
+                                <div class="col_one_fifth col_last nobottommargin">
+                                    <button class="btn btn-lg btn-danger btn-block nomargin" value="submit" type="submit" style="">REGISTER</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
