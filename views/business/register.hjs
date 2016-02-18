@@ -115,16 +115,6 @@
                                         </div>
 
                                         <div class="col_full">
-                                            <label for="register-form-companyname">Company Name:</label>
-                                            <input type="text" id="register-form-companyname" name="register-form-username" value="" class="form-control" />
-                                        </div>
-
-                                        <div class="col_full">
-                                            <label for="register-form-phone">Phone Number:</label>
-                                            <input type="text" id="register-form-phone" name="register-form-phone" value="Phone Number" class="form-control" />
-                                        </div>
-
-                                        <div class="col_full">
                                             <label for="register-form-username">Username:</label>
                                             <input type="text" id="register-form-username" name="register-form-password" value="" class="form-control" />
                                         </div>
@@ -132,11 +122,6 @@
                                         <div class="col_full">
                                             <label for="register-form-password">Choose Password:</label>
                                             <input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
-                                        </div>
-
-                                        <div class="col_full">
-                                            <label for="register-form-repassword">Re-enter Password:</label>
-                                            <input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
                                         </div>
 
                                         <div class="col_full nobottommargin">

@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Register Process</title>
+
+</head>
+
+<body>
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="processTabs">
+                <ul class="process-steps bottommargin clearfix">
+                    <li>
+                        <a href="#ptab1" class="i-circled i-bordered i-alt divcenter">1</a>
+                        <h5>Business Setup</h5>
+
+
+
+                    </li>
+                    <li>
+                        <a href="#ptab2" class="i-circled i-bordered i-alt divcenter">2</a>
+                        <h5>Employee Table</h5>
+                    </li>
+                    <li>
+                        <a href="#ptab3" class="i-circled i-bordered i-alt divcenter">3</a>
+                        <h5>Visitor Experience</h5>
+                    </li>
+                    <li>
+                        <a href="#ptab4" class="i-circled i-bordered i-alt divcenter">4</a>
+                        <h5>Employee Notifications</h5>
+                    </li>
+                </ul>
+                <div>
+                    <div id="ptab1">
+
+                        <p>Upload your Logo and Business information to feel at home</p>
+                        <div class="col_one_third tab-content clearfix" id="tab-register">
+                            <div class="panel panel-default nobottommargin">
+                                <div class="panel-body" style="padding: 40px;">
+                                    <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
+
+                                        <div class="col_full">
+                                            <label for="register-form-companyname">Company Name:</label>
+                                            <input type="text" id="register-form-companyname" name="register-form-username" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-companyemail">Company Email:</label>
+                                            <input type="text" id="register-form-companyemail" name="register-form-email" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-phone">Phone Number:</label>
+                                            <input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col_one_third tab-content clearfix" id="tab-thumbnail">-->
+                            <!--<div class="panel panel-default nobottommargin">-->
+                                <!--<div class="panel-body" style="padding: 40px;">-->
+                        <div class="col_one_fourth"></div>
+                                    <div class="row col_last">
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=" style="display: block;">
+                                                <div class="caption">
+                                                    <h3>Upload Logo</h3>
+                                                    <!--<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>-->
+                                                    <a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                        <a href="#" class="button button-3d nomargin fright tab-linker" rel="2">Continue</a>
+
+                    </div>
+                    <div id="ptab2">
+                        <p>Add stuff here</p>
+                        <p>Add more stuff here</p>
+                        <a href="#" class="button button-3d nomargin tab-linker" rel="1">Previous</a>
+                        <a href="#" class="button button-3d nomargin fright tab-linker" rel="3">Continue</a>
+                    </div>
+                    <div id="ptab3">
+                        <p></p>
+                        <a href="#" class="button button-3d nomargin tab-linker" rel="2">Previous</a>
+                        <a href="#" class="button button-3d nomargin fright tab-linker" rel="4">Continue</a>
+                    </div>
+                    <div id="ptab4">
+                        <div class="alert alert-success">
+                            <strong>Thank You.</strong> Your order will be processed once we verify the Payment.
+                        </div>
+                        <a href="#" class="button button-3d nomargin tab-linker" rel="3">Previous</a>
+                        <a href="#" class="button button-3d nomargin fright tab-linker" rel="4">Finnish</a>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $(function() {
+                    $( "#processTabs" ).tabs({ show: { effect: "fade", duration: 400 } });
+                    $( ".tab-linker" ).click(function() {
+                        $( "#processTabs" ).tabs("option", "active", $(this).attr('rel') - 1);
+                        return false;
+                    });
+                });
+            </script>
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+</body>
+</html>
