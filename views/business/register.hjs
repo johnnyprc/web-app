@@ -55,9 +55,9 @@
 
     <!-- Content
     ============================================= -->
-    <section id="content">
+    <section id="content" >
 
-        <div class="content-wrap">
+        <div class="content-wrap" style="height: 1200px; background-image: url(images/landing/cat9.jpg); background-position: 50% 0%;">
 
             <div class="container clearfix">
 
@@ -68,11 +68,11 @@
                         <li class="inline-block"><a href="#tab-register">Register</a></li>
                     </ul>
 
-                    <div class="tab-container">
+                    <div class="tab-container ">
 
                         <div class="tab-content clearfix" id="tab-login">
                             <div class="panel panel-default nobottommargin">
-                                <div class="panel-body" style="padding: 40px;">
+                                <div class="panel-body" style="padding: 40px; ">
                                     <form id="login-form" name="login-form" class="nobottommargin" action="login" method="post">
 
                                         <h3></h3>
@@ -142,6 +142,74 @@
         </div>
 
     </section><!-- #content end -->
+
+    <footer id="footer" class="dark">
+
+
+        <!-- Copyrights
+        ============================================= -->
+        <div id="footer-widgets-wrap clearfix copyrights">
+
+            <div class="container clearfix">
+
+                <div class="col_half">
+                    Copyrights &copy; 2016 Spot On SoftwareInc.<br>
+                    <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+                </div>
+
+                <div class="col_half col_last tright">
+                    <div class="fright clearfix">
+                        <a href="#" class="social-icon si-small si-borderless si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-gplus">
+                            <i class="icon-gplus"></i>
+                            <i class="icon-gplus"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-pinterest">
+                            <i class="icon-pinterest"></i>
+                            <i class="icon-pinterest"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-vimeo">
+                            <i class="icon-vimeo"></i>
+                            <i class="icon-vimeo"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-github">
+                            <i class="icon-github"></i>
+                            <i class="icon-github"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-yahoo">
+                            <i class="icon-yahoo"></i>
+                            <i class="icon-yahoo"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-linkedin">
+                            <i class="icon-linkedin"></i>
+                            <i class="icon-linkedin"></i>
+                        </a>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <i class="icon-envelope2"></i> info@ireceptionist.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> 1-619-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> iReceptionOnSkype
+                </div>
+
+            </div>
+
+        </div><!-- #copyrights end -->
+
+    </footer><!-- #footer end -->
 
  </div><!-- #wrapper end -->
 
