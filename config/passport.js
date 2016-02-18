@@ -46,6 +46,7 @@ module.exports = function (passport) {
 
                 var businesses = db.get('businesses');
                 var employees = db.get('employees');
+                var test = db.get('test');
 
 
                 // find a user whose email is the same as the forms email
@@ -69,7 +70,7 @@ module.exports = function (passport) {
                         password = auth.hashPassword(password);
 
                         // save the user
-                        businesses.insert({
+                        test.insert({
                             email: email,
                             password: password,
                             companyName: companyName,
