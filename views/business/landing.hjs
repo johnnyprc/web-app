@@ -116,41 +116,113 @@
 
     </header><!-- #header end -->
 
-    <section id="slider" class="slider  full-screen" style="background: url(images/landing/modernfrontdesk.jpg) center;">
 
-        <div class="container clearfix">
+    <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix" style="height: 359px; transform: translate(0px, 31.33px);">
 
-            <div class="vertical-middle">
-
-                <div class="heading-block center nobottomborder">
-                    <h1 data-animate="fadeInUp">Welcome to iReceptionist</h1>
-                    <h4>
-                    <span data-animate="fadeInUp" data-delay="300">Creating a streamlined office environment was never so Easy &amp; Interactive.</span>
-                    </h4>
+        <div class="swiper-container swiper-parent" style="cursor: -webkit-grab;">
+            <div class="swiper-wrapper" style="width: 3744px; height: 665px; transform: translate3d(0px, 0px, 0px); transition-duration: 0.3s;">
+                <div class="swiper-slide dark swiper-slide-visible swiper-slide-active" style="width: 1248px; height: 359px; background-image: url(images/landing/cat2.jpg);">
+                    <div class="container clearfix">
+                        <div class="slider-caption slider-caption-center" style="transform: translate(0px, -6.71px); opacity: 1.60401; top: 146.5px;">
+                            <h2 data-caption-animate="fadeInUp" class="fadeInUp animated">Welcome to iReceptionist</h2>
+                            <p data-caption-animate="fadeInUp" data-caption-delay="200" class="fadeInUp animated">Creating a streamlined office environment was never so Easy &amp; Interactive.</p>
+                        </div>
+                    </div>
                 </div>
-
-                <form action="#" method="post" role="form" class="landing-wide-form clearfix">
-                    <div class="col_four_fifth nobottommargin">
-                        <div class="col_one_third nobottommargin">
-                            <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Name*">
-                        </div>
-                        <div class="col_one_third nobottommargin">
-                            <input type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
-                        </div>
-                        <div class="col_one_third col_last nobottommargin">
-                            <input type="password" class="form-control input-lg not-dark" value="" placeholder="Choose Password*">
+                <div class="swiper-slide dark" style="width: 1248px; height: 359px; background-image: url(images/landing/cat1.jpg);">
+                    <div class="container clearfix">
+                        <div class="slider-caption slider-caption-right" style="transform: translate(0px, -6.71px); opacity: 1.60401; top: 146.5px;">
+                            <h2 data-caption-animate="fadeInUp" class="not-animated">Beautifully Flexible</h2>
+                            <p data-caption-animate="fadeInUp" data-caption-delay="200" class="fadeInUp animated">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
                         </div>
                     </div>
-                    <div class="col_one_fifth col_last nobottommargin">
-                        <button class="btn btn-lg btn-danger btn-block nomargin" value="submit" type="submit" style="">REGISTER</button>
+                </div>
+                <div class="swiper-slide dark" style="width: 1248px; height: 359px; background-image: url(images/landing/cat7.gif); background-position: 50% 0%;">
+                    <div class="container clearfix">
+                        <div class="slider-caption  slider-caption-left" style="transform: translate(0px, -6.71px); opacity: 1.60401; top: 109.5px;">
+                            <h2 data-caption-animate="fadeInUp" class="not-animated">Great Performance</h2>
+                            <p data-caption-animate="fadeInUp" data-caption-delay="200" class="not-animated">Create a checkin experience that you'll be proud of.</p>
+                        </div>
                     </div>
-                </form>
-
+                </div>
             </div>
-
-            <a href="#" data-scrollto="#section-features" class="one-page-arrow"><i class="icon-angle-down infinite animated fadeInDown"></i></a>
+            <div id="slider-arrow-left" style="opacity: 1.60401;"><i class="icon-angle-left"></i></div>
+            <div id="slider-arrow-right" style="opacity: 1.60401;"><i class="icon-angle-right"></i></div>
 
         </div>
+
+        <script>
+            jQuery(document).ready(function($){
+                swiperSlider = new Swiper('.swiper-parent',{
+                    paginationClickable: false,
+                    slidesPerView: 1,
+                    grabCursor: true,
+                    onSwiperCreated: function(swiper){
+                        $('[data-caption-animate]').each(function(){
+                            var $toAnimateElement = $(this);
+                            var toAnimateDelay = $(this).attr('data-caption-delay');
+                            var toAnimateDelayTime = 0;
+                            if( toAnimateDelay ) { toAnimateDelayTime = Number( toAnimateDelay ) + 750; } else { toAnimateDelayTime = 750; }
+                            if( !$toAnimateElement.hasClass('animated') ) {
+                                $toAnimateElement.addClass('not-animated');
+                                var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+                                setTimeout(function() {
+                                    $toAnimateElement.removeClass('not-animated').addClass( elementAnimation + ' animated');
+                                }, toAnimateDelayTime);
+                            }
+                        });
+                        SEMICOLON.slider.swiperSliderMenu();
+                    },
+                    onSlideChangeStart: function(swiper){
+                        $('#slide-number-current').html(swiper.activeIndex + 1);
+                        $('[data-caption-animate]').each(function(){
+                            var $toAnimateElement = $(this);
+                            var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+                            $toAnimateElement.removeClass('animated').removeClass(elementAnimation).addClass('not-animated');
+                        });
+                        SEMICOLON.slider.swiperSliderMenu();
+                    },
+                    onSlideChangeEnd: function(swiper){
+                        $('#slider').find('.swiper-slide').each(function(){
+                            if($(this).find('video').length > 0) { $(this).find('video').get(0).pause(); }
+                        });
+                        $('#slider').find('.swiper-slide:not(".swiper-slide-active")').each(function(){
+                            if($(this).find('video').length > 0) {
+                                if($(this).find('video').get(0).currentTime != 0 ) $(this).find('video').get(0).currentTime = 0;
+                            }
+                        });
+                        if( $('#slider').find('.swiper-slide.swiper-slide-active').find('video').length > 0 ) { $('#slider').find('.swiper-slide.swiper-slide-active').find('video').get(0).play(); }
+
+                        $('#slider .swiper-slide.swiper-slide-active [data-caption-animate]').each(function(){
+                            var $toAnimateElement = $(this);
+                            var toAnimateDelay = $(this).attr('data-caption-delay');
+                            var toAnimateDelayTime = 0;
+                            if( toAnimateDelay ) { toAnimateDelayTime = Number( toAnimateDelay ) + 300; } else { toAnimateDelayTime = 300; }
+                            if( !$toAnimateElement.hasClass('animated') ) {
+                                $toAnimateElement.addClass('not-animated');
+                                var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+                                setTimeout(function() {
+                                    $toAnimateElement.removeClass('not-animated').addClass( elementAnimation + ' animated');
+                                }, toAnimateDelayTime);
+                            }
+                        });
+                    }
+                });
+
+                $('#slider-arrow-left').on('click', function(e){
+                    e.preventDefault();
+                    swiperSlider.swipePrev();
+                });
+
+                $('#slider-arrow-right').on('click', function(e){
+                    e.preventDefault();
+                    swiperSlider.swipeNext();
+                });
+
+                $('#slide-number-current').html(swiperSlider.activeIndex + 1);
+                $('#slide-number-total').html(swiperSlider.slides.length);
+            });
+        </script>
 
     </section>
 
@@ -163,23 +235,30 @@
 
             <div>
 
-                <!-- INTRO -->
-                <div class="section nomargin notopborder nobg" style="padding: 80px 0 60px;">
-                    <div class="container center clearfix">
-
-                        <div class="heading-block">
+                <!-- FEATURES -->
+                <div id="section-features" class="section nomargin notopborder nobottomborder nobg" style="padding: 80px 0 0px;">
+                    <div class="container clearfix ">
+                        <div class="heading-block center">
                             <h2>Make your first impressions count</h2>
                             <span>A New Way to greet your guests.</span>
                         </div>
-
-                        <div class="divcenter bottommargin" style="max-width: 800px;">
-                            <p style="font-size: 14px; line-height: 22px;">
-                                <img src="images/mac.png" class="alignleft notopmargin" alt="Image" title="Image" data-animate="fadeIn" />Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, cumque, distinctio, in assumenda voluptates iste autem fugiat recusandae quas corporis laboriosam maxime vero. Harum, similique, doloribus, voluptate aliquam unde quas at consequuntur rem iste eum iusto placeat quae inventore quibusdam explicabo itaque eaque dolor quam omnis assumenda. Hic, nesciunt vel debitis quas reiciendis. Debitis, natus, voluptas, quaerat, nostrum tempora aliquid nesciunt sapiente commodi excepturi fugiat neque facilis perferendis quam porro!</p>
+                        <div class="col_two_fifth">
+                            <img src="images/ipad/kittyring_ipadair2_gold_left.png" class="alignleft notopmargin" alt="Image" title="Image" data-animate="fadeInLeft" />
+                        </div>
+                        <div class="col_three_fifth col_last"> <p style="font-size: 14px; line-height: 22px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, cumque, distinctio, in assumenda voluptates iste autem fugiat recusandae quas corporis laboriosam maxime vero. Harum, similique, doloribus, voluptate aliquam unde quas at consequuntur rem iste eum iusto placeat quae inventore quibusdam explicabo itaque eaque dolor quam omnis assumenda. Hic, nesciunt vel debitis quas reiciendis. Debitis, natus, voluptas, quaerat, nostrum tempora aliquid nesciunt sapiente commodi excepturi fugiat neque facilis perferendis quam porro!</p>
                         </div>
 
+                        <div class="col_three_fifth">
+                            <div class="heading-block center">
+                                <h2>Choose your notification style</h2>
+                                <span>Whether its email or SMS, let your clients know when they're ready to be seen! Alternatively, you can notify employees that a client has checked in for an appointment.</span>
+                            </div>
+                        </div>
+                        <div class="col_two_fifth col_last"><img src="images/ipad/longcat_ipadair2_gold_portrait.png" class="alignleft notopmargin" alt="Image" title="Image" data-animate="fadeInRight" /></div>
 
 
                     </div>
+
                 </div>
 
 
@@ -191,16 +270,18 @@
                             <h2>iReceptionist Reporting</h2>
                             <span>Drill down into your data to understand your clients better.</span>
                         </div>
-                        <div class="col_three_fifth topmargin-sm nobottommargin" id="lineChart" style="opacity: 1;">
-                            <canvas id="lineChartCanvas" width="1094" height="600" style="width: 547px; height: 300px;"></canvas>
-                        </div>
 
-                        <div class="col_two_fifth nobottommargin col_last">
+
+                        <div class="col_two_fifth nobottommargin">
 
                             <p>Completely redesigned, iReceptionist Reporting gives you all the analytic tools you need to understand your clients and make the right decisions.</p>
 
-                            <a href="#" class="button button-3d button-large">Check out</a>
+                            <a href="#" class="button button-3d button-large">learn more</a>
 
+                        </div>
+
+                        <div class="col_three_fifth topmargin-sm nobottommargin col_last" id="lineChart" style="opacity: 1;">
+                            <canvas id="lineChartCanvas" width="1094" height="600" style="width: 547px; height: 300px;"></canvas>
                         </div>
 
                         <script type="text/javascript">
@@ -256,7 +337,7 @@
                                     <div class="fbox-icon">
                                         <a href="#"><i class="i-alt">1</i></a>
                                     </div>
-                                    <h4>Register your company</h4><span class="subtitle">Choose a plan that fits your company. Build a style and theme that shows off your company's attitute.</span>
+                                    <h4>Register your company</h4><span class="subtitle">Build a style and theme that shows off your company's attitute.</span>
                                 </div>
                             </div>
                             <div class="col_one_third">
@@ -280,180 +361,146 @@
                         </div>
                     </div>
                 </div>
-                
 
-                <!-- END FEATURES
-                 ===========================================================
-                     BEGIN PRICING
 
-                 --->
+                <!-- BEGIN PRICING --->
                 <div class="clear"></div>
                 <div id="section-pricing" class="heading-block title-center page-section">
                     <h2>Try iReceptionist for free.</h2>
                     <span>Start your 14 day trial, choose your plan later</span>
+                    <div class="pricing bottommargin clearfix">
+
+                        <div class="col-md-3" data-animate="fadeInLeft">
+
+                            <div class="pricing-box">
+                                <div class="pricing-title">
+                                    <h3>Trial</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span class="price-unit">$</span>0
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li><strong>Full</strong> Employee integration</li>
+
+                                        <li><strong>1</strong> Form template</li>
+
+                                        <li><strong>1</strong> Active location</li>
+                                        <li><strong>14 day</strong> License</li>
+
+                                    </ul>
+                                </div>
+                                <div class="pricing-action">
+                                    <form action="#" method="post" role="form" class="clearfix">
+                                        <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
+                                            Sign Up
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3" data-animate="fadeInLeft"  data-delay="250">
+
+                            <div class="pricing-box">
+                                <div class="pricing-title">
+                                    <h3>Starter</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span class="price-unit">$</span>$<span class="price-tenure">/mo</span>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li><strong>Full</strong> Employee integration</li>
+
+                                        <li><strong>10</strong> Form template</li>
+
+                                        <li><strong>10</strong> Active locations</li>
+                                        <li><strong>1 year</strong> License</li>
+
+                                    </ul>
+                                </div>
+                                <div class="pricing-action">
+                                    <form action="#" method="post" role="form" class="clearfix">
+                                        <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
+                                            Sign Up
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3" data-animate="fadeInLeft" data-delay="500">
+
+                            <div class="pricing-box best-price">
+                                <div class="pricing-title">
+                                    <h3>Professional</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span class="price-unit">$</span>$$<span class="price-tenure">/mo</span>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li><strong>Full</strong> Employee integration</li>
+
+                                        <li><strong>15</strong> Form templates</li>
+
+                                        <li><strong>50</strong> Active locations</li>
+                                        <li><strong>2 year</strong> License</li>
+
+                                    </ul>
+                                </div>
+                                <div class="pricing-action">
+                                    <form action="#" method="post" role="form" class="clearfix">
+                                        <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg bgcolor border-color">
+                                            Sign Up
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-3" data-animate="fadeInLeft" data-delay="750">
+
+                            <div class="pricing-box">
+                                <div class="pricing-title">
+                                    <h3>Enterprise</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span class="price-unit">$</span>$$$<span class="price-tenure">/mo</span>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li><strong>Full</strong> Access</li>
+
+                                        <li><strong>20</strong> Form templates</li>
+
+                                        <li><strong>1000</strong> Active locations</li>
+                                        <li><strong>3 year</strong> License</li>
+
+                                    </ul>
+                                </div>
+                                <div class="pricing-action">
+                                    <form action="#" method="post" role="form" class="clearfix">
+                                        <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
+                                            Sign Up
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="pricing bottommargin clearfix">
 
-                    <div class="col-md-3" data-animate="fadeInLeft">
-
-                        <div class="pricing-box">
-                            <div class="pricing-title">
-                                <h3>Trial</h3>
-                            </div>
-                            <div class="pricing-price">
-                                <span class="price-unit">$</span>0
-                            </div>
-                            <div class="pricing-features">
-                                <ul>
-                                    <li><strong>Full</strong> Employee integration</li>
-
-                                    <li><strong>1</strong> Form template</li>
-
-                                    <li><strong>1</strong> Active location</li>
-                                    <li><strong>14 day</strong> License</li>
-                                    <li>Customizable themes &amp; colors</li>
-                                    <li>SMS &amp; email notifications</li>
-                                    <li>Phone &amp; Email Support</li>
-                                    <li>Checkin analytics</li>
-                                    <li>-</li>
-
-                                </ul>
-                            </div>
-                            <div class="pricing-action">
-                                <form action="#" method="post" role="form" class="clearfix">
-                                    <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
-                                        Sign Up
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3" data-animate="fadeInLeft"  data-delay="250">
-
-                        <div class="pricing-box">
-                            <div class="pricing-title">
-                                <h3>Starter</h3>
-                            </div>
-                            <div class="pricing-price">
-                                <span class="price-unit">$</span>$<span class="price-tenure">/mo</span>
-                            </div>
-                            <div class="pricing-features">
-                                <ul>
-                                    <li><strong>Full</strong> Employee integration</li>
-
-                                    <li><strong>10</strong> Form template</li>
-
-                                    <li><strong>10</strong> Active locations</li>
-                                    <li><strong>1 year</strong> License</li>
-                                    <li>Customizable themes &amp; colors</li>
-                                    <li>-</li>
-                                    <li>-</li>
-                                    <li>-</li>
-                                    <li>-</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-action">
-                                <form action="#" method="post" role="form" class="clearfix">
-                                    <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
-                                        Sign Up
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3" data-animate="fadeInLeft" data-delay="500">
-
-                        <div class="pricing-box best-price">
-                            <div class="pricing-title">
-                                <h3>Professional</h3>
-                            </div>
-                            <div class="pricing-price">
-                                <span class="price-unit">$</span>$$<span class="price-tenure">/mo</span>
-                            </div>
-                            <div class="pricing-features">
-                                <ul>
-                                    <li><strong>Full</strong> Employee integration</li>
-
-                                    <li><strong>15</strong> Form templates</li>
-
-                                    <li><strong>50</strong> Active locations</li>
-                                    <li><strong>2 year</strong> License</li>
-                                    <li>Customizable themes &amp; colors</li>
-                                    <li>SMS &amp; email notifications</li>
-                                    <li>Email Support</li>
-                                    <li>Checkin analytics</li>
-                                    <li>-</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-action">
-                                <form action="#" method="post" role="form" class="clearfix">
-                                    <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg bgcolor border-color">
-                                        Sign Up
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-md-3" data-animate="fadeInLeft" data-delay="750">
-
-                        <div class="pricing-box">
-                            <div class="pricing-title">
-                                <h3>Enterprise</h3>
-                            </div>
-                            <div class="pricing-price">
-                                <span class="price-unit">$</span>$$$<span class="price-tenure">/mo</span>
-                            </div>
-                            <div class="pricing-features">
-                                <ul>
-                                    <li><strong>Full</strong> Access</li>
-
-                                    <li><strong>20</strong> Form templates</li>
-
-                                    <li><strong>1000</strong> Active locations</li>
-                                    <li><strong>3 year</strong> License</li>
-                                    <li>Customizable themes &amp; colors</li>
-                                    <li>SMS &amp; email notifications</li>
-                                    <li>Phone &amp; Email Support</li>
-                                    <li>Checkin analytics</li>
-                                    <li>Dedicated Account Specialist</li>
-                                </ul>
-                            </div>
-                            <div class="pricing-action">
-                                <form action="#" method="post" role="form" class="clearfix">
-                                    <button value="submit" type="submit" class="btn btn-danger btn-block btn-lg">
-                                        Sign Up
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <!-- END PRICING
-                ===========================================================
-                      BEGIN TESTIMONIALS
-                --->
-
-                <!-- END TESTIMONIALS
-                ===========================================================
-                     BEGIN SPECIFICATIONS
-                --->
-
-
-                <!-- END SPECIFICATION
-                ===========================================================
-                    BEGIN "BUY NOW"
-                --->
+                <!-- BEGIN "BUY NOW"--->
                 <div class="section footer-stick">
 
                     <div class="container clearfix">
