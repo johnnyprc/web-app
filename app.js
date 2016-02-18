@@ -28,6 +28,7 @@ var db = monk(mongoURI);
 //login config
 var businesses = db.get('businesses');
 var employee = db.get('employees');
+var test = db.get('test');
 
 if (newrelic) {
     app.locals.newrelic = newrelic;
