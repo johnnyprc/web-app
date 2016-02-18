@@ -1,71 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html dir="ltr" lang="en-US">
 <head>
-    <title>{{ title }}</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    {{#newrelic}}
-        {{{ newrelic.getBrowserTimingHeader }}}
-    {{/newrelic}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Login/Register</title>
+
 </head>
 
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-            <img id = "company-logo" src="images/logo.png">
-        </a>
-      </div>
-      <div class="navbar-padding-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <p class="navbar-btn">
-                   <a href="/login" class="btn custom-button" id="login-btn-navbar">Log In</a>
-               </p>
-            </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container container-margin">
-            <div class="row">
-                <div class="col-xs-offset-1 col-xs-4">
-                    <h2>Create an Account</h2>
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+
+    <!-- Page Title
+    ============================================= -->
+    <!--<section id="page-title">-->
+
+        <!--<div class="container clearfix">-->
+            <!--<h1>My Account</h1>-->
+            <!--<ol class="breadcrumb">-->
+                <!--<li><a href="#">Home</a></li>-->
+                <!--<li><a href="#">Pages</a></li>-->
+                <!--<li class="active">Login</li>-->
+            <!--</ol>-->
+        <!--</div>-->
+
+    <!--</section>&lt;!&ndash; #page-title end &ndash;&gt;-->
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
+
+                    <ul class="tab-nav tab-nav2 center clearfix">
+                        <li class="inline-block"><a href="#tab-login">Login</a></li>
+                        <li class="inline-block"><a href="#tab-register">Register</a></li>
+                    </ul>
+
+                    <div class="tab-container">
+
+                        <div class="tab-content clearfix" id="tab-login">
+                            <div class="panel panel-default nobottommargin">
+                                <div class="panel-body" style="padding: 40px;">
+                                    <form id="login-form" name="login-form" class="nobottommargin" action="login" method="post">
+
+                                        <h3></h3>
+
+                                        <div class="col_full">
+                                            <label for="login-form-username">Username:</label>
+                                            <input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="login-form-password">Password:</label>
+                                            <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full nobottommargin">
+                                            <button href="/login" class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                                            <a href="#" class="fright">Forgot Password?</a>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content clearfix" id="tab-register">
+                            <div class="panel panel-default nobottommargin">
+                                <div class="panel-body" style="padding: 40px;">
+                                    <h3>Register for an Account</h3>
+
+                                    <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
+
+                                        <div class="col_full">
+                                            <label for="register-form-name">Name:</label>
+                                            <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-companyemail">Company Email:</label>
+                                            <input type="text" id="register-form-companyemail" name="register-form-email" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-companyname">Company Name:</label>
+                                            <input type="text" id="register-form-companyname" name="register-form-username" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-phone">Phone Number:</label>
+                                            <input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-username">Username:</label>
+                                            <input type="password" id="register-form-username" name="register-form-password" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-password">Choose Password:</label>
+                                            <input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-repassword">Re-enter Password:</label>
+                                            <input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full nobottommargin">
+                                            <button class="button button-3d button-black nomargin" id="register-form-submit" name="submit" type="submit" value="Sign Up">Register Now</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="row text-center" id="regis-container">
-                <div class="col-xs-offset-1 col-xs-4" id="form-separator">
-                    <form method="post" action="" enctype="application/x-www-form-urlencoded">
-                        <input class="regis" type="text" name="companyName" value="{{ companyName }}" placeholder="COMPANY NAME" required>
-                        <input class="regis" type="text" name="fname" value="{{ fname }}" placeholder="YOUR FIRST NAME" required>
-                        <input class="regis" type="text" name="lname" value="{{ lname }}" placeholder="YOUR LAST NAME" required>
-                        <input class="regis" type="email" name="email" value="{{ email }}" placeholder="EMAIL" required>
-                        <input class="regis" type="tel" name="phone" value="{{ phone }}" placeholder="PHONE NUMBER" required>
-                        <input class="regis" type="password" name="password" value="{{ password }}" placeholder="PASSWORD" required>
-                        <input class="btn custom-button" name="submit" type="submit" value="Sign Up">
-                    </form>
-                </div>
-                <div class="col-xs-7">
-                    <img class="custom-center" id="register-image" src="images/ipad.png" alt="Register to use iReceptionist"/>
-                </div>
-            </div>
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <ul class="list-inline footer-links text-center">
-                <!--<li><a href="">About Us</a></li>
-                <li><a href="">Store</a></li>
-                <li><a href="">Jobs</a></li>
-                <li><a href="">Privacy</a></li>
-                <li><a href="">Terms</a></li>
-                <li><a href="">Support</a></li>-->
-                <li class = "footer-copyright">Copyright &#169; Gold Team-CSE 112, Winter 2015. All Rights Reserved.</li>
-            </ul>
         </div>
-    </footer>
-</body>
 
+    </section><!-- #content end -->
+
+ </div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="js/functions.js"></script>
+
+</body>
 </html>
