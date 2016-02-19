@@ -101,8 +101,8 @@
                             <div class="panel panel-default nobottommargin">
                                 <div class="panel-body" style="padding: 40px;">
                                     <h3>Register for an Account</h3>
-
-                                    <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
+                                    <div class="nobottommargin">
+                                    <!--<form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">-->
 
                                         <div class="col_full">
                                             <label for="register-form-name">Name:</label>
@@ -130,7 +130,8 @@
                                         </a>
                                         </div>
 
-                                    </form>
+                                    <!--</form>-->
+                                    </div>
                                 </div>
                             </div>
                         </div>
