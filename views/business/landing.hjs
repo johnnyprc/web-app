@@ -105,7 +105,7 @@
                         <li><a href="#" data-href="#section-features"><div>Features</div></a></li>
                         <li><a href="#" data-href="#section-analytics"><div>Reporting</div></a></li>
                         <li><a href="#" data-href="#section-pricing"><div>Pricing</div></a></li>
-                        <li><a href="/login"><div>Login</div></a></li>
+                        <li><a href="/register"><div>Login</div></a></li>
                     </ul>
 
                 </nav><!-- #primary-menu end -->
