@@ -79,10 +79,10 @@ module.exports = function (passport) {
                             companyEmail: companyEmail,
                             password: password,
                             companyName: companyName,
-                            //phone: phone,
+                            phone: '',
                             fname: fname,
                             username: username,
-                            //lname: lname,
+                            lname: '',
                             logo: '',
                             walkins: false
                         }, function (err, result) {
@@ -95,9 +95,9 @@ module.exports = function (passport) {
                             employees.insert({
                                 business: ObjectId(businessID),
                                 password: result.password,
-                                //phone: result.phone,
+                                phone: result.phone,
                                 fname: result.fname,
-                                //lname: result.lname,
+                                lname: result.lname,
                                 companyEmail: result.companyEmail,
                                 smsNotify: true,
                                 emailNotify: true,
