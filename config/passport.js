@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var auth = require('../lib/auth');
 var ObjectId = require('mongodb').ObjectID;
 
-//need this since we are passing in a passport dependency in app.js line 22
+//need this since we are passing in a passport dependency in app.js line 58
 module.exports = function (passport) {
 
 
@@ -27,7 +27,7 @@ module.exports = function (passport) {
         },
         function (req, email, password, done) {
             var db = req.db;
-            //var companyName = req.body.companyName;
+            var companyName = req.body.companyName;
             var fname = req.body.fname;
             var companyEmail = req.body.companyEmail;
             var username = req.body.username;
@@ -36,10 +36,11 @@ module.exports = function (passport) {
             var password = req.body.password;
 
             // Check if any field has been left blank
-            if (fname === '' || companyEmail === '' || username === '' || password === '' ) {
+            if (fname === '' || companyName === '' || companyEmail === '' || username === '' || password === '' ) {
                 res.render('business/register', {
                     error: 'You must fill in all fields.',
                     fname: fname,
+                    companyName: companyName,
                     companyEmail: companyEmail,
                     username: username,
                     password: password
@@ -50,6 +51,8 @@ module.exports = function (passport) {
                 var employees = db.get('employees');
                 //TODO: Get visitors too
                 //var visitors = db.get('visitors');
+                //var staff = db.get('staff');
+                //var
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
@@ -73,10 +76,10 @@ module.exports = function (passport) {
 
                         // save the user
                         businesses.insert({
-                            companyEmail: email,
+                            companyEmail: companyEmail,
                             password: password,
                             companyName: companyName,
-                            phone: phone,
+                            //phone: phone,
                             fname: fname,
                             username: username,
                             //lname: lname,
@@ -92,10 +95,10 @@ module.exports = function (passport) {
                             employees.insert({
                                 business: ObjectId(businessID),
                                 password: result.password,
-                                phone: result.phone,
+                                //phone: result.phone,
                                 fname: result.fname,
-                                lname: result.lname,
-                                email: result.email,
+                                //lname: result.lname,
+                                companyEmail: result.companyEmail,
                                 smsNotify: true,
                                 emailNotify: true,
                                 admin: true
@@ -154,7 +157,7 @@ module.exports = function (passport) {
 
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },

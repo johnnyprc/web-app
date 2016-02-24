@@ -38,21 +38,6 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
-    <!-- Page Title
-    ============================================= -->
-    <!--<section id="page-title">-->
-
-        <!--<div class="container clearfix">-->
-            <!--<h1>My Account</h1>-->
-            <!--<ol class="breadcrumb">-->
-                <!--<li><a href="#">Home</a></li>-->
-                <!--<li><a href="#">Pages</a></li>-->
-                <!--<li class="active">Login</li>-->
-            <!--</ol>-->
-        <!--</div>-->
-
-    <!--</section>&lt;!&ndash; #page-title end &ndash;&gt;-->
-
     <!-- Content
     ============================================= -->
     <section id="content" >
@@ -78,13 +63,13 @@
                                         <h3></h3>
 
                                         <div class="col_full">
-                                            <label for="login-form-username"></label>
-                                            <input type="text" id="login-form-username" name="login-form-username" value="Username" class="form-control" />
+                                            <label for="login-form-username">Username:</label>
+                                            <input type="text" id="login-form-username" name="username" value="" class="form-control" />
                                         </div>
 
                                         <div class="col_full">
                                             <label for="login-form-password">Password:</label>
-                                            <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+                                            <input type="password" id="login-form-password" name="password" value="" class="form-control" />
                                         </div>
 
                                         <div class="col_full nobottommargin">
@@ -102,35 +87,40 @@
                                 <div class="panel-body" style="padding: 40px;">
                                     <h3>Register for an Account</h3>
                                     <div class="nobottommargin">
-                                    <!--<form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">-->
+                                    <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
 
                                         <div class="col_full">
-                                            <label for="register-form-name">Name:</label>
-                                            <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
+                                            <label for="register-form-fname">Name:</label>
+                                            <input type="text" id="register-form-fname" name="fname" value="{{fname}}" class="form-control" />
                                         </div>
 
                                         <div class="col_full">
-                                            <label for="register-form-companyemail">Company Email:</label>
-                                            <input type="text" id="register-form-companyemail" name="register-form-email" value="" class="form-control" />
+                                            <label for="register-form-companyName">Company Name:</label>
+                                            <input type="text" id="register-form-companyName" name="companyName" value="{{companyName}}" class="form-control" />
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label for="register-form-email">Email:</label>
+                                            <input type="text" id="register-form-email" name="email" value="{{email}}" class="form-control" />
                                         </div>
 
                                         <div class="col_full">
                                             <label for="register-form-username">Username:</label>
-                                            <input type="text" id="register-form-username" name="register-form-password" value="" class="form-control" />
+                                            <input type="text" id="register-form-username" name="username" value="{{username}}" class="form-control" />
                                         </div>
 
                                         <div class="col_full">
                                             <label for="register-form-password">Choose Password:</label>
-                                            <input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
+                                            <input type="password" id="register-form-password" name="password" value="{{password}}" class="form-control" />
                                         </div>
 
                                         <div class="col_full nobottommargin">
-                                            <a href="/registerprocess">
-                                                <button href="/registerprocess" class="button button-3d button-black nomargin" id="register-form-submit" name="submit" type="submit" value="Sign Up">Register Now</button>
-                                        </a>
+                                            <!--<a href="/registerprocess">-->
+                                                <input class="button button-3d button-black nomargin" id="register-form-submit" name="submit" type="submit" value="Sign Up"/>
+                                        <!--</a>-->
                                         </div>
 
-                                    <!--</form>-->
+                                    </form>
                                     </div>
                                 </div>
                             </div>

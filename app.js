@@ -1,8 +1,8 @@
-var newrelic = false;
-
-if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-    newrelic = require('newrelic');
-}
+//var newrelic = false;
+//TODO:remove new relic code, tracks network performance not necessary for scope of assignment
+//if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
+//    newrelic = require('newrelic');
+//}
 
 var express = require('express');
 var session = require('express-session');
@@ -13,7 +13,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
-var async = require('async');
+//var async = require('async');
 var app = express();
 
 global.__base = __dirname + '/';
@@ -21,17 +21,21 @@ global.__base = __dirname + '/';
 //Database
 var monk = require('monk');
 var mongoURI = process.env.MONGOLAB_URI || 'localhost:27017/robobetty';
-console.log('I AM HERE')
+console.log('I AM HERE');
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
 
 //login config
-var businesses = db.get('businesses');
+//var businesses = db.get('businesses');
 var employee = db.get('employees');
+//TODO: Add containers
+//var provider = db.get('provider');
+//var staff = db.get('staff');
+//var visitor = db.get('visitor');
 
-if (newrelic) {
+/*if (newrelic) {
     app.locals.newrelic = newrelic;
-}
+}*/
 
 //passport functions to Serialize and Deserialize users
 
@@ -43,7 +47,9 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function (id, done) {
 
     employee.find({_id: id}, function (err, user){
-            if(err){ done(err);}
+            if(err){
+                done(err);
+            }
 
             if(user){
                 done(null,user);

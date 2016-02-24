@@ -38,7 +38,7 @@
 </div>
 
 
-<div style="height: 200px; width: 500px;  position:absolute; top:330px; left:535px;">
+<div style=" height: 200px; width: 500px;  position:absolute; top:330px; left:535px;">
 
     <p>  <input type="text" style=" font-size:25px"  name="Cellphone" size="16"/>  </p>
 </div>
