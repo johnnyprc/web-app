@@ -6,7 +6,7 @@ var childProcess = require('child_process');
 //var concat = require('gulp-concat');
 //var uglify = require('gulp-uglify');
 //var rename = require('gulp-rename');
-//var server = require('gulp-express');
+var server = require('gulp-express');
 var browserSync = require('browser-sync');
 var mongobackup = require('mongobackup');
 

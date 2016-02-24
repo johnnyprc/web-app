@@ -13,7 +13,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
-//var async = require('async');
+var async = require('async');
 var app = express();
 
 global.__base = __dirname + '/';
@@ -26,7 +26,7 @@ console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
 
 //login config
-//var businesses = db.get('businesses');
+var businesses = db.get('businesses');
 var employee = db.get('employees');
 //TODO: Add containers
 //var provider = db.get('provider');
