@@ -21,7 +21,7 @@ module.exports = function (passport) {
     passport.use('local-signup', new LocalStrategy({
 
             // by default, local strategy uses username and password, we will override with email
-            usernameField: 'username',
+            usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
@@ -29,24 +29,28 @@ module.exports = function (passport) {
             var db = req.db;
             var companyName = req.body.companyName;
             var fname = req.body.fname;
-            var companyEmail = req.body.companyEmail;
-            var username = req.body.username;
-            //var lname = req.body.lname;
+            var email = req.body.email;
+            //var username = req.body.username;
+            var lname = req.body.lname;
             //var phone = req.body.phone;
             var password = req.body.password;
 
             // Check if any field has been left blank
-            if (fname === '' || companyName === '' || companyEmail === '' || username === '' || password === '' ) {
-                res.render('business/register', {
-                    error: 'You must fill in all fields.',
-                    fname: fname,
-                    companyName: companyName,
-                    companyEmail: companyEmail,
-                    username: username,
-                    password: password
-                });
+            console.log('check if fields filled');
+            if (fname === '' || companyName === '' || email === '' || password === '' || lname === '') {
+                console.log('Is this working????');
+                //failureRedirect: '/register',
+                //failureFlash: 'Invalid username or password.'
+                //res.render('business/register', {
+                //    error: 'You must fill in all fields.',
+                //    fname: fname,
+                //    companyName: companyName,
+                //    email: email,
+                //    username: username,
+                //    password: password
+                //});
             } else {
-
+                console.log('grab data from database');
                 var businesses = db.get('businesses');
                 var employees = db.get('employees');
                 //TODO: Get visitors too
@@ -56,33 +60,36 @@ module.exports = function (passport) {
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
-                businesses.findOne({'companyEmail': companyEmail}, function (err, user) {
+                businesses.findOne({'email': email}, function (err, user) {
                     // if there are any errors, return the error
 
                     if (err) {
+                        console.log('error in call');
                         return done(err);
                     }
 
                     // check to see if theres already a user with that email
                     if (user) {
+                        console.log('user exists');
+                        console.log(user);
                         return done(null, false);
                     } else {
 
                         // if there is no user with that email
                         // create the user
-
+                        console.log('creating user');
                         // set the user's local credentials
                         password = auth.hashPassword(password);
 
                         // save the user
                         businesses.insert({
-                            companyEmail: companyEmail,
+                            email: email,
                             password: password,
                             companyName: companyName,
                             phone: '',
                             fname: fname,
-                            username: username,
-                            lname: '',
+                            //username: username,
+                            lname: lname,
                             logo: '',
                             walkins: false
                         }, function (err, result) {
@@ -98,7 +105,7 @@ module.exports = function (passport) {
                                 phone: result.phone,
                                 fname: result.fname,
                                 lname: result.lname,
-                                companyEmail: result.companyEmail,
+                                email: result.email,
                                 smsNotify: true,
                                 emailNotify: true,
                                 admin: true
@@ -106,6 +113,7 @@ module.exports = function (passport) {
                                 if (err) {
                                     throw err;
                                 }
+                                console.log(user);
                                 return done(null, user);
                             });
                         });
@@ -157,7 +165,7 @@ module.exports = function (passport) {
 
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField: 'username',
+            usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },

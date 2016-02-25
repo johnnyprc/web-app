@@ -14,13 +14,20 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
 var async = require('async');
+var favicon = require('serve-favicon');
 var app = express();
 
 global.__base = __dirname + '/';
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hjs');
+
+
 //Database
+var development = 'localhost:27017/robobetty';
 var monk = require('monk');
-var mongoURI = process.env.MONGOLAB_URI || 'localhost:27017/robobetty';
+var mongoURI = process.env.MONGOLAB_URI || development;
 console.log('I AM HERE');
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
@@ -46,12 +53,10 @@ passport.serializeUser(function(user, done) {
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
 
-    employee.find({_id: id}, function (err, user){
+    employee.findById({_id: id}, function (err, user){
             if(err){
                 done(err);
-            }
-
-            if(user){
+            } else {
                 done(null,user);
             }
     });
@@ -69,18 +74,14 @@ var mobileAppointment = require('./routes/api/appointment');
 var mobileToken = require('./routes/api/mobiletoken');
 var business = require('./routes/api/business');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hjs');
-
-
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'static')));
 
 app.use(multer({
   dest: __dirname + '/public/images/uploads/',
@@ -103,8 +104,8 @@ app.use(multer({
 
 
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'static')));
+
+
 
 
 //so... when only using router, for some reason deserialize wont work
@@ -161,7 +162,7 @@ app.use(function (req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (app.get('env') === development) {
     app.use(function (err, req, res) {
         console.error(err);
         console.error(err.stack);
@@ -176,14 +177,13 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res) {
-    res.status(err.status || 500);
     console.error(err);
     console.error(err.stack);
+    res.status(err.status || 500);
     res.render('error', {
         message: err.message,
         error: {}
     });
 });
-
 
 exports = module.exports = app;

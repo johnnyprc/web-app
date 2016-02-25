@@ -135,7 +135,7 @@
                                         <input type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
                                     </div>
                                     <div class="col_one_third col_last nobottommargin">
-                                        <input type="password" class="form-control input-lg not-dark" value="" placeholder="Choose Password*">
+                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Company Name*">
                                     </div>
                                 </div>
                                 <div class="col_one_fifth col_last nobottommargin">

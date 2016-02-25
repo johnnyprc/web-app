@@ -73,18 +73,23 @@
                                     <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
 
                                         <div class="col_full">
-                                            <label for="register-form-companyname">Company Name:</label>
-                                            <input type="text" id="register-form-companyname" name="register-form-username" value="" class="form-control" />
+                                            <label for="register-form-companyName">Company Name:</label>
+                                            <input type="text" id="register-form-companyName" name="companyName" value="{{companyName}}" class="form-control" required/>
                                         </div>
 
                                         <div class="col_full">
-                                            <label for="register-form-companyemail">Company Email:</label>
-                                            <input type="text" id="register-form-companyemail" name="register-form-email" value="" class="form-control" />
+                                            <label for="register-form-companyaddress">Company Address:</label>
+                                            <input type="text" id="register-form-companyaddress" name="companyAddress" value={{companyAddress}} class="form-control" />
                                         </div>
+
+                                        <!--<div class="col_full">-->
+                                            <!--<label for="register-form-companyemail">Email:</label>-->
+                                            <!--<input type="text" id="register-form-companyemail" name="email" value={{email}} class="form-control" />-->
+                                        <!--</div>-->
 
                                         <div class="col_full">
                                             <label for="register-form-phone">Phone Number:</label>
-                                            <input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
+                                            <input type="text" id="register-form-phone" name="phone" value="" class="form-control" />
                                         </div>
 
                                     </form>

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 //Define the controllers for checkin process
 var landing = require('./landing');
 var registerprocess = require('./registerprocess');
@@ -20,6 +19,7 @@ var customizeTheme = require('./customize_theme');
 var manageForms = require('./manage_forms');
 var businesssetting = require('./businesssetting');
 var setdisclosure = require('./setdisclosure');
+
 module.exports = function (passport) {
 
 
@@ -31,14 +31,15 @@ module.exports = function (passport) {
     router.post('/', landing.post);
 
     router.get('/registerprocess', registerprocess.get);
-    //router.post('/registerprocess', registerprocess.post);
+    router.post('/registerprocess', registerprocess.post);
 
     router.get('/theming', isLoggedInBusiness, theming.get);
 
     router.get('/login', login.get);
     router.post('/login',passport.authenticate('local-login',{
+        session: false,
         successRedirect : '/dashboard',
-        failureRedirect : '/login',
+        failureRedirect : '/register',
         failureFlash: true
     }));
 
@@ -57,6 +58,7 @@ module.exports = function (passport) {
 
     router.get('/register', register.get);
     router.post('/register',passport.authenticate('local-signup',{
+        session: false,
         successRedirect : '/registerprocess', // redirect to the secure profile section
         failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
@@ -74,6 +76,7 @@ module.exports = function (passport) {
 
     router.get('/employeeregister', employeeRegister.get);
     router.post('/employeeregister', passport.authenticate('local-signup-employee',{
+        session: false,
         successRedirect : '/dashboard', // redirect to the secure profile section
         failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
@@ -101,7 +104,5 @@ function isLoggedInBusiness(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('back');
 }
-
-
     return router;
 };
