@@ -23,7 +23,7 @@ var setdisclosure = require('./setdisclosure');
 module.exports = function (passport) {
 
 
-    console.log('IN THE INDEX');
+
     //Pass in passport
 
     //Setup the routes
@@ -36,12 +36,30 @@ module.exports = function (passport) {
     router.get('/theming', isLoggedInBusAdmin, theming.get);
 
     router.get('/login', login.get);
-    router.post('/login',passport.authenticate('local-login',{
-        //session: false,
-        successRedirect : '/registerprocess',
-        failureRedirect : '/register',
-        failureFlash: true
-    }));
+    router.post('/login', passport.authenticate('local-login'),
+        function(req, res) {
+            if (req.user.role === 'busAdmin') {
+                console.log("Loggin in as Business Admin");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'saasAdmin') {
+                console.log("Loggin in as SAAS Admin");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'provider') {
+                console.log("Loggin in as Provider");
+                res.redirect('/addemployees');
+            }
+            if (req.user.role === 'staff') {
+                console.log("Loggin in as staff");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'visitor') {
+                console.log("Loggin in as visitor");
+                res.redirect('/addemployees');
+            }
+
+        });
 
     router.get('/formbuilder',isLoggedInBusAdmin, formbuilder.get);
 
@@ -67,7 +85,7 @@ module.exports = function (passport) {
 
     router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
 
-    router.get('/addemployees',isLoggedInBusAdmin, addEmployees.get);
+    router.get('/addemployees',isLoggedInVisitor, addEmployees.get);
     //router.post('/addemployees',isLoggedInBusAdmin, addEmployees.post);
 
     router.get('/customizetheme', isLoggedInBusAdmin, customizeTheme.get);
@@ -152,4 +170,3 @@ function isLoggedInVisitor(req, res, next) {
 }
     return router;
 };
-
