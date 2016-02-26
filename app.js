@@ -53,10 +53,10 @@ passport.serializeUser(function(user, done) {
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
 
-    employee.findById({_id: id}, function (err, user){
-            if(err){
-                done(err);
-            } else {
+    employee.find({_id: id}, function (err, user){
+            if(err){ done(err);}
+
+            if(user){
                 done(null,user);
             }
     });
@@ -130,10 +130,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function(req, res, next) {
+app.all('*',function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
+    res.header('Access-Control-Allow-Credentials', true);
+    //res.header('Access-Control-Allow-withCredentials', true);
 
     next();
 });

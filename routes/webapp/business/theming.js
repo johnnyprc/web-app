@@ -1,6 +1,7 @@
 var style = require('./../../../lib/style.js');
 
 exports.get = function (req, res, next) {
+    console.log('Get function theming');
     var bid = req.user[0].business;
 
     req.db.get('businesses').findById(bid, function (err, business) {

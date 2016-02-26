@@ -1,5 +1,5 @@
 exports.get = function (req, res, next) {
-
+    console.log('Get function LANDING');
 	req.session.companyName = null;
     req.session.fname = null;
     req.session.email = null;
@@ -16,6 +16,7 @@ exports.get = function (req, res, next) {
 };
 
 exports.post = function (req, res, next) {
+    console.log('POST function LANDING');
     var companyName = req.body.companyName;
     var fname = req.body.fname;
     var email = req.body.email;

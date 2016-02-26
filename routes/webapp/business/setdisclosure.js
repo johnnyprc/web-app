@@ -2,6 +2,7 @@ var auth = require('../../../lib/auth');
 var _ = require('underscore');
 
 exports.get = function(req, res) {
+    console.log('Get function setdisclosure');
 	var bid = req.user[0].business;
 	var db = req.db;
 	var business = db.get('businesses');
