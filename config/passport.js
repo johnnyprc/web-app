@@ -29,27 +29,14 @@ module.exports = function (passport) {
             var db = req.db;
             var companyName = req.body.companyName;
             var fname = req.body.fname;
-            //var email = req.body.email;
-            //var username = req.body.username;
             var lname = req.body.lname;
             //var phone = req.body.phone;
-            //var password = req.body.password;
 
             // Check if any field has been left blank
             console.log('check if fields filled');
             if (fname === '' || companyName === '' || email === '' || password === '' || lname === '') {
                 console.log('Is this working????');
                 req.flash('Missing Parameters', 'Please fill in all fields');
-                //failureRedirect: '/register',
-                //failureFlash: 'Invalid username or password.'
-                //res.render('business/register', {
-                //    error: 'You must fill in all fields.',
-                //    fname: fname,
-                //    companyName: companyName,
-                //    email: email,
-                //    username: username,
-                //    password: password
-                //});
             } else {
                 console.log('grab data from database');
                 var businesses = db.get('businesses');
@@ -81,7 +68,8 @@ module.exports = function (passport) {
                         console.log('creating user');
                         // set the user's local credentials
                         password = auth.hashPassword(password);
-
+                        console.log('business user is');
+                        console.log(user);
                         // save the user
                         businesses.insert({
                             email: email,
@@ -109,11 +97,12 @@ module.exports = function (passport) {
                                 email: result.email,
                                 smsNotify: true,
                                 emailNotify: true,
-                                admin: true
+                                role: 'busAdmin'
                             },function(err, user){
                                 if (err) {
                                     throw err;
                                 }
+                                console.log('employee user is');
                                 console.log(user);
                                 return done(null, user);
                             });
@@ -124,6 +113,8 @@ module.exports = function (passport) {
 
         }
     ));
+
+
 
 
 
