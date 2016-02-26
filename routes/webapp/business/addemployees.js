@@ -11,52 +11,54 @@ var ObjectId = require('mongodb').ObjectID;
  * @returns The appropriate data about the employee
  */
 exports.get = function(req,res){
-	   // var database =  req.db;
-       // var employeeDB = database.get('employees');
-       // var employee;
-       // var notemployee;
-       // var businessID = req.user[0].business.toString();
-       //
-       // async.parallel({
-       //     employee: function(cb){
-       //         employeeDB.find({registrationToken: {$exists: false}, business: ObjectId(businessID)},function (err,results){
-       //
-       //             if (err) { return next(err);  }
-       //             if(!results) { return next(new Error('Error finding employee'));}
-       //
-       //                 employeee = results;
-       //                 console.log(employeee);
-       //                cb();
-       //
-       //         });
-       //     },
-       //     nonemployee: function(cb){
-       //         employeeDB.find({registrationToken: {$exists: true}, business: ObjectId(businessID)}, function (err,results){
-       //
-       //
-       //             if (err) { return next(err); }
-       //             if(!results) { return next(new Error('Error finding employee'));}
-       //
-       //                  notemployee = results;
-       //                  cb();
-       //         });
-       //     }
-       // },
+    console.log('Get function addemployees');
+	    var database =  req.db;
+        var employeeDB = database.get('employees');
+        var employee;
+        var notemployee;
+        var businessID = req.user[0].business.toString();
 
-        //function(err,results){
-        //
-        //    if(err){
-        //        throw err;
-        //    }
-            res.render('business/addemployees'
-                //{
-                //    title: 'Express',
-                //    notsigned: notemployee,
-                //    signed: employeee
-                //});
+        async.parallel({
+            employee: function(cb){
+                employeeDB.find({registrationToken: {$exists: false}, business: ObjectId(businessID)},function (err,results){
 
-        );
-}
+                    if (err) { return next(err);  }
+                    if(!results) { return next(new Error('Error finding employee'));}
+
+                        employeee = results;
+                        console.log(employeee);
+                       cb();
+
+                });
+            },
+            nonemployee: function(cb){
+                employeeDB.find({registrationToken: {$exists: true}, business: ObjectId(businessID)}, function (err,results){
+
+
+                    if (err) { return next(err); }
+                    if(!results) { return next(new Error('Error finding employee'));}
+
+                         notemployee = results;
+                         cb();
+                });
+            }
+        },
+
+        function(err,results){
+
+            if(err){
+                throw err;
+            }
+            res.render('business/addemployees',
+                {
+                    title: 'Express',
+                    notsigned: notemployee,
+                    signed: employeee
+                }
+
+
+        )}
+    )};
 
 /**
  * Takes a req and res parameters and is inputted into function to get employee, notemployee, and business data.
@@ -105,6 +107,6 @@ exports.get = function(req,res){
 //}
 
 
- //function randomToken() {
- //       return crypto.randomBytes(24).toString('hex');
- //   }
+ function randomToken() {
+        return crypto.randomBytes(24).toString('hex');
+    }

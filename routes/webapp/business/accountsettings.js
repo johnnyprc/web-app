@@ -7,7 +7,8 @@ var auth = require('../../../lib/auth');
  * @returns title, fname, lname, password, phone, email, smsNotify, emailNotify
  */
 exports.get = function (req,res) {
-		var eid = req.user[0]._id;
+    console.log('Get function accountsettings');
+    var eid = req.user[0]._id;
     var db = req.db;
     var employees = db.get('employees');
 

@@ -116,8 +116,6 @@ module.exports = function (passport) {
 
 
 
-
-
     passport.use('local-signup-employee',new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
@@ -162,13 +160,14 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) { // callback with email and password from our form
-
+            console.log('LOCAL-LOGIN');
 
             auth.validateLogin(req.db, email, password, function (user) {
                 if (!user) {
                     return done(null, false, req.flash("login", "Invalid Email/Password Combo"));
                 }
                 else {
+                    console.log('LOCAL-LOGIN SUCCESS');
                     return done(null,user);
                     }
             });

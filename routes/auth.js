@@ -5,7 +5,7 @@ var router = express.Router();
 
 module.exports = function(passport){
 
-
+    console.log('IN FILE AUTH.JS');
     // =====================================
     // Signup ===============================
     // =====================================
@@ -14,7 +14,7 @@ module.exports = function(passport){
 
 
 router.get('/signup', function(req, res) {
-
+    console.log('IN FILE AUTH.JS');
     // render the page and pass in any flash data if it exists
     res.render('auth/signup.hjs');
 });
@@ -74,7 +74,7 @@ function isLoggedIn(req, res, next) {
 function isLoggedInBusiness(req, res, next) {
 
     // if user is authenticated in the session, carry on
-    if ((req.isAuthenticated()&& req.user.Business.length) === 1) {
+    if ((req.isAuthenticated() && req.user.Business.length) === 1) {
         return next();
     }
 

@@ -130,10 +130,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function(req, res, next) {
+app.all('*',function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
+    res.header('Access-Control-Allow-Credentials', true);
+    //res.header('Access-Control-Allow-withCredentials', true);
 
     next();
 });

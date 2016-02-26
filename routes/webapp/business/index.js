@@ -23,7 +23,7 @@ var setdisclosure = require('./setdisclosure');
 module.exports = function (passport) {
 
 
-
+    console.log('IN THE INDEX');
     //Pass in passport
 
     //Setup the routes
@@ -33,58 +33,58 @@ module.exports = function (passport) {
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
 
-    router.get('/theming', isLoggedInBusiness, theming.get);
+    router.get('/theming', isLoggedInBusAdmin, theming.get);
 
     router.get('/login', login.get);
     router.post('/login',passport.authenticate('local-login',{
-        session: false,
+        //session: false,
         successRedirect : '/registerprocess',
         failureRedirect : '/register',
         failureFlash: true
     }));
 
-    router.get('/formbuilder',isLoggedIn, formbuilder.get);
+    router.get('/formbuilder',isLoggedInBusAdmin, formbuilder.get);
 
 
-    router.get('/accountSettings', isLoggedIn, accountSettings.get);
-    router.post('/accountSettings', isLoggedIn, accountSettings.post);
+    router.get('/accountSettings', isLoggedInBusAdmin, accountSettings.get);
+    router.post('/accountSettings', isLoggedInBusAdmin, accountSettings.post);
 
-    router.get('/businesssetting', isLoggedInBusiness, businesssetting.get);
-    router.post('/businesssetting', isLoggedInBusiness,businesssetting.post);
+    router.get('/businesssetting', isLoggedInBusAdmin, businesssetting.get);
+    router.post('/businesssetting', isLoggedInBusAdmin,businesssetting.post);
 
 
-    router.get('/uploadlogo', isLoggedInBusiness, uploadLogo.get);
-    router.post('/uploadlogo', isLoggedInBusiness, uploadLogo.post);
+    router.get('/uploadlogo', isLoggedInBusAdmin, uploadLogo.get);
+    router.post('/uploadlogo', isLoggedInBusAdmin, uploadLogo.post);
 
     router.get('/register', register.get);
     router.post('/register',passport.authenticate('local-signup',{
-        session: false,
+        //session: false,
         successRedirect : '/registerprocess', // redirect to the secure profile section
         failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
 
-    router.get('/dashboard', isLoggedIn, dashboard.get);
+    router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
 
-    router.get('/registerdevice', isLoggedIn, registerDevice.get);
+    router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
 
-    router.get('/addemployees',isLoggedInBusiness, addEmployees.get);
-    //router.post('/addemployees',isLoggedInBusiness, addEmployees.post);
+    router.get('/addemployees',isLoggedInBusAdmin, addEmployees.get);
+    //router.post('/addemployees',isLoggedInBusAdmin, addEmployees.post);
 
-    router.get('/customizetheme', isLoggedIn, customizeTheme.get);
+    router.get('/customizetheme', isLoggedInBusAdmin, customizeTheme.get);
 
-    router.get('/manageforms', isLoggedInBusiness, manageForms.get);
+    router.get('/manageforms', isLoggedInBusAdmin, manageForms.get);
 
     router.get('/employeeregister', employeeRegister.get);
     router.post('/employeeregister', passport.authenticate('local-signup-employee',{
-        session: false,
+        //session: false,
         successRedirect : '/dashboard', // redirect to the secure profile section
         failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
 
     router.get('/viewform/:id', viewForm.get);
 
-    router.get('/setdisclosure', isLoggedInBusiness, setdisclosure.get);
-    router.post('/setdisclosure', isLoggedInBusiness, setdisclosure.post);
+    router.get('/setdisclosure', isLoggedInBusAdmin, setdisclosure.get);
+    router.post('/setdisclosure', isLoggedInBusAdmin, setdisclosure.post);
 
 function isLoggedIn(req,res,next){
         if(req.isAuthenticated()){
@@ -95,14 +95,61 @@ function isLoggedIn(req,res,next){
 }
 
 // route middleware to make sure a user is logged in
-function isLoggedInBusiness(req, res, next) {
+function isLoggedInSaaSAdmin(req, res, next) {
+        //if user is authenticated in the session, carry on
+        if (req.isAuthenticated() && (req.user[0].role === 'saasAdmin')){
+            return next();
+        }
+        req.flash("permission", "You do not have permission to access that page");
+        // if they aren't redirect them to the home page
+        res.redirect('back');
+    }
+function isLoggedInBusAdmin(req, res, next) {
     //if user is authenticated in the session, carry on
-    if (req.isAuthenticated()&& (req.user[0].admin === true)){
+    console.log('In isloggedinbusadmin');
+    if (req.isAuthenticated() && ((req.user[0].role === 'busAdmin') || (req.user[0].role === 'saasAdmin'))){
+        console.log('HOLY FUCK AM I HERE');
+        console.log(user[0]);
+        console.log('HOLY FUCK I AM');
+        console.log(user[1]);
         return next();
     }
+    //console.log(user[0]);
+    //console.log(user[1]);
+    console.log(req.isAuthenticated());
+    console.log('HOLY FUCK its not working');
     req.flash("permission", "You do not have permission to access that page");
     // if they aren't redirect them to the home page
     res.redirect('back');
 }
+
+function isLoggedInProvider(req, res, next) {
+        //if user is authenticated in the session, carry on
+        if (req.isAuthenticated() && ((req.user[0].role === 'provider') || (req.user[0].role === 'saasAdmin'))){
+            return next();
+        }
+        req.flash("permission", "You do not have permission to access that page");
+        // if they aren't redirect them to the home page
+        res.redirect('back');
+}
+function isLoggedInStaff(req, res, next) {
+        //if user is authenticated in the session, carry on
+        if (req.isAuthenticated() && ((req.user[0].role === 'staff') || (req.user[0].role === 'saasAdmin'))){
+            return next();
+        }
+        req.flash("permission", "You do not have permission to access that page");
+        // if they aren't redirect them to the home page
+        res.redirect('back');
+}
+function isLoggedInVisitor(req, res, next) {
+        //if user is authenticated in the session, carry on
+        if (req.isAuthenticated() && ((req.user[0].role === 'visitor') || (req.user[0].role === 'saasAdmin'))){
+            return next();
+        }
+        req.flash("permission", "You do not have permission to access that page");
+        // if they aren't redirect them to the home page
+        res.redirect('back');
+}
     return router;
 };
+
