@@ -109,9 +109,9 @@ function isLoggedInBusAdmin(req, res, next) {
     console.log('In isloggedinbusadmin');
     if (req.isAuthenticated() && ((req.user[0].role === 'busAdmin') || (req.user[0].role === 'saasAdmin'))){
         console.log('HOLY FUCK AM I HERE');
-        console.log(user[0]);
+
         console.log('HOLY FUCK I AM');
-        console.log(user[1]);
+
         return next();
     }
     //console.log(user[0]);

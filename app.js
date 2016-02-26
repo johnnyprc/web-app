@@ -53,10 +53,10 @@ passport.serializeUser(function(user, done) {
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
 
-    employee.findById({_id: id}, function (err, user){
-            if(err){
-                done(err);
-            } else {
+    employee.find({_id: id}, function (err, user){
+            if(err){ done(err);}
+
+            if(user){
                 done(null,user);
             }
     });
