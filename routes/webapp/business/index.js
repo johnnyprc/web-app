@@ -38,7 +38,7 @@ module.exports = function (passport) {
     router.get('/login', login.get);
     router.post('/login',passport.authenticate('local-login',{
         session: false,
-        successRedirect : '/dashboard',
+        successRedirect : '/registerprocess',
         failureRedirect : '/register',
         failureFlash: true
     }));

@@ -39,6 +39,7 @@ module.exports = function (passport) {
             console.log('check if fields filled');
             if (fname === '' || companyName === '' || email === '' || password === '' || lname === '') {
                 console.log('Is this working????');
+                req.flash('Missing Parameters', 'Please fill in all fields');
                 //failureRedirect: '/register',
                 //failureFlash: 'Invalid username or password.'
                 //res.render('business/register', {

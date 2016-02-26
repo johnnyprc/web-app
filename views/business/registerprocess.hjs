@@ -46,9 +46,6 @@
                     <li>
                         <a href="#ptab1" class="i-circled i-bordered i-alt divcenter">1</a>
                         <h5>Business Setup</h5>
-
-
-
                     </li>
                     <li>
                         <a href="#ptab2" class="i-circled i-bordered i-alt divcenter">2</a>
@@ -74,12 +71,12 @@
 
                                         <div class="col_full">
                                             <label for="register-form-companyName">Company Name:</label>
-                                            <input type="text" id="register-form-companyName" name="companyName" value="{{companyName}}" class="form-control" required/>
+                                            <input type="text" id="register-form-companyName" name="companyName" value="{{companyName}}" class="form-control" />
                                         </div>
 
                                         <div class="col_full">
                                             <label for="register-form-companyaddress">Company Address:</label>
-                                            <input type="text" id="register-form-companyaddress" name="companyAddress" value={{companyAddress}} class="form-control" />
+                                            <input type="text" id="register-form-companyaddress" name="companyAddress" value="{{companyAddress}}" class="form-control" />
                                         </div>
 
                                         <!--<div class="col_full">-->
@@ -112,7 +109,6 @@
                             </div>
                         </div>
 
-
                         <a href="#" class="button button-3d nomargin fright tab-linker" rel="2">Continue</a>
                     </div>
                     <div id="ptab2">
@@ -131,7 +127,7 @@
                             <strong>Thank You.</strong> Your order will be processed once we verify the Payment.
                         </div>
                         <a href="#" class="button button-3d nomargin tab-linker" rel="3">Previous</a>
-                        <a href="/dashboard" class="button button-3d nomargin fright tab-linker">Finnish</a>
+                        <a href="/" class="button button-3d nomargin fright tab-linker">Finnish</a>
                     </div>
                 </div>
             </div>
