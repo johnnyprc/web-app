@@ -36,12 +36,30 @@ module.exports = function (passport) {
     router.get('/theming', isLoggedInBusiness, theming.get);
 
     router.get('/login', login.get);
-    router.post('/login',passport.authenticate('local-login',{
-        session: false,
-        successRedirect : '/registerprocess',
-        failureRedirect : '/register',
-        failureFlash: true
-    }));
+    router.post('/login', passport.authenticate('local-login'),
+        function(req, res) {
+            if (req.user.role === 'busAdmin') {
+                console.log("Loggin in as Business Admin");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'saasAdmin') {
+                console.log("Loggin in as SAAS Admin");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'provider') {
+                console.log("Loggin in as Provider");
+                res.redirect('/addemployees');
+            }
+            if (req.user.role === 'staff') {
+                console.log("Loggin in as staff");
+                res.redirect('/dashboard');
+            }
+            if (req.user.role === 'visitor') {
+                console.log("Loggin in as visitor");
+                res.redirect('/addemployees');
+            }
+
+        });
 
     router.get('/formbuilder',isLoggedIn, formbuilder.get);
 
@@ -86,23 +104,43 @@ module.exports = function (passport) {
     router.get('/setdisclosure', isLoggedInBusiness, setdisclosure.get);
     router.post('/setdisclosure', isLoggedInBusiness, setdisclosure.post);
 
-function isLoggedIn(req,res,next){
+    function isLoggedIn(req,res,next){
         if(req.isAuthenticated()){
             return next();
         }
 
         res.redirect('/');
-}
+    }
 
 // route middleware to make sure a user is logged in
-function isLoggedInBusiness(req, res, next) {
-    //if user is authenticated in the session, carry on
-    if (req.isAuthenticated()&& (req.user[0].admin === true)){
-        return next();
+    function isLoggedInBusiness(req, res, next) {
+        //if user is authenticated in the session, carry on
+        if (req.isAuthenticated()&& (req.user[0].role === 'busAdmin')){
+            console.log("Something actualy differev");
+            return next();
+        }
+        console.log("Fail");
+        req.flash("permission", "You do not have permission to access that page");
+        // if they aren't redirect them to the home page
+        res.redirect('back');
     }
-    req.flash("permission", "You do not have permission to access that page");
-    // if they aren't redirect them to the home page
-    res.redirect('back');
-}
+
+    function businessLogin(req, res, next) {
+
+        return passport.authenticate('local-login',{
+            successRedirect : '/dashboard', // redirect to the secure profile section
+            failureRedirect : '/register' // redirect back to the signup page if there is an error
+        })
+    }
+
+
+    function test(req, res, next) {
+
+        console.log("hi");
+    }
+
+
+
     return router;
 };
+
