@@ -29,11 +29,11 @@ module.exports = function (passport) {
             var db = req.db;
             var companyName = req.body.companyName;
             var fname = req.body.fname;
-            var email = req.body.email;
+            //var email = req.body.email;
             //var username = req.body.username;
             var lname = req.body.lname;
             //var phone = req.body.phone;
-            var password = req.body.password;
+            //var password = req.body.password;
 
             // Check if any field has been left blank
             console.log('check if fields filled');
