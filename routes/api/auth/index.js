@@ -10,6 +10,7 @@ var auth = require('../../../lib/auth');
  * indicating that the auth string is not valid.
  */
 function decodeAuthString(authString) {
+    console.log('Entered decodeAuthString');
     var buffer = new Buffer(authString, 'base64');
     var s = buffer.toString();
 
@@ -54,6 +55,7 @@ curl -X POST -i http://localhost:3000/api/authTest \
  */
 router.post('/api/authTest', function (req, res) {
     auth.isValidToken(req.db, req.headers.authorization, function (result) {
+        console.log('Entered authTest');
         if (!result) {
             res.send(401);
         } else {
@@ -89,6 +91,7 @@ router.post('/api/authTest', function (req, res) {
  *     HTTP/1.1 401 Not Authenticated
  */
 router.post('/api/auth', function (req, res, next) {
+    console.log('Entered auth');
     if (!req.headers.authorization) {
         return res.send(400, 'Basic HTTP Auth required');
     }
@@ -104,6 +107,7 @@ router.post('/api/auth', function (req, res, next) {
     var user = decodeAuthString(matches[1]);
     // Validates user's email and password
     auth.validateLogin(req.db, user.email, user.password, function (result) {
+        console.log('Entered auth.validateLogin');
         if (result) {
             var name = req.body.name;
             // Checks if name field is blank

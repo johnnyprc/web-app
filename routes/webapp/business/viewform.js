@@ -1,6 +1,7 @@
 var ObjectID = require('mongodb').ObjectID;
 
 exports.get = function (req, res, next) {
+    console.log('Get function viewform');
     var db = req.db;
     var formResponses = db.get('formResponses');
     var appointments = db.get('appointments');

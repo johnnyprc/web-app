@@ -1,8 +1,8 @@
-var newrelic = false;
-
-if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-    newrelic = require('newrelic');
-}
+//var newrelic = false;
+//TODO:remove new relic code, tracks network performance not necessary for scope of assignment
+//if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
+//    newrelic = require('newrelic');
+//}
 
 var express = require('express');
 var session = require('express-session');
@@ -14,24 +14,35 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
 var async = require('async');
+var favicon = require('serve-favicon');
 var app = express();
 
 global.__base = __dirname + '/';
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hjs');
+
+
 //Database
+var development = 'localhost:27017/robobetty';
 var monk = require('monk');
-var mongoURI = process.env.MONGOLAB_URI || 'localhost:27017/robobetty';
-console.log('I AM HERE')
+var mongoURI = process.env.MONGOLAB_URI || development;
+console.log('I AM HERE');
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
 
 //login config
 var businesses = db.get('businesses');
 var employee = db.get('employees');
+//TODO: Add containers
+//var provider = db.get('provider');
+//var staff = db.get('staff');
+//var visitor = db.get('visitor');
 
-if (newrelic) {
+/*if (newrelic) {
     app.locals.newrelic = newrelic;
-}
+}*/
 
 //passport functions to Serialize and Deserialize users
 
@@ -63,18 +74,14 @@ var mobileAppointment = require('./routes/api/appointment');
 var mobileToken = require('./routes/api/mobiletoken');
 var business = require('./routes/api/business');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hjs');
-
-
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'static')));
 
 app.use(multer({
   dest: __dirname + '/public/images/uploads/',
@@ -97,8 +104,8 @@ app.use(multer({
 
 
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'static')));
+
+
 
 
 //so... when only using router, for some reason deserialize wont work
@@ -106,7 +113,11 @@ app.use(express.static(path.join(__dirname, 'static')));
 //note to j
 
 // required for passport
-app.use(session({secret: '1234567890QWERTY'}));
+app.use(session({
+    secret: '1234567890QWERTY',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -119,10 +130,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function(req, res, next) {
+app.all('*',function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
+    res.header('Access-Control-Allow-Credentials', true);
+    //res.header('Access-Control-Allow-withCredentials', true);
 
     next();
 });
@@ -155,7 +168,7 @@ app.use(function (req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (app.get('env') === development) {
     app.use(function (err, req, res) {
         console.error(err);
         console.error(err.stack);
@@ -170,14 +183,13 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res) {
-    res.status(err.status || 500);
     console.error(err);
     console.error(err.stack);
+    res.status(err.status || 500);
     res.render('error', {
         message: err.message,
         error: {}
     });
 });
-
 
 exports = module.exports = app;

@@ -17,7 +17,8 @@ exports.index = function(req, res) {
   // grab our db object from the request
   var db = req.db;
   var collection = db.get('businesses');
-
+    console.log('the collection is');
+    console.log(collection);
   // query the collection
   collection.find({ }, function(err, users) {
     if (err) { return handleError(res, err); }

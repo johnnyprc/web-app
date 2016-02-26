@@ -1,5 +1,6 @@
 exports.get = function (req, res, next) {
     //Get the logo for the business of the currently logged in user
+    console.log('Get function custom theme');
     req.db.get('businesses').findById(req.user[0].business, function (err, business) {
         if (err) {
             return next(err);
