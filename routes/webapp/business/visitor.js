@@ -83,10 +83,42 @@ $(".button-green").click(function() {
     var id = this.id;
     var res = id.split("-");
     var str = res[0] + "-status";
-    console.log(str);
-    $(this).fadeOut();
+    $(this).fadeOut(onceDone(res));
     $("#" + str).text("Yes");
 });
+
+function onceDone(str){
+    $("#" + str[0] + "-button").remove();
+    var one = '<button class="button button-3d button-mini button-rounded button-red"';
+    var two = ' id="' + str[0] + '-button">Check Out</button>';
+    var inner = one + two;
+    $("#button-row-" + str[0]).append(inner);
+
+    $("#button-row-" + str[0]).on("click", ".button-red", function() {
+        var id = this.id;
+        var res = id.split("-");
+        var tar = res[0] + "-status";
+        $(this).fadeOut(onceDone2(res));
+        $("#" + tar).text("No");
+    });
+}
+
+function onceDone2(str) {
+    $("#" + str[0] + "-button").remove();
+    var one = '<button class="button button-3d button-mini button-rounded button-green"';
+    var two = ' id="' + str[0] + '-button">Checkin</button>';
+    var inner = one + two;
+    $("#button-row-" + str[0]).append(inner);
+
+    $("#button-row-" + str[0]).on("click", ".button-green", function() {
+        var id = this.id;
+        var res = id.split("-");
+        var tar = res[0] + "-status";
+        $(this).fadeOut(onceDone(res));
+        $("#" + tar).text("Yes");
+    });
+}
+
 
 $(document).ready(init());
 

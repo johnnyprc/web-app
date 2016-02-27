@@ -73,7 +73,7 @@
             <h1>Check-ins</h1>
             <ol class="breadcrumb">
                 <li>
-                    <button class="button button-3d button-rounded button-aqua">Upload CVS</button>
+                    <button class="button button-3d button-rounded button-aqua">Upload CSV</button>
                 </li>
                 <div class="searchSpan pull-left">
                     <form class="search-form" id="searchForm">
@@ -114,7 +114,7 @@
                 </td>
                 <td>Yes</td>
                 <td id="mark-status">No</td>
-                <td><button class="button button-3d button-mini button-rounded button-green" id="mark-button">Checkin</button></td>
+                <td id="button-row-mark"><button class="button button-3d button-mini button-rounded button-green" id="mark-button">Checkin</button></td>
             </tr>
             <tr>
                 <td class="name" id="sean">Sean Ippolito</td>
@@ -131,7 +131,7 @@
                 </td>
                 <td>Yes</td>
                 <td id="sean-status">No</td>
-                <td><button class="button button-3d button-mini button-rounded button-green" id="sean-button">Checkin</button></td>
+                <td id="button-row-sean"><button class="button button-3d button-mini button-rounded button-green" id="sean-button">Checkin</button></td>
             </tr>
             <tr>
                 <td class="name" id="kurt">Kurt Coban</td>
@@ -149,7 +149,7 @@
                 </td>
                 <td>Yes</td>
                 <td id="kurt-status">No</td>
-                <td><button class="button button-3d button-mini button-rounded button-green"id="kurt-button">Checkin</button></td>
+                <td id="button-row-kurt"><button class="button button-3d button-mini button-rounded button-green"id="kurt-button">Checkin</button></td>
             </tr>
             </tbody>
         </table>
@@ -159,6 +159,6 @@
 
 <!-- Footer Scripts
 ============================================= -->
-<script type="text/javascript" src="../../public/js/visitor.js"></script>
+<script type="text/javascript" src="../../routes/webapp/business/visitor.js"></script>
 
 </html>
