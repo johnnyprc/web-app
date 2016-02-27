@@ -26,6 +26,7 @@ var visitor = require('./staff/visitor');
 
 //Define the controllers for visitor (person checkin in) process
 var checkin = require('./visitor/checkin');
+var admin = require('./admin/admin');
 
 
 
@@ -49,6 +50,8 @@ module.exports = function (passport) {
         successRedirect : '/registerprocess', // redirect to the secure register process section
         failureRedirect : '/register' // redirect back to the register page if there is an error
     }));
+
+    router.get('/admin', admin.get);
 
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
