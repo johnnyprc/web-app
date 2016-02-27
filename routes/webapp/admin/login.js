@@ -9,7 +9,7 @@
 exports.post =  function(req, res) {
             if (req.user.role === 'busAdmin') {
                 console.log("Loggin in as Business Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/business/dashboard');
             }
             else if (req.user.role === 'saasAdmin') {
                 console.log("Loggin in as SAAS Admin");
