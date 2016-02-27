@@ -1,9 +1,3 @@
-//var newrelic = false;
-//TODO:remove new relic code, tracks network performance not necessary for scope of assignment
-//if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-//    newrelic = require('newrelic');
-//}
-
 var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -23,7 +17,6 @@ global.__base = __dirname + '/';
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
-
 //Database
 var development = 'localhost:27017/robobetty';
 var monk = require('monk');
@@ -35,17 +28,8 @@ var db = monk(mongoURI);
 //login config
 var businesses = db.get('businesses');
 var employee = db.get('employees');
-//TODO: Add containers
-//var provider = db.get('provider');
-//var staff = db.get('staff');
-//var visitor = db.get('visitor');
-
-/*if (newrelic) {
-    app.locals.newrelic = newrelic;
-}*/
 
 //passport functions to Serialize and Deserialize users
-
 passport.serializeUser(function(user, done) {
         done(null, user._id);
     });
@@ -64,25 +48,18 @@ passport.deserializeUser(function (id, done) {
 
 require('./config/passport')(passport); // pass passport for configuration
 
+var webappRoutes = require('./routes/webapp')(passport);
 
-var businessRoutes = require('./routes/webapp/business')(passport);
-
-// Load Routes for Mobile
-var mobileAuth = require('./routes/api/auth');
-var mobileForm = require('./routes/api/form');
-var mobileAppointment = require('./routes/api/appointment');
-var mobileToken = require('./routes/api/mobiletoken');
-var business = require('./routes/api/business');
-
-// uncomment after placing your favicon in /public
+// needed for passport and express
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, 'static')));
+//app.use(express.static(path.join(__dirname, 'static')));  GOLDTEAM
 
+//Not sure what this does but I believe it allows you to upload images
 app.use(multer({
   dest: __dirname + '/public/images/uploads/',
   onFileUploadStart: function (file) {
@@ -101,16 +78,9 @@ app.use(multer({
   }
 }));
 
-
-
-
-
-
-
-
 //so... when only using router, for some reason deserialize wont work
 //but when using both or just app.use(session), the route works
-//note to j
+//note to j  //GOLDTEAM
 
 // required for passport
 app.use(session({
@@ -122,6 +92,16 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+//Access control required for routes and passport
+app.all('*',function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-withCredentials', true);
+    next();
+});
+
 // Make our db accessible to our router
 app.use(function (req, res, next) {
     req.db = db;
@@ -130,32 +110,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.all('*',function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
-    res.header('Access-Control-Allow-Credentials', true);
-    //res.header('Access-Control-Allow-withCredentials', true);
-
-    next();
-});
-
-
-
 // Set Webapp Routes
-app.use('/office', require('./routes/webapp/checkin'));
-app.use('/', businessRoutes);
-
-
-
-// Set Mobile Routes
-app.use('/', mobileAuth);
-app.use('/api/m/form', mobileForm);
-app.use('/api/m/appointment', mobileAppointment);
-app.use('/api/m/mobiletoken', mobileToken);
-app.use('/api/m/business', business);
-app.use('/api/m/example', require('./routes/api/example'));
-app.use('/api', require('./routes/webapi'));
+//app.use('/office', require('./routes/webapp/checkin'));  //GOLDTEAM
+app.use('/', webappRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -193,3 +150,21 @@ app.use(function (err, req, res) {
 });
 
 exports = module.exports = app;
+
+//GOLD TEAM ROUTES FOR MOBILE IOS AND ANDROID
+// Load Routes for Mobile
+//var mobileAuth = require('./routes/api/auth');
+//var mobileForm = require('./routes/api/form');
+//var mobileAppointment = require('./routes/api/appointment');
+//var mobileToken = require('./routes/api/mobiletoken');
+//var business = require('./routes/api/business');
+
+//GOLD TEAM CREATED MOBILE APPS FOR IOS AND ANDROID
+// Set Mobile Routes
+//app.use('/', mobileAuth);
+//app.use('/api/m/form', mobileForm);
+//app.use('/api/m/appointment', mobileAppointment);
+//app.use('/api/m/mobiletoken', mobileToken);
+//app.use('/api/m/business', business);
+//app.use('/api/m/example', require('./routes/api/example'));
+//app.use('/api', require('./routes/webapi'));
