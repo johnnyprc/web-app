@@ -126,7 +126,7 @@
                             <div class="col_four_fifth divcenter vertical-middle">
 
                                 <div class="clear"></div>
-                                <form class="nobottommargin" action="include/sendemail.php" method="post">
+                                <form class="nobottommargin" action="../public/include/sendemail.php" method="post">
 
                                     <div class="form-process"></div>
 
