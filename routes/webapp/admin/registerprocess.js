@@ -4,9 +4,9 @@
 exports.get = function (req, res) {
     console.log('Inside register process get method');
     if (!req.session.companyName) {
-        res.render('business/registerprocess');
+        res.render('admin/registerprocess');
     } else {
-        res.render('business/registerprocess', {
+        res.render('admin/registerprocess', {
             //title: 'Express',
             //companyName: req.session.companyName
         });

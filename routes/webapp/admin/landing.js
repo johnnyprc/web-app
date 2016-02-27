@@ -12,7 +12,7 @@ exports.get = function (req, res, next) {
             }
         });
 
-    res.render('business/landing', {title: 'Landing Page'});
+    res.render('admin/landing', {title: 'Landing Page'});
 };
 
 exports.post = function (req, res, next) {

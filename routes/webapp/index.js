@@ -2,29 +2,27 @@ var express = require('express');
 var router = express.Router();
 
 //Define the controllers for saas admin (Peter) process
-var landing = require('./business/landing');
-var register = require('./business/register');
-var registerprocess = require('./business/registerprocess');
-var login = require('./business/login');
+var landing = require('./admin/landing');
+var register = require('./admin/register');
+var registerprocess = require('./admin/registerprocess');
+var login = require('./admin/login');
 
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
 var formbuilder = require('./business/formbuilder');
 var dashboard = require('./business/dashboard');
-//var analytics = require('./business/analytics');
-//var billing = require('./business/billing');
 var businesssetting = require('./business/businesssetting');
 //var checkindesign = require('./business/checkindesign');
 //var customizeform = require('./business/customizeform');
-
-//var sidepanel = require('./business/sidepanel');
+//var analytics = require('./business/analytics');
+//var billing = require('./business/billing');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
 
 //Define the controllers for staff (receptionist person to assist visitors)process
-//var visitor = require('./staff/visitor');
+var visitor = require('./staff/visitor');
 
 //Define the controllers for visitor (person checkin in) process
 var checkin = require('./visitor/checkin');
@@ -48,8 +46,6 @@ var checkin = require('./visitor/checkin');
 
 
 module.exports = function (passport) {
-
-
 
     //Setup the routes for saas admin (Peter)
     //General routes applicable to all will be placed here
@@ -100,24 +96,25 @@ module.exports = function (passport) {
         });
 
     //Setup the routes for business owner (Person purchasing the product)
-    router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
+    router.get('/:id/dashboard', isLoggedInBusAdmin, dashboard.get);
 
-    router.get('/accountSettings', isLoggedInBusAdmin, accountsettings.get);
-    router.post('/accountSettings', isLoggedInBusAdmin, accountsettings.post);
+    router.get('/:id/accountSettings', isLoggedInBusAdmin, accountsettings.get);
+    router.post('/:id/accountSettings', isLoggedInBusAdmin, accountsettings.post);
 
-    router.get('/businesssetting', isLoggedInBusAdmin, businesssetting.get);
-    router.post('/businesssetting', isLoggedInBusAdmin,businesssetting.post);
+    router.get('/:id/businesssetting', isLoggedInBusAdmin, businesssetting.get);
+    router.post('/:id/businesssetting', isLoggedInBusAdmin,businesssetting.post);
 
-    router.get('/addemployees',isLoggedInBusAdmin, addemployees.get);
+    router.get('/:id/addemployees',isLoggedInBusAdmin, addemployees.get);
     //router.post('/addemployees',isLoggedInBusAdmin, addeployees.post);
 
-    router.get('/formbuilder', isLoggedInBusAdmin, formbuilder.get);
+    router.get('/:id/formbuilder', isLoggedInBusAdmin, formbuilder.get);
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 
     //Setup the routes for provider
 
     //setup the routes for staff
+    router.get('/:id/visitor', isLoggedInBusAdmin, visitor.get);
 
     //setup the routes for visitor
     router.get('/:id/checkin', isLoggedInBusAdmin, checkin.get);

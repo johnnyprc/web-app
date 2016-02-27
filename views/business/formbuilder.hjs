@@ -4,9 +4,9 @@
 <head>
 
     <!-- Only include on form edit page -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/form-builder.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/form-builder.min.css">
     <!-- Only include on form render page -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/form-render.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/form-render.min.css">
     <script type="text/javascript">
         var switchTo5x = true;
     </script>
@@ -46,9 +46,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <!-- Only include on form edit page -->
-<script src="assets/js/form-builder.min.js"></script>
+<script src="../assets/js/form-builder.min.js"></script>
 <!-- Only include on form render page -->
-<script src="assets/js/form-render.min.js"></script>
+<script src="../assets/js/form-render.min.js"></script>
 <script>
     jQuery(document).ready(function($) {
         'use strict';
