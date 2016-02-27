@@ -20,21 +20,21 @@ var updateStyle = require('./update_style');
  * method in the appointmentsToday module, which shows all appointments for
  * today for the given employee id, :eid.
  */
-router.get('/employee/:eid/appointments/today', appointmentsToday.get);
+//router.get('/employee/:eid/appointments/today', appointmentsToday.get);
 
 /**
  * Routes put request for url /appointemnts/:id/state to the put method in the
  * setApptState module, which updates the state for the given appointment id,
  * :id, as necessary.
  */
-router.put('/appointments/:id/state', setApptState.put);
+//router.put('/appointments/:id/state', setApptState.put);
 
 /**
  * Routes get request for url /formResponses/appointments/:id to the get method
  * in the formResponse module, which obtains all responses to the business'
  * custom form given by client with appointment id, :id.
  */
-router.get('/formResponses/appointments/:id', formResponse.get);
+//router.get('/formResponses/appointments/:id', formResponse.get);
 
 /**
  * Routes get request for url /signature/ to the getDefault method in the
