@@ -1,11 +1,6 @@
 /**
  * Created by Darmadoo on 2/16/16.
  */
-exports.get = function(req, res){
-    res.render("staff/visitor", {
-
-    });
-};
 
 function init(){
     document.getElementById('searchForm').style.marginRight = "15px";

@@ -22,7 +22,7 @@ var businesssetting = require('./business/businesssetting');
 //var visitorassigned = require('./provider/visitorassigned');
 
 //Define the controllers for staff (receptionist person to assist visitors)process
-var visitor = require('./staff/visitor');
+var visitor = require('./../../public/js/visitor');
 
 //Define the controllers for visitor (person checkin in) process
 var checkin = require('./visitor/checkin');
