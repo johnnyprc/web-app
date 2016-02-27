@@ -6,7 +6,7 @@ $mail = new PHPMailer();
 
 if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     if( $_POST['template-contactform-name'] != '' AND $_POST['template-contactform-email'] != '' AND $_POST['template-contactform-message'] != '' ) {
-        console.log("test");
+        console('test');
         $name = $_POST['template-contactform-name'];
         $email = $_POST['template-contactform-email'];
         $phone = $_POST['template-contactform-phone'];
