@@ -83,7 +83,7 @@ $(".button-green").click(function() {
     var id = this.id;
     var res = id.split("-");
     var str = res[0] + "-status";
-    $(this).fadeOut(res);
+    $(this).fadeOut(onceDone(res));
     $("#" + str).text("Yes");
 });
 
@@ -118,6 +118,7 @@ function onceDone2(str) {
         $("#" + tar).text("Yes");
     });
 }
+
 
 $(document).ready(init());
 
