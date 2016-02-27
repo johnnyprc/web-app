@@ -10,6 +10,7 @@ var login = require('./business/login');
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
+var formbuilder = require('./business/formbuilder');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
 var businesssetting = require('./business/businesssetting');
@@ -106,6 +107,8 @@ module.exports = function (passport) {
 
     router.get('/addemployees',isLoggedInBusAdmin, addemployees.get);
     //router.post('/addemployees',isLoggedInBusAdmin, addeployees.post);
+
+    router.get('/formbuilder', isLoggedInBusAdmin, formbuilder.get);
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 
