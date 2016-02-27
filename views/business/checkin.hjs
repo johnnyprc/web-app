@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .button {
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+
+        .button {
+            background-color: #c0c0c0;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+        .button:hover {
+            background-color: #555555;
+            color: white;
+        }
+    </style>
+</head>
+
+<body background="../images/landing/sloth3.jpg">
+
+
+
+<div style="height: 200px; width: 500px;  position:absolute; top:246px; left:535px;">
+
+    <p>  <input type="text" style=" font-size:25px"  name="LastName" size="16"/>  </p>
+</div>
+
+
+<div style=" height: 200px; width: 500px;  position:absolute; top:330px; left:535px;">
+
+    <p>  <input type="text" style=" font-size:25px"  name="Cellphone" size="16"/>  </p>
+</div>
+
+
+<div style="height: 50px; width: 130px;  position:absolute; top:420px; left:540px;">
+    <input type="button" class="button" value="Check in">
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+

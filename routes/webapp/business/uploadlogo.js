@@ -2,7 +2,7 @@ var fs = require('fs');
 var auth = require('../../../lib/auth');
 
 exports.get = function(req, res, next){
-
+    console.log('Get function uploadlogo');
     var db = req.db;
     var businesses = db.get('businesses');
     var businessID = req.user[0].business;
