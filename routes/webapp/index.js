@@ -100,6 +100,8 @@ module.exports = function (passport) {
         });
 
     //Setup the routes for business owner (Person purchasing the product)
+    router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
+
     router.get('/accountSettings', isLoggedInBusAdmin, accountsettings.get);
     router.post('/accountSettings', isLoggedInBusAdmin, accountsettings.post);
 
@@ -129,7 +131,7 @@ module.exports = function (passport) {
     //router.get('/uploadlogo', isLoggedInBusAdmin, uploadLogo.get);
     //router.post('/uploadlogo', isLoggedInBusAdmin, uploadLogo.post);
 
-    router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
+
 
     //router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
 
