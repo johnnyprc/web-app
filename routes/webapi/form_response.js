@@ -1,6 +1,6 @@
 /**
- * Obtains form responses for the business' custom form for the given 
- * appointment. 
+ * Obtains form responses for the business' custom form for the given
+ * appointment.
  */
 exports.get  = function (req, res) {
     // grab our db object from the request
