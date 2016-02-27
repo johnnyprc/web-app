@@ -11,6 +11,7 @@ var login = require('./business/login');
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
 var formbuilder = require('./business/formbuilder');
+var dashboard = require('./business/dashboard');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
 var businesssetting = require('./business/businesssetting');
@@ -128,7 +129,7 @@ module.exports = function (passport) {
     //router.get('/uploadlogo', isLoggedInBusAdmin, uploadLogo.get);
     //router.post('/uploadlogo', isLoggedInBusAdmin, uploadLogo.post);
 
-    //router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
+    router.get('/dashboard', isLoggedInBusAdmin, dashboard.get);
 
     //router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
 

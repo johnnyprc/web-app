@@ -26,6 +26,24 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/plugins.js"></script>
 
+
+    <!-- Only include on form edit page -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/form-builder.min.css">
+    <!-- Only include on form render page -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/form-render.min.css">
+    <script type="text/javascript">
+        var switchTo5x = true;
+    </script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+        stLight.options({
+            publisher: "ee8fc1cb-2a3e-4afc-9a71-a24d14fb9f86",
+            doNotHash: false,
+            doNotCopy: false,
+            hashAddressBar: false
+        });
+    </script>
+
     <!-- Document Title
     ============================================= -->
     <title>Side Panel - Left Overlay | Canvas</title>
@@ -156,7 +174,23 @@
                 <div class="col_full  nobottommargin">
 
                     <div id="Forms">
-                        <h3>Forms</h3>
+                        <section id="main_content" class="inner">
+                            <div>
+                                <form action="">
+                                    <textarea name="form-builder-template" id="form-builder-template" cols="30" rows="10"></textarea>
+                                </form>
+                                <br style="clear:both">
+                            </div>
+                            <div class="render-form">
+                                <form id="rendered-form">
+                                    <p class="cta">Add some fields to the formBuilder above and render them here.</p>
+                                </form>
+                                <div class="render-description">
+                                    <button id="render-form-button" class="btn btn-primary">Render form</button>
+                                </div>
+                            </div>
+                            <br style="clear:both">
+                        </section>
 
                     </div>
 
@@ -518,5 +552,29 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="js/functions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<!-- Only include on form edit page -->
+<script src="assets/js/form-builder.min.js"></script>
+<!-- Only include on form render page -->
+<script src="assets/js/form-render.min.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+        'use strict';
+        var template = document.getElementById('form-builder-template'),
+            formContainer = document.getElementById('rendered-form'),
+            renderBtn = document.getElementById('render-form-button');
+        $(template).formBuilder();
+
+        $(renderBtn).click(function(e) {
+            e.preventDefault();
+            $(template).formRender({
+                container: $(formContainer)
+            });
+        });
+    });
+
+</script>
 
 </body>
