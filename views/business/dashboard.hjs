@@ -123,7 +123,7 @@
                                     <li class="side-panel-trigger"><a href="#Add-Employees" style="padding: 8px;"><i class="icon-magic"></i>Add Employees<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Analytics" style="padding: 8px;"><i class="icon-tint"></i>Analytics<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Billing-Options" style="padding: 8px;"><i class="icon-gift"></i>Billing Options<i class="icon-chevron-right"></i></a></li>
-                                    <li class="side-panel-trigger"><a href="#Manage-Theme" style="padding: 8px;"><i class="icon-gift"></i>Manage Theme<i class="icon-chevron-right"></i></a></li>
+                                    <li class="side-panel-trigger"><a href="#Manage-Theme" style="padding: 8px;"><i class="icon-gift"></i>Visitor Experience<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#SMS-and-Email" style="padding: 8px;"><i class="icon-gift"></i>SMS and Email<i class="icon-chevron-right"></i></a></li>
                                     <!--<li class="side-panel-trigger"><a href="#Design-Checkin-Page" style="padding: 8px;"><i class="icon-gift"></i>Design Checkin Page<i class="icon-chevron-right"></i></a></li>-->
 
@@ -298,74 +298,43 @@
 
                         <div class=" nobottommargin clearfix">
 
-                            <h1 class="center">Manage Theme</h1>
-
-
+                            <h1 class="center">Visitor Experience</h1>
 
                             <div class="center divcenter">
                                 <h3 class="col-padding notoppadding nobottompadding center">
                                     Select one of our template forms for check-in use, or create a custom one with our form builder.
                                 </h3>
-                                <a href="#" class="button button-large"><i class="icon-save"></i>Save Changes</a>
                             </div>
 
                             <!-- Theme Items
                             ============================================= -->
-                            <div id="portfolio" class="portfolio-3 clearfix">
-
-                                <article class="portfolio-item pf-media pf-icons">
-                                    <div class="portfolio-desc">
-                                        <h3>Yoga Studio</h3>
-                                    </div>
-                                    <div class="portfolio-image">
-                                        <a href="#">
-                                            <img src="../images/yoga.PNG" />
-                                        </a>
-                                        <div class="portfolio-overlay">
-                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-check-empty"></i></a>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <article class="portfolio-item pf-illustrations">
-                                    <div class="portfolio-desc">
-                                        <h3>Physical Therapy</h3>
-                                    </div>
-                                    <div class="portfolio-image">
-                                        <img src="../images/therapy.PNG" />
-                                        <div class="portfolio-overlay">
-                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-check-empty"></i></a>
-                                        </div>
-                                    </div>
-                                </article>
-
+                            <div id="portfolio" class="portfolio-3 center divcenter clearfix">
                                 <article class="portfolio-item pf-graphics pf-uielements">
-                                    <div class="portfolio-desc">
-                                        <h3>Default &mdash; <i>currently selected</i></h3>
-                                    </div>
                                     <div class="portfolio-image">
-                                        <img src="../images/default.PNG" />
-                                        <div class="portfolio-overlay">
-                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-check"></i></a>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <article class="portfolio-item pf-graphics pf-uielements">
-                                    <div class="portfolio-desc">
-                                        <h3>Create New</h3>
-                                    </div>
-                                    <div class="portfolio-image">
-                                        <h3 class="vertical-middle center">Open Form Builder</h3>
+                                        <h3 class="vertical-middle center">Choose Template</h3>
                                         <div class="portfolio-overlay">
                                             <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-line-plus"></i></a>
                                         </div>
                                     </div>
                                 </article>
 
+                                <article class="portfolio-item pf-graphics pf-uielements">
+                                    <div class="portfolio-image">
+                                        <h3 class="vertical-middle center">Create New</h3>
+                                        <div class="portfolio-overlay">
+                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-line-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div><!-- #theme end -->
 
+                            <div class="center divcenter clearfix">
+                                <!-- Current background image goes here -->
 
-                                </div><!-- #theme end -->
+                                <a href="#" class="button button-medium button-center">Upload Background Image</a>
+                                <br>
+                                <a href="#" class="button button-large button-center"><i class="icon-save"></i>Save Changes</a>
+                            </div>
                         </div>
                     </div>
 
