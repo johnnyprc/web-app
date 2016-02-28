@@ -72,6 +72,13 @@
         <h1>Check-ins</h1>
         <ol class="breadcrumb">
             <li>
+                <span> Avg wait time :
+                    <span class="hr" style="display: inline">0</span> hr
+                    <span class="min" style="display: inline">0</span> min
+                    <span class="sec" style="display: inline">0</span> sec
+                </span>
+            </li>
+            <li>
                 <button class="button button-3d button-rounded button-aqua">Upload CSV</button>
             </li>
             <div class="searchSpan pull-left">
@@ -98,7 +105,7 @@
         </tr>
         </thead>
         <tbody id="all">
-        <tr>
+        <tr id="tr-mark">
             <td class="name" id="mark">Mark Darmadi</td>
             <td>4:27pm</td>
             <td class="asignee">
@@ -111,11 +118,11 @@
                     </ul>
                 </div>
             </td>
-            <td>Yes</td>
+            <td>5:12pm</td>
             <td id="mark-status">No</td>
             <td id="button-row-mark"><button class="button button-3d button-mini button-rounded button-green" id="mark-button">Checkin</button></td>
         </tr>
-        <tr>
+        <tr id="tr-sean">
             <td class="name" id="sean">Sean Ippolito</td>
             <td>4:27pm</td>
             <td class="asignee">
@@ -128,11 +135,11 @@
                     </ul>
                 </div>
             </td>
-            <td>Yes</td>
+            <td>4:18am</td>
             <td id="sean-status">No</td>
             <td id="button-row-sean"><button class="button button-3d button-mini button-rounded button-green" id="sean-button">Checkin</button></td>
         </tr>
-        <tr>
+        <tr id="tr-kurt">
             <td class="name" id="kurt">Kurt Coban</td>
             <td>4:27pm</td>
             <td class="asignee">
@@ -146,7 +153,7 @@
                 </div>
 
             </td>
-            <td>Yes</td>
+            <td>1:45pm</td>
             <td id="kurt-status">No</td>
             <td id="button-row-kurt"><button class="button button-3d button-mini button-rounded button-green"id="kurt-button">Checkin</button></td>
         </tr>
