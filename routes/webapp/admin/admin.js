@@ -1,7 +1,7 @@
 exports.get = function(req, res) {
     console.log('Get function admin');
     //req.logout();
-    res.render('business/admin',{
+    res.render('admin/admin',{
         message: req.flash("admin")
     });
 };
