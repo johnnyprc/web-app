@@ -17,7 +17,7 @@ module.exports = function (passport) {
 // we are using named strategies since we have one for login and one for signup
 // by default, if there was no name, it would just be called 'local'
 
-
+    // Adding a business
     passport.use('local-signup', new LocalStrategy({
 
             // by default, local strategy uses username and password, we will override with email
@@ -26,96 +26,122 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) {
-            var db = req.db;
-            var companyName = req.body.companyName;
-            var fname = req.body.fname;
-            var lname = req.body.lname;
-            //var phone = req.body.phone;
 
-            // Check if any field has been left blank
-            console.log('check if fields filled');
-            if (fname === '' || companyName === '' || email === '' || password === '' || lname === '') {
+            var business = {
+                email: email,
+                password: password,
+                companyName: req.body.companyName,
+                phone: '',
+                fname: req.body.fname,
+                lname: req.body.lname,
+                logo: '',
+                walkins: false
+            };
+            if (business.fname === ''       ||
+                business.companyName === '' ||
+                business.email === ''       ||
+                business.password === ''    ||
+                business.lname === '') {
                 console.log('Is this working????');
                 req.flash('Missing Parameters', 'Please fill in all fields');
-            } else {
-                console.log('grab data from database');
-                var businesses = db.get('businesses');
-                var employees = db.get('employees');
-                //TODO: Get visitors too
-                //var visitors = db.get('visitors');
-                //var staff = db.get('staff');
-                //var
-
-                // find a user whose email is the same as the forms email
-                // we are checking to see if the user trying to login already exists
-                businesses.findOne({'email': email}, function (err, user) {
-                    // if there are any errors, return the error
-
-                    if (err) {
-                        console.log('error in call');
-                        return done(err);
-                    }
-
-                    // check to see if theres already a user with that email
-                    if (user) {
-                        console.log('user exists');
-                        console.log(user);
-                        return done(null, false);
-                    } else {
-
-                        // if there is no user with that email
-                        // create the user
-                        console.log('creating user');
-                        // set the user's local credentials
-                        password = auth.hashPassword(password);
-                        console.log('business user is');
-                        console.log(user);
-                        // save the user
-                        businesses.insert({
-                            email: email,
-                            password: password,
-                            companyName: companyName,
-                            phone: '',
-                            fname: fname,
-                            //username: username,
-                            lname: lname,
-                            logo: '',
-                            walkins: false
-                        }, function (err, result) {
-                            if (err) {
-                                throw err;
-                            }
-
-                            var businessID = result._id.toString();
-
-                            employees.insert({
-                                business: ObjectId(businessID),
-                                password: result.password,
-                                phone: result.phone,
-                                fname: result.fname,
-                                lname: result.lname,
-                                email: result.email,
-                                smsNotify: true,
-                                emailNotify: true,
-                                role: 'busAdmin'
-                            },function(err, user){
-                                if (err) {
-                                    throw err;
-                                }
-                                console.log('employee user is');
-                                console.log(user);
-                                return done(null, user);
-                            });
-                        });
-                    }
-                });
+                return;
             }
+            var db = req.db;
+            var businesses = db.get('businesses');
+            businesses.findOne({'email': email}, function (err, found) {
+                // if there are any errors, return the error
 
+                if (err) {
+                    console.log('error in call');
+                    return done(err);
+                }
+
+                // check to see if theres already a user with that email
+                if (found) {
+                    console.log('user exists');
+                    console.log(found);
+                    return done(null, false);
+                } else {
+                    addBusiness(req, business, done);
+                }
+            })
         }
     ));
 
+    // Adding employees
+    passport.use('local-employee-signup', new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    }, function(req, email, password, done) {
 
+        var employee = {
+            business: ObjectId(req.business.id),
+            password: password,
+            fname: req.fname,
+            lname: req.lname,
+            email: email,
+            smsNotify: true,
+            emailNotify: true,
+            role: 'busAdmin'
+        };
+        console.log("Adding Employee: ");
+        console.log(employee);
+        addEmployee(req,employee, done);
+    }));
 
+    var addEmployee = function(req, employee, done){
+        var db = req.db;
+        var employees = db.get('employees');
+        if (employee.fname === ''       ||
+            employee.business === ''    ||
+            employee.role === ''        ||
+            employee.email === ''       ||
+            employee.password === ''    ||
+            employee.lname === ''){
+            req.flash('Missing Parameters', 'Please fill in all fields');
+            return;
+        }
+        employees.insert(employee,function(err, user){
+            if (err) {
+                throw err;
+            }
+            console.log('employee user is');
+            console.log(user);
+            return done(null, user);
+        });
+    };
+
+    var addBusiness = function(req, business, done){
+        var db = req.db;
+        var businesses = db.get('businesses');
+        // First check to see if there is a buisness that exists with
+
+        var password = auth.hashPassword(business.password);
+
+        // save the user
+        businesses.insert(business, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            var businessID = result._id.toString();
+            var admin = {
+                business: ObjectId(businessID),
+                password: result.password,
+                phone: result.phone,
+                fname: result.fname,
+                lname: result.lname,
+                email: result.email,
+                smsNotify: true,
+                emailNotify: true,
+                role: 'busAdmin'
+            };
+            addEmployee(req,admin,done);
+        });
+    };
+
+    // Modifying employees
     passport.use('local-signup-employee',new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

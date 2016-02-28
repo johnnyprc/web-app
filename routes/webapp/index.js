@@ -64,6 +64,11 @@ module.exports = function (passport) {
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
 
+    router.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
+
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),
         //Direct type of user to correct page upon signup
