@@ -209,42 +209,44 @@
 
 
                                     <div class="clear"></div>
-                                    <form class="nobottommargin" action="../include/sendemail.php" method="post">
+
+                                    <form class="nobottommargin" action="addemployees" method="post">
 
                                         <div class="form-process"></div>
 
                                         <div class="col_one_fifth">
                                             <label for="template-contactform-name">Name</label>
-                                            <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+                                            <input type="text" id="template-contactform-name" name="template-contactform-name"
+                                                   value="{{name}}" class="sm-form-control required" />
                                         </div>
 
                                         <div class="col_one_fifth">
                                             <label for="template-contactform-name">Job Title</label>
                                             <select class="sm-form-control required">
                                                 <option value="">-- Select One --</option>
-                                                <option value="Masseuse">Masseuse</option>
-                                                <option value="Meditation Leader">Meditation Leader</option>
-                                                <option value="Yoga Instructor">Yoga Instructor</option>
+                                                <option value="{{jobTitle}}">Masseuse</option>
+                                                <option value="{{jobTtile}}">Meditation Leader</option>
+                                                <option value="{{jobTitle}}">Yoga Instructor</option>
                                             </select>
                                         </div>
 
                                         <div class="col_one_fifth">
                                             <label for="template-contactform-email">Email</label>
-                                            <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+                                            <input type="email" id="template-contactform-email" name="template-contactform-email" value="{{email}}" class="required email sm-form-control" />
                                         </div>
 
                                         <div class="col_one_fifth ">
                                             <label>Permissions</label>
                                             <select class="sm-form-control required">
                                                 <option value="">-- Select One --</option>
-                                                <option value="Business Owner">Business Owner</option>
-                                                <option value="Provider">Provider</option>
-                                                <option value="Receptionist">Receptionist</option>
+                                                <option value="{{role}}">Business Owner</option>
+                                                <option value="{{role}}">Provider</option>
+                                                <option value="{{role}}">Receptionist</option>
                                             </select>
 
                                         </div>
                                         <div class="col_one_fifth col_last pull-left">
-                                            <a href="#"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>
+                                            <a href="#" type="addemployees" name="addemployees"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>
                                         </div>
                                     </form>
 
