@@ -17,6 +17,7 @@ var businesssetting = require('./business/businesssetting');
 //var customizeform = require('./business/customizeform');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
+var admin = require('./admin/admin');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
@@ -55,11 +56,22 @@ module.exports = function (passport) {
     router.post('/', landing.post);
 
     router.get('/register', register.get);
-    router.post('/register',passport.authenticate('local-signup',{
-        session: false,
-        successRedirect : '/registerprocess', // redirect to the secure register process section
-        failureRedirect : '/register' // redirect back to the register page if there is an error
-    }));
+    router.post('/register',passport.authenticate('local-signup'),
+        //session: false,
+        //successRedirect : '/registerprocess', // redirect to the secure register process section
+        //failureRedirect : '/register' // redirect back to the register page if there is an error
+    passport.authenticate('local-login'),
+        function(req, res) {
+            if(req.user.role === 'busAdmin') {
+                //console.log(user);
+                console.log("Loggin in as Business Admin");
+                res.redirect('/registerprocess');
+            }
+            else {
+                console.log("Loggin in as SAAS Admin");
+                res.redirect('/registerprocess');
+            }
+        });
 
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
@@ -67,8 +79,9 @@ module.exports = function (passport) {
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),
         //Direct type of user to correct page upon signup
-        function(req, res) {
+        function(req, res, next) {
             if (req.user.role === 'busAdmin') {
+                //console.log(user);
                 console.log("Loggin in as Business Admin");
                 res.redirect('/registerprocess');
             }
@@ -95,29 +108,31 @@ module.exports = function (passport) {
 
         });
 
-    //Setup the routes for business owner (Person purchasing the product)
-    router.get('/:id/dashboard', isLoggedInBusAdmin, dashboard.get);
+    router.get('/admin', admin.get);
 
-    router.get('/:id/accountSettings', isLoggedInBusAdmin, accountsettings.get);
+    //Setup the routes for business owner (Person purchasing the product)
+    router.get('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.get);
+
+    router.get('/:id/accountSettings', updateBusiness, isLoggedInBusAdmin, accountsettings.get);
     router.post('/:id/accountSettings', isLoggedInBusAdmin, accountsettings.post);
 
-    router.get('/:id/businesssetting', isLoggedInBusAdmin, businesssetting.get);
+    router.get('/:id/businesssetting', updateBusiness, isLoggedInBusAdmin, businesssetting.get);
     router.post('/:id/businesssetting', isLoggedInBusAdmin,businesssetting.post);
 
-    router.get('/:id/addemployees',isLoggedInBusAdmin, addemployees.get);
-    //router.post('/addemployees',isLoggedInBusAdmin, addeployees.post);
+    //router.get('/:id/addemployees',isLoggedInBusAdmin, addemployees.get);
+    router.post('/:id/addemployees', isLoggedInBusAdmin, addemployees.post);
 
-    router.get('/:id/formbuilder', isLoggedInBusAdmin, formbuilder.get);
+    router.get('/:id/formbuilder', updateBusiness, isLoggedInBusAdmin, formbuilder.get);
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 
     //Setup the routes for provider
 
     //setup the routes for staff
-    router.get('/:id/visitor', isLoggedInBusAdmin, visitor.get);
+    router.get('/:id/visitor', updateBusiness, isLoggedInStaff, visitor.get);
 
     //setup the routes for visitor
-    router.get('/:id/checkin', isLoggedInBusAdmin, checkin.get);
+    router.get('/:id/checkin', updateBusiness, isLoggedInBusAdmin, checkin.get);
 
 
     //GOLD TEAMS ORIGINAL ROUTES
@@ -178,7 +193,7 @@ function isLoggedInBusAdmin(req, res, next) {
 
 function isLoggedInProvider(req, res, next) {
         //if user (Provider) is authenticated in the session, carry on
-        if (req.isAuthenticated() && ((req.user[0].role === 'provider') || (req.user[0].role === 'saasAdmin'))){
+        if (req.isAuthenticated() && ((req.user[0].role === 'provider') || (req.user[0].role === 'busAdmin') || (req.user[0].role === 'saasAdmin'))){
             return next();
         }
         // if they aren't redirect them to the home page
@@ -187,7 +202,7 @@ function isLoggedInProvider(req, res, next) {
 }
 function isLoggedInStaff(req, res, next) {
         //if user (Staff) is authenticated in the session, carry on
-        if (req.isAuthenticated() && ((req.user[0].role === 'staff') || (req.user[0].role === 'saasAdmin'))){
+        if (req.isAuthenticated() && ((req.user[0].role === 'staff') || (req.user[0].role === 'busAdmin') || (req.user[0].role === 'saasAdmin'))){
             return next();
         }
         // if they aren't redirect them to the home page
@@ -196,7 +211,7 @@ function isLoggedInStaff(req, res, next) {
 }
 function isLoggedInVisitor(req, res, next) {
         //if user (Visitor) is authenticated in the session, carry on
-        if (req.isAuthenticated() && ((req.user[0].role === 'visitor') || (req.user[0].role === 'saasAdmin'))){
+        if (req.isAuthenticated() && ((req.user[0].role === 'visitor') || (req.user[0].role === 'busAdmin') || (req.user[0].role === 'saasAdmin'))){
             return next();
         }
         // if they aren't redirect them to the home page
@@ -205,3 +220,42 @@ function isLoggedInVisitor(req, res, next) {
 }
         return router;
 };
+function updateBusiness(req, res, next) {
+    //Simple case: first time on the page
+    if (!req.session.business) {
+        req.db.get('businesses').findById(req.params.id, function (err, business) {
+            if (err) {
+                return next(err);
+            }
+            req.session.business = business;
+            req.session.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                next();
+            });
+        });
+    } else if (req.session.business._id !== req.params.id) {
+        //This means the business was switched which could be part of a security attack
+        //Destroy the session and then get the new business to be safe
+        req.session.destroy(function (err) {
+            if (err) {
+                return next(err);
+            }
+            req.db.get('businesses').findById(req.params.id, function (err, business) {
+                if (err) {
+                    return next(err);
+                }
+                req.session.business = business;
+                req.session.save(function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    next();
+                });
+            });
+        });
+    } else { //Everything looks good, do nothing
+        next();
+    }
+}
