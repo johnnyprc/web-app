@@ -29,29 +29,18 @@ var visitor = require('./staff/visitor');
 var checkin = require('./visitor/checkin');
 
 
-//GOLD TEAM ROUTING SAVE FOR TESTING
-//var theming = require('./theming');
-//var formbuilder = require('./formbuilder');
-//var accountSettings = require('./accountsettings');
-//var uploadLogo = require('./uploadlogo');
-//var dashboard = require('./dashboard');
-//var registerDevice = require('./registerdevice');
-//var addEmployees = require('./addemployees');
-//var employeeRegister = require('./employeeregister');
-//var viewForm = require('./viewform');
-//var customizeTheme = require('./customize_theme');
-//var manageForms = require('./manage_forms');
-//var businesssetting = require('./businesssetting');
-//var setdisclosure = require('./setdisclosure');
-//var checkin = require('./checkin');
+
 
 
 module.exports = function (passport) {
 
-    //Setup the routes for saas admin (Peter)
-    //General routes applicable to all will be placed here
-    //Order reflects the order in which user will see each page
-    //Authentication routes located here as well
+    /**
+     *  Setup the routes for saas admin (Peter)
+     *  General routes applicable to all will be placed here
+     *  Order reflects the order in which user will see each page
+     *  Authentication routes located here as well
+     */
+
     router.get('/', landing.get);
     router.post('/', landing.post);
 
@@ -79,9 +68,8 @@ module.exports = function (passport) {
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),
         //Direct type of user to correct page upon signup
-        function(req, res, next) {
+        function(req, res) {
             if (req.user.role === 'busAdmin') {
-                //console.log(user);
                 console.log("Loggin in as Business Admin");
                 res.redirect('/registerprocess');
             }
@@ -133,42 +121,6 @@ module.exports = function (passport) {
 
     //setup the routes for visitor
     router.get('/:id/checkin', updateBusiness, isLoggedInBusAdmin, checkin.get);
-
-
-    //GOLD TEAMS ORIGINAL ROUTES
-    //router.get('/theming', isLoggedInBusAdmin, theming.get);
-
-    //router.get('/formbuilder',isLoggedInBusAdmin, formbuilder.get);
-
-    //router.get('/uploadlogo', isLoggedInBusAdmin, uploadLogo.get);
-    //router.post('/uploadlogo', isLoggedInBusAdmin, uploadLogo.post);
-
-
-
-    //router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
-
-    //router.get('/manageforms', isLoggedInBusAdmin, manageForms.get);
-
-    //router.get('/employeeregister', employeeRegister.get);
-    //router.post('/employeeregister', passport.authenticate('local-signup-employee',{
-    //    //session: false,
-    //    successRedirect : '/dashboard', // redirect to the secure profile section
-    //    failureRedirect : '/register' // redirect back to the signup page if there is an error
-    //}));
-
-    //router.get('/viewform/:id', viewForm.get);
-
-    //router.get('/setdisclosure', isLoggedInBusAdmin, setdisclosure.get);
-    //router.post('/setdisclosure', isLoggedInBusAdmin, setdisclosure.post);
-
-//GOLDTEAM GENERIC CHECK IF LOGGED IN AND AUTHORIZED
-//function isLoggedIn(req,res,next){
-//        if(req.isAuthenticated()){
-//            return next();
-//        }
-//
-//        res.redirect('/');
-//}
 
 // route middleware to make sure a user is authorized to view the page
 // User will be denied access if session is not correct
@@ -259,3 +211,60 @@ function updateBusiness(req, res, next) {
         next();
     }
 }
+
+
+//GOLD TEAM ROUTING SAVE FOR TESTING
+//var theming = require('./theming');
+//var formbuilder = require('./formbuilder');
+//var accountSettings = require('./accountsettings');
+//var uploadLogo = require('./uploadlogo');
+//var dashboard = require('./dashboard');
+//var registerDevice = require('./registerdevice');
+//var addEmployees = require('./addemployees');
+//var employeeRegister = require('./employeeregister');
+//var viewForm = require('./viewform');
+//var customizeTheme = require('./customize_theme');
+//var manageForms = require('./manage_forms');
+//var businesssetting = require('./businesssetting');
+//var setdisclosure = require('./setdisclosure');
+//var checkin = require('./checkin');
+
+
+
+
+
+//GOLD TEAMS ORIGINAL ROUTES
+//router.get('/theming', isLoggedInBusAdmin, theming.get);
+
+//router.get('/formbuilder',isLoggedInBusAdmin, formbuilder.get);
+
+//router.get('/uploadlogo', isLoggedInBusAdmin, uploadLogo.get);
+//router.post('/uploadlogo', isLoggedInBusAdmin, uploadLogo.post);
+
+
+
+//router.get('/registerdevice', isLoggedInBusAdmin, registerDevice.get);
+
+//router.get('/manageforms', isLoggedInBusAdmin, manageForms.get);
+
+//router.get('/employeeregister', employeeRegister.get);
+//router.post('/employeeregister', passport.authenticate('local-signup-employee',{
+//    //session: false,
+//    successRedirect : '/dashboard', // redirect to the secure profile section
+//    failureRedirect : '/register' // redirect back to the signup page if there is an error
+//}));
+
+//router.get('/viewform/:id', viewForm.get);
+
+//router.get('/setdisclosure', isLoggedInBusAdmin, setdisclosure.get);
+//router.post('/setdisclosure', isLoggedInBusAdmin, setdisclosure.post);
+
+//GOLDTEAM GENERIC CHECK IF LOGGED IN AND AUTHORIZED
+//function isLoggedIn(req,res,next){
+//        if(req.isAuthenticated()){
+//            return next();
+//        }
+//
+//        res.redirect('/');
+//}
+
