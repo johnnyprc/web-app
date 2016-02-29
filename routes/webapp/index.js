@@ -58,7 +58,7 @@ module.exports = function (passport) {
             }
             else {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/admin');
             }
         });
 
@@ -83,7 +83,7 @@ module.exports = function (passport) {
             }
             else if (req.user.role === 'staff') {
                 console.log("Loggin in as staff");
-                res.redirect('/registerprocess');
+                res.redirect('/' + req.user._id + '/visitor');
             }
             else if (req.user.role === 'visitor') {
                 console.log("Loggin in as visitor");
