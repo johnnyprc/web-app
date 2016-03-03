@@ -564,29 +564,25 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Form Builder</h4>
                 </div>
-                <div class="modal-body">
-                <div class="container">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <form action="">
-                                    <textarea name="form-builder-template" id="form-builder-template" cols="15" rows="10"></textarea>
-                                </form>
-                            </div>
+                <div class="modal-body row">
+                    <div class="col-sm-8">
+                        <form action="">
+                            <textarea name="form-builder-template" id="form-builder-template" cols="10" rows="15"></textarea>
+                        </form>
+                    </div>
 
-                            <div class="col-md-4 render-form">
-                                <h4>Form Preview</h4>
-                                <form id="rendered-form">
-                                </form>
-                                <div class="render-description text-center">
-                                    <a id="render-form-button" class="button">Update Preview</a>
-                                </div>
-                            </div>
+                    <div class="col-sm-4 render-form">
+                        <h4 style="color:rgb(102, 102, 102)">Form Preview</h4>
+                        <form id="rendered-form">
+                        </form>
+                        <div class="render-description text-center">
+                            <a id="render-form-button" class="button">Update Preview</a>
                         </div>
                     </div>
-                    </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
-                     </div>
+                </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                 </div>
                 </div>
 
             </div>
