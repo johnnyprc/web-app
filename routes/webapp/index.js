@@ -18,7 +18,7 @@ var businesssetting = require('./business/businesssetting');
 //var customizeform = require('./business/customizeform');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
-
+var admin = require('./admin/admin');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
@@ -60,9 +60,11 @@ module.exports = function (passport) {
             }
             else {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/analytics');
+                res.redirect('/admin');
             }
         });
+
+    router.get('/admin', admin.get);
 
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
@@ -77,7 +79,7 @@ module.exports = function (passport) {
             }
             else if (req.user.role === 'saasAdmin') {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/analytics');
+                res.redirect('/admin');
             }
             else if (req.user.role === 'provider') {
                 console.log("Loggin in as Provider");
@@ -98,7 +100,7 @@ module.exports = function (passport) {
 
         });
 
-    router.get('/analytics', isLoggedInSaaSAdmin, analytics.get);
+    router.get('/admin', admin.get);
 
     //Setup the routes for business owner (Person purchasing the product)
     router.get('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.get);
