@@ -165,7 +165,10 @@ function getTimeDiff(time){
         }
     }
 
-    var hrDiff = curHr - hr - 12;
+    if(curHr > 11){
+        curHr -= 12;
+    }
+    var hrDiff = curHr - hr;
 
     var finSec = getAvg(countSec, secDiff);
     var finMin = getAvg(countMin, minDiff);
