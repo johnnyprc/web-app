@@ -119,9 +119,9 @@
                             <h4>Dashboard</h4>
                             <nav class="nav-tree">
                                 <ul class="sidenav">
-                                    <li class="side-panel-trigger ui-tabs-active"><a href="#Forms" style="padding: 8px;"><i class="icon-screen"></i>Forms<i class="icon-chevron-right"></i></a></li>
-                                    <li class="side-panel-trigger"><a href="#Add-Employees" style="padding: 8px;"><i class="icon-magic"></i>Add Employees<i class="icon-chevron-right"></i></a></li>
+                                    <!--<li class="side-panel-trigger ui-tabs-active"><a href="#Forms" style="padding: 8px;"><i class="icon-screen"></i>Forms<i class="icon-chevron-right"></i></a></li>-->
                                     <li class="side-panel-trigger"><a href="#Analytics" style="padding: 8px;"><i class="icon-tint"></i>Analytics<i class="icon-chevron-right"></i></a></li>
+                                    <li class="side-panel-trigger"><a href="#Add-Employees" style="padding: 8px;"><i class="icon-magic"></i>Add Employees<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Billing-Options" style="padding: 8px;"><i class="icon-gift"></i>Billing Options<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Manage-Theme" style="padding: 8px;"><i class="icon-gift"></i>Visitor Experience<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#SMS-and-Email" style="padding: 8px;"><i class="icon-gift"></i>SMS and Email<i class="icon-chevron-right"></i></a></li>
@@ -172,7 +172,7 @@
                 </div>
 
                 <div class="col_full  nobottommargin">
-
+                    <!--
                     <div id="Forms">
                         <section id="main_content" class="inner">
                             <div>
@@ -192,7 +192,7 @@
                             <br style="clear:both">
                         </section>
 
-                    </div>
+                    </div>-->
 
                     <div id="Add-Employees">
                         <div class="container clearfix">
@@ -300,43 +300,42 @@
 
                             <h1 class="center">Visitor Experience</h1>
 
-                            <div class="center divcenter">
-                                <h3 class="col-padding notoppadding nobottompadding center">
-                                    Select one of our template forms for check-in use, or create a custom one with our form builder.
-                                </h3>
-                            </div>
+                            <h3 class="col-padding notoppadding nobottompadding center">
+                                Select one of our template forms for check-in use, or create a custom one with our form builder.
+                            </h3>
 
                             <!-- Theme Items
                             ============================================= -->
-                            <div id="portfolio" class="portfolio-3 center divcenter clearfix">
-                                <article class="portfolio-item pf-graphics pf-uielements">
-                                    <div class="portfolio-image">
-                                        <h3 class="vertical-middle center">Choose Template</h3>
-                                        <div class="portfolio-overlay">
-                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-line-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </article>
+                            <div class="container text-center">
+                                <div>
+                                    <a href="#" class="button button-desc button-border button-rounded center"
+                                       data-toggle="modal" data-target="#templateModal">
+                                        <div>Choose Template</div>
+                                    </a>
 
-                                <article class="portfolio-item pf-graphics pf-uielements">
-                                    <div class="portfolio-image">
-                                        <h3 class="vertical-middle center">Create New</h3>
-                                        <div class="portfolio-overlay">
-                                            <a href="#" class="center-icon" data-lightbox="iframe"><i class="icon-line-plus"></i></a>
-                                        </div>
+                                    <a href="#" class="button button-desc button-border button-rounded center"
+                                       data-toggle="modal" data-target="#formBuilderModal">
+                                        <div>Create New Form</div>
+                                    </a>
+                                </div>
+
+                                <hr>
+                                <h3>Upload a background image:</h3>
+
+                                <div class="current-background-image-container">
+                                    <!-- Current background image goes here -->
+                                    <div class="current-background-image">
+                                        <a href="#" class="button button-medium button-center">Upload New</a>
                                     </div>
-                                </article>
+                                </div>
+
+                                <div>
+                                <hr>
+                                <a href="#" class="button button-xlarge button-center"><i class="icon-save"></i>Save Changes</a>
+                                </div>
                             </div><!-- #theme end -->
-
-                            <div class="center divcenter clearfix">
-                                <!-- Current background image goes here -->
-
-                                <a href="#" class="button button-medium button-center">Upload Background Image</a>
-                                <br>
-                                <a href="#" class="button button-large button-center"><i class="icon-save"></i>Save Changes</a>
-                            </div>
                         </div>
-                    </div>
+                    </div><!-- Visitor Experience end -->
 
                     <div id="Billing-Options">
 
@@ -514,9 +513,91 @@
 
 </div><!-- #wrapper end -->
 
-<!-- Go To Top
-============================================= -->
-<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="templateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Choose Template</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="template-select-container">
+                        <h4 class="nobottommargin">Yoga Studio</h4>
+                        <div class="template-select">
+                            <!-- Template Preview here -->
+                            <img src="http://placehold.it/200x200" />
+                        </div>
+                    </div>
+
+                    <div class="template-select-container">
+                        <h4 class="nobottommargin">Chiropractor</h4>
+                        <div class="template-select">
+                            <!-- Template Preview here -->
+                            <img src="http://placehold.it/200x200" />
+                        </div>
+                    </div>
+
+                    <div class="template-select-container">
+                        <h4 class="nobottommargin">Default</h4>
+                        <div class="template-select">
+                            <!-- Template Preview here -->
+                            <img src="http://placehold.it/200x200" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formBuilderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body">
+         <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Form Builder</h4>
+                </div>
+                <div class="modal-body">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form action="">
+                                    <textarea name="form-builder-template" id="form-builder-template" cols="15" rows="10"></textarea>
+                                </form>
+                            </div>
+
+                            <div class="col-md-4 render-form">
+                                <h4>Form Preview</h4>
+                                <form id="rendered-form">
+                                </form>
+                                <div class="render-description text-center">
+                                    <a id="render-form-button" class="button">Update Preview</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                     </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <!-- Footer Scripts
 ============================================= -->
@@ -542,6 +623,7 @@
                 container: $(formContainer)
             });
         });
+
     });
 
 </script>
