@@ -64,7 +64,7 @@ module.exports = function (passport) {
             }
         });
 
-    router.get('/admin', admin.get);
+
 
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
@@ -79,7 +79,7 @@ module.exports = function (passport) {
             }
             else if (req.user.role === 'saasAdmin') {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/admin');
+                res.redirect('/' + req.user._id+ '/admin');
             }
             else if (req.user.role === 'provider') {
                 console.log("Loggin in as Provider");
@@ -100,7 +100,7 @@ module.exports = function (passport) {
 
         });
 
-    router.get('/admin', admin.get);
+    router.get('/:id/admin', isLoggedInSaaSAdmin, admin.get);
 
     //Setup the routes for business owner (Person purchasing the product)
     router.get('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.get);
@@ -125,7 +125,7 @@ module.exports = function (passport) {
     router.get('/:id/visitor', updateBusiness, isLoggedInStaff, visitor.get);
 
     //setup the routes for visitor
-    router.get('/:id/checkin', updateBusiness, isLoggedInBusAdmin, checkin.get);
+    router.get('/:id/checkin', isLoggedInVisitor, checkin.get);
 
 // route middleware to make sure a user is authorized to view the page
 // User will be denied access if session is not correct
