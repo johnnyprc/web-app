@@ -6,6 +6,7 @@ var landing = require('./admin/landing');
 var register = require('./admin/register');
 var registerprocess = require('./admin/registerprocess');
 var login = require('./admin/login');
+var analytics = require('./admin/analytics');
 
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
@@ -21,6 +22,7 @@ var admin = require('./admin/admin');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
+var visitorassigned = require('./provider/visitorassigned');
 
 //Define the controllers for staff (receptionist person to assist visitors)process
 var visitor = require('./staff/visitor');
@@ -62,6 +64,8 @@ module.exports = function (passport) {
             }
         });
 
+    router.get('/admin', admin.get);
+
     router.get('/registerprocess', registerprocess.get);
     router.post('/registerprocess', registerprocess.post);
 
@@ -71,15 +75,15 @@ module.exports = function (passport) {
         function(req, res) {
             if (req.user.role === 'busAdmin') {
                 console.log("Loggin in as Business Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/' + req.user._id + '/dashboard');
             }
             else if (req.user.role === 'saasAdmin') {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/admin');
             }
             else if (req.user.role === 'provider') {
                 console.log("Loggin in as Provider");
-                res.redirect('/registerprocess');
+                res.redirect('/' + req.user._id + '/visitorassigned');
             }
             else if (req.user.role === 'staff') {
                 console.log("Loggin in as staff");
@@ -87,7 +91,7 @@ module.exports = function (passport) {
             }
             else if (req.user.role === 'visitor') {
                 console.log("Loggin in as visitor");
-                res.redirect('/registerprocess');
+                res.redirect('/' + req.user._id + '/checkin');
             }
             else {
                 res.redirect('/register');
@@ -115,6 +119,7 @@ module.exports = function (passport) {
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 
     //Setup the routes for provider
+    router.get('/:id/visitorassigned', updateBusiness, isLoggedInProvider, visitorassigned.get);
 
     //setup the routes for staff
     router.get('/:id/visitor', updateBusiness, isLoggedInStaff, visitor.get);
