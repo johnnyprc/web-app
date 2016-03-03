@@ -29,7 +29,9 @@
     <!-- Document Title
     ============================================= -->
     <title>Landing Page - Style 4 | Canvas</title>
-
+    <script type="text/javascript">
+        !function(a,b){a("Keen","https://d26b395fwzu5fz.cloudfront.net/3.4.0/keen.min.js",b)}(function(a,b,c){var d,e,f;c["_"+a]={},c[a]=function(b){c["_"+a].clients=c["_"+a].clients||{},c["_"+a].clients[b.projectId]=this,this._config=b},c[a].ready=function(b){c["_"+a].ready=c["_"+a].ready||[],c["_"+a].ready.push(b)},d=["addEvent","setGlobalProperties","trackExternalLink","on"];for(var g=0;g<d.length;g++){var h=d[g],i=function(a){return function(){return this["_"+a]=this["_"+a]||[],this["_"+a].push(arguments),this}};c[a].prototype[h]=i(h)}e=document.createElement("script"),e.async=!0,e.src=b,f=document.getElementsByTagName("script")[0],f.parentNode.insertBefore(e,f)},this);
+    </script>
 </head>
 
 <body class="stretched">
@@ -47,7 +49,8 @@
             <!-- Logo
             ============================================= -->
             <div id="logo">
-                LOGO
+                <a href="/" class="standard-logo" data-dark-logo="../images/logo.png"><img src="../images/logo.png" alt="Logo"></a>
+                <a href="/" class="retina-logo" data-dark-logo="../images/logo.png"><img src="../images/logo.png" alt="Logo"></a>
             </div><!-- #logo end -->
 
             <!-- Primary Navigation
@@ -156,6 +159,75 @@
             <td>1:45pm</td>
             <td id="kurt-status">No</td>
             <td id="button-row-kurt"><button class="button button-3d button-mini button-rounded button-green"id="kurt-button">Checkin</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container clearfix">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <!--<th>Time</th>-->
+            <!--<th>Assignee</th>-->
+            <th>Appointment</th>
+            <!--<th>Check-in status</th>-->
+            <!--<th>Check In</th>-->
+        </tr>
+        </thead>
+        <tbody id="all">
+        <tr id="tr-mark">
+            <td class="name" id="mark">Mark Darmadi</td>
+            <!--<td>4:27pm</td>-->
+            <!--<td class="asignee">-->
+                <!--<div class="sort-contacts-bytype-dropdown dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="mark-sort"><span id="mark_dropdown" class="dropdown-label">Dr. Richard Best</span><b class="caret"></b></a>-->
+                    <!--<ul class="dropdown-menu dropdown-menu-right" id="mark-toggle">-->
+                        <!--<li><a href="#"><i class="dropdown test"></i>Dr. Test tie</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown peter"></i>Dr. Peter Venkelman</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown richard"></i>Dr. Richard Best</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</td>-->
+            <td>5:12pm</td>
+            <!--<td id="mark-status">No</td>-->
+            <!--<td id="button-row-mark"><button class="button button-3d button-mini button-rounded button-green" id="mark-button">Checkin</button></td>-->
+        </tr>
+        <tr id="tr-sean">
+            <td class="name" id="sean">Sean Ippolito</td>
+            <!--<td>4:27pm</td>-->
+            <!--<td class="asignee">-->
+                <!--<div class="sort-contacts-bytype-dropdown dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="sean-sort"><span id="sean_dropdown" class="dropdown-label">Dr. Test tie</span><b class="caret"></b></a>-->
+                    <!--<ul class="dropdown-menu dropdown-menu-right" id="sean-toggle">-->
+                        <!--<li><a href="#"><i class="dropdown test"></i>Dr. Test tie</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown peter"></i>Dr. Peter Venkelman</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown richard"></i>Dr. Richard Best</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</td>-->
+            <td>4:18am</td>
+            <!--<td id="sean-status">No</td>-->
+            <!--<td id="button-row-sean"><button class="button button-3d button-mini button-rounded button-green" id="sean-button">Checkin</button></td>-->
+        </tr>
+        <tr id="tr-kurt">
+            <td class="name" id="kurt">Kurt Coban</td>
+            <!--<td>4:27pm</td>-->
+            <!--<td class="asignee">-->
+                <!--<div class="sort-contacts-bytype-dropdown dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="kurt-sort"><span id="kurt_dropdown" class="dropdown-label">Dr. Peter Venkelmen</span><b class="caret"></b></a>-->
+                    <!--<ul class="dropdown-menu dropdown-menu-right" id="kurt-toggle">-->
+                        <!--<li><a href="#"><i class="dropdown test"></i>Dr. Test tie</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown peter"></i>Dr. Peter Venkelman</a></li>-->
+                        <!--<li><a href="#"><i class="dropdown richard"></i>Dr. Richard Best</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+            <!--</td>-->
+            <td>1:45pm</td>
+            <!--<td id="kurt-status">No</td>-->
+            <!--<td id="button-row-kurt"><button class="button button-3d button-mini button-rounded button-green"id="kurt-button">Checkin</button></td>-->
         </tr>
         </tbody>
     </table>

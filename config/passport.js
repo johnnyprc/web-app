@@ -98,7 +98,7 @@ module.exports = function (passport) {
                                 smsNotify: true,
                                 emailNotify: true,
                                 //values of role saasAdmin, busAdmin, provider, staff, visitor
-                                role: 'busAdmin'
+                                role: 'visitor'
                             },function(err, user){
                                 if (err) {
                                     throw err;
