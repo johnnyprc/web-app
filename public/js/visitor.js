@@ -18,14 +18,19 @@ function getTime(){
     var hours = currentTime.getHours()
     var minutes = currentTime.getMinutes()
     var seconds = currentTime.getSeconds()
+    var what = false;
     if (seconds < 10){
         seconds = "0" + seconds
     }
     if (minutes < 10){
         minutes = "0" + minutes
     }
-    var t_str = hours + ":" + minutes + ":" + seconds + " ";
     if(hours > 11){
+        hours -= 12;
+        what = true;
+    }
+    var t_str = hours + ":" + minutes + ":" + seconds + " ";
+    if(what){
         t_str += "PM";
     } else {
         t_str += "AM";
@@ -160,7 +165,7 @@ function getTimeDiff(time){
         }
     }
 
-    var hrDiff = curHr - hr;
+    var hrDiff = curHr - hr - 12;
 
     var finSec = getAvg(countSec, secDiff);
     var finMin = getAvg(countMin, minDiff);
