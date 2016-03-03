@@ -74,11 +74,11 @@ module.exports = function (passport) {
         function(req, res) {
             if (req.user.role === 'busAdmin') {
                 console.log("Loggin in as Business Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/' + req.user._id + '/dashboard');
             }
             else if (req.user.role === 'saasAdmin') {
                 console.log("Loggin in as SAAS Admin");
-                res.redirect('/registerprocess');
+                res.redirect('/admin');
             }
             else if (req.user.role === 'provider') {
                 console.log("Loggin in as Provider");
