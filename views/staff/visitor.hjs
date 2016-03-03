@@ -100,7 +100,7 @@
                 </div>
                 <div class="modal-body">
                     <span>Enter your CSV:</span>
-                    <textarea rows="15" cols="50" style="position: relative;left: 30%;">Upload your CSV here
+                    <textarea rows="15" cols="50" style="position: relative;left: 40%;">Upload your CSV here
                     </textarea>
                 </div>
                 <div class="modal-footer">
