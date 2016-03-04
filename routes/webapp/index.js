@@ -127,6 +127,11 @@ module.exports = function (passport) {
     //setup the routes for visitor
     router.get('/:id/checkin', isLoggedInVisitor, checkin.get);
 
+    router.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
+
 // route middleware to make sure a user is authorized to view the page
 // User will be denied access if session is not correct
 function isLoggedInSaaSAdmin(req, res, next) {

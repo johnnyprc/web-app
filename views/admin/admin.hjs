@@ -58,7 +58,7 @@
 
                     <li class=""><a href="#"><div>Profile</div></a>
                     </li>
-                    <li class="mega-menu"><a href="#"><div>Log Out</div></a>
+                    <li class="mega-menu"><a href="/logout"><div>Log Out</div></a>
                     </li>
                     <!--<li><a class="side-panel-trigger" href="#"><div>Tools</div></a>-->
                     <!--</li>-->
@@ -113,13 +113,13 @@
                                         <td>Dental Office</td>
                                         <td>Free</td>
                                         <td>dentists@dental.com</td>
-                                        <td><i class="i-plain i-small icon-user"></i><i class="i-plain i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
+                                        <td><i class="i-circled i-small icon-user"></i><i class="i-circled i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
                                     </tr>
                                     <tr>
                                         <td>Yoga Instructor</td>
                                         <td>Premium</td>
                                         <td>yoga@yoga.com</td>
-                                        <td><i class="i-circled i-small icon-ok"></i><i class="i-plain i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
+                                        <td><i class="i-circled i-small icon-ok"></i><i class="i-circled i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
                                     </tr>
                                     <tr>
                                         <td>item #3</td>
