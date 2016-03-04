@@ -76,10 +76,16 @@ exports.post = function(req,res){
 
         for(var i = 0; i < rows.length; i++){
             var username = rows[i][0];
-            var email = rows[i][1];
+            console.log(rows[i][0]);
+            //console.log(rows[i][1]);
+            //var email = rows[i][1];
             var nameArr = username.split(' ');
 			var fname = nameArr[0];
+            console.log(fname);
 			var lname = nameArr[1];
+            console.log(lname);
+            var email = nameArr[2];
+            console.log(email);
             var token = randomToken();
             employeeDB.insert({
                 business: ObjectId(businessID),
@@ -109,8 +115,7 @@ exports.post = function(req,res){
             //    }
             //  });
         }
-        console.log('FUCKKKKDFDFSFSDFGSDFGSDFGSDGSDFGDSFGSDFGDSFGSDFGSDFGFdsg');
-        res.redirect('../id/dashboard');
+        res.redirect('../' + req.user[0].business + '/dashboard');
 }
 
 
