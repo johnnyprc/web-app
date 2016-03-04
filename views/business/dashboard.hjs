@@ -122,11 +122,12 @@
                             <nav class="nav-tree">
                                 <ul class="sidenav">
                                     <!--<li class="side-panel-trigger ui-tabs-active"><a href="#Forms" style="padding: 8px;"><i class="icon-screen"></i>Forms<i class="icon-chevron-right"></i></a></li>-->
-                                    <li class="side-panel-trigger"><a href="#Analytics" style="padding: 8px;"><i class="icon-tint"></i>Analytics<i class="icon-chevron-right"></i></a></li>
+
                                     <li class="side-panel-trigger"><a href="#Add-Employees" style="padding: 8px;"><i class="icon-magic"></i>Add Employees<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Billing-Options" style="padding: 8px;"><i class="icon-gift"></i>Billing Options<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#Manage-Theme" style="padding: 8px;"><i class="icon-gift"></i>Visitor Experience<i class="icon-chevron-right"></i></a></li>
                                     <li class="side-panel-trigger"><a href="#SMS-and-Email" style="padding: 8px;"><i class="icon-gift"></i>SMS and Email<i class="icon-chevron-right"></i></a></li>
+                                    <li class="side-panel-trigger"><a href="#Analytics" style="padding: 8px;"><i class="icon-tint"></i>Analytics<i class="icon-chevron-right"></i></a></li>
                                     <!--<li class="side-panel-trigger"><a href="#Design-Checkin-Page" style="padding: 8px;"><i class="icon-gift"></i>Design Checkin Page<i class="icon-chevron-right"></i></a></li>-->
 
                                 </ul>
@@ -298,11 +299,7 @@
                         </div>
                     </div>
 
-                    <div id="Analytics">
 
-                        <h3>Analytics</h3>
-
-                    </div>
 
                     <div id="Manage-Theme">
 
@@ -491,6 +488,11 @@
                         <h3>Notifications</h3>
 
                     </div>
+                    <div id="Analytics">
+
+                    <h3>Analytics</h3>
+
+                </div>
 
                     <!--<div id="Design-Checkin-Page">-->
 
