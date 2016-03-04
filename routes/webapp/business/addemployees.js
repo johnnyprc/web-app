@@ -81,6 +81,7 @@ exports.post = function(req,res){
 			var fname = nameArr[0];
 			var lname = nameArr[1];
             var token = randomToken();
+            console.log('Employee inserted');
             employeeDB.insert({
                 business: ObjectId(businessID),
                 fname: fname,
@@ -94,6 +95,7 @@ exports.post = function(req,res){
                 //values of role saasAdmin, busAdmin, provider, staff, visitor
                 role: 'provider'
             });
+
 
 
               //sendgrid.send({
@@ -110,7 +112,7 @@ exports.post = function(req,res){
             //  });
         }
         console.log('FUCKKKKDFDFSFSDFGSDFGSDFGSDGSDFGDSFGSDFGDSFGSDFGSDFGFdsg');
-        res.redirect('../id/dashboard');
+        res.redirect('../' + req.user[0].business + '/dashboard');
 }
 
 
