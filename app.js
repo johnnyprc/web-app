@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
 var async = require('async');
+var Keen = require("keen-js");
 var favicon = require('serve-favicon');
 var app = express();
 
