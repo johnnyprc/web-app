@@ -87,7 +87,12 @@ exports.post = function(req,res){
 				lname: lname,
                 email: email,
                 registrationToken : token,
-                admin: false
+                password: '',
+                phone: '',
+                smsNotify: true,
+                emailNotify: true,
+                //values of role saasAdmin, busAdmin, provider, staff, visitor
+                role: 'provider'
             });
 
 
