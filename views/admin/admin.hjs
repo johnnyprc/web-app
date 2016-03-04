@@ -99,14 +99,13 @@
                         <div class="tab-container">
 
                             <div class="tab-content clearfix" id="tabs-9">
-                                <p>first section text</p>
                                 <table class="table table-hover">
                                     <thead>
-                                    <tr>
+                                    <tr style="font-size: 24px;">
                                         <th>Client</th>
                                         <th>Billing Tier</th>
                                         <th>E-Mail</th>
-                                        <th>CRUD</th>
+                                        <th>User Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -114,18 +113,19 @@
                                         <td>Dental Office</td>
                                         <td>Free</td>
                                         <td>dentists@dental.com</td>
-                                        <td>&lt; CRUD buttons go here &gt;</td>
+                                        <td><i class="i-plain i-small icon-user"></i><i class="i-plain i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
                                     </tr>
                                     <tr>
                                         <td>Yoga Instructor</td>
                                         <td>Premium</td>
                                         <td>yoga@yoga.com</td>
-                                        <td>&lt; CRUD buttons go here &gt;</td>
+                                        <td><i class="i-circled i-small icon-ok"></i><i class="i-plain i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>item #3</td>
+                                        <td>billing #3</td>
+                                        <td>contact #3</td>
+                                        <td><i class="i-circled i-small icon-ok"></i><i class="i-circled i-small icon-cog" style="width: 10px; height: 10px;"></i></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="tab-content clearfix" id="tabs-10">
                                 <div class="col_half" id="lineChart" style="opacity: 0;">
-                                    <h3 class="center">Line Chart</h3>
+                                    <h3 class="center">Client Growth Chart</h3>
                                     <canvas id="lineChartCanvas" width="547" height="300"></canvas>
                                 </div>
                                 <div class="clear"></div>
@@ -144,29 +144,29 @@
 
                                     jQuery(window).load( function(){
                                         var lineChartData = {
-                                            labels : ["January","February","March","April","May","June","July"],
+                                            labels : ["January","February","March","April","May","June","July","August","September","October"],
                                             datasets : [
                                                 {
                                                     fillColor : "rgba(220,220,220,0.5)",
                                                     strokeColor : "rgba(220,220,220,1)",
                                                     pointColor : "rgba(220,220,220,1)",
                                                     pointStrokeColor : "#fff",
-                                                    data : [65,59,90,81,56,55,40]
+                                                    data : [0,10,15,34,56,58,90,104,120,180]
                                                 },
-                                                {
-                                                    fillColor : "rgba(151,187,205,0.5)",
-                                                    strokeColor : "rgba(151,187,205,1)",
-                                                    pointColor : "rgba(151,187,205,1)",
-                                                    pointStrokeColor : "#fff",
-                                                    data : [28,48,40,19,96,27,100]
-                                                },
-                                                {
-                                                    fillColor : "rgba(200,147,165,0.5)",
-                                                    strokeColor : "rgba(151,187,205,1)",
-                                                    pointColor : "rgba(151,187,205,1)",
-                                                    pointStrokeColor : "#fff",
-                                                    data : [50,68,17,57,24,96,100]
-                                                }
+//                                                {
+//                                                    fillColor : "rgba(151,187,205,0.5)",
+//                                                    strokeColor : "rgba(151,187,205,1)",
+//                                                    pointColor : "rgba(151,187,205,1)",
+//                                                    pointStrokeColor : "#fff",
+//                                                    data : [28,48,40,19,96,27,100]
+//                                                },
+//                                                {
+//                                                    fillColor : "rgba(200,147,165,0.5)",
+//                                                    strokeColor : "rgba(151,187,205,1)",
+//                                                    pointColor : "rgba(151,187,205,1)",
+//                                                    pointStrokeColor : "#fff",
+//                                                    data : [50,68,17,57,24,96,100]
+//                                                }
                                             ]
                                         };
 
@@ -338,6 +338,6 @@
     </section>
 </div>
 <script type="text/javascript" src="../js/functions.js"></script>
-<script src="../js/testing.js" type="text/javascript"></script>
+<script src="../js/cloudinary/js/testing.js" type="text/javascript"></script>
 </body>
 </html>
