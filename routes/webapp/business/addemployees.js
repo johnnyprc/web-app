@@ -84,10 +84,15 @@ exports.post = function(req,res){
             employeeDB.insert({
                 business: ObjectId(businessID),
                 fname: fname,
-				lname: lname,
+                lname: lname,
                 email: email,
                 registrationToken : token,
-                admin: false
+                password: '',
+                phone: '',
+                smsNotify: true,
+                emailNotify: true,
+                //values of role saasAdmin, busAdmin, provider, staff, visitor
+                role: 'provider'
             });
 
 
