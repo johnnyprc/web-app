@@ -73,7 +73,6 @@ exports.post = function(req,res){
        var employeeDB = database.get('employees');
        var businessID = req.user[0].business;
 
-
         for(var i = 0; i < rows.length; i++){
             var username = rows[i][0];
             console.log(rows[i][0]);
