@@ -14,6 +14,9 @@ var formResponse = require('./form_response');
 var signature = require('./signature');
 var form = require('./form_request');
 var updateStyle = require('./update_style');
+var checkin_queue = require('./checkin_queue');
+var checkout = require('./checkout');
+var checkin = require('./checkin');
 
 /**
  * Routes get request for url /employee/:eid/appointments/today to the get
@@ -48,6 +51,21 @@ router.get('/signature', signature.getDefault);
  * signature module, which renders the text, :text, as cursive font.
  */
 router.get('/signature/:text', signature.get);
+
+/**
+ * Get the checkin queue
+ */
+router.get('checkin_queue', checkin_queue.get);
+
+/**
+ * Add to the the checkin queue
+ */
+router.post('checkin', checkin.post);
+
+/**
+ * Remove from the checkin queue
+ */
+router.post('checkout', checkout.post);
 
 
 router.post('/form', form.createForm);
