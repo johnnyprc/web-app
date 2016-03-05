@@ -183,6 +183,10 @@ function getTimeDiff(time){
 function getAvg(old, cur){
     var total = 1 * old + cur;
     var avg = Math.floor(total/count);
+
+    if(avg < 0){
+        avg = 0;
+    }
     return avg;
 }
 
