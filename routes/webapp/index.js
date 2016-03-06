@@ -6,6 +6,7 @@ var landing = require('./admin/landing');
 var register = require('./admin/register');
 var registerprocess = require('./admin/registerprocess');
 var login = require('./admin/login');
+var reset = require('./admin/reset');
 
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
@@ -13,6 +14,10 @@ var addemployees = require('./business/addemployees');
 var formbuilder = require('./business/formbuilder');
 var dashboard = require('./business/dashboard');
 var businesssetting = require('./business/businesssetting');
+var nodemailer = require('nodemailer');
+var smtpTransport = require("nodemailer-smtp-transport");
+var async = require('async');
+var crypto = require('crypto');
 //var checkindesign = require('./business/checkindesign');
 //var customizeform = require('./business/customizeform');
 //var analytics = require('./business/analytics');
@@ -57,6 +62,102 @@ module.exports = function (passport) {
         req.logout();
         res.redirect('/');
     });
+
+    router.post('/forgotpw', function(req, res, next){
+        async.waterfall([
+            function(done) {
+                crypto.randomBytes(20, function (err, buf) {
+                    var token = buf.toString('hex');
+                    done(err, token);
+                });
+            },function(token, done) {
+                var db = req.db;
+                var employees = db.get('employees');
+                try {
+
+                    employees.findAndModify({email: req.body.email},
+                        {
+                            $set: {
+                                resetPasswordToken: token,
+                                resetPasswordExpires: Date.now() + 3600000
+                            }
+                        });
+                } catch(e){
+                    console.log("HELLO FROM THE OTHER SIDE " + e);
+                    req.flash('error', 'No account with that email address exists.');
+                    done(e, 'done');
+                    return res.redirect('/register');
+                }
+                console.log(req.body.email);
+                return done(null,req.body.email);
+            },function(token, done) {
+
+                var transport = nodemailer.createTransport(smtpTransport({
+                    service:'gmail',
+                    auth : {
+                        user : "ireceptionistcorp@gmail.com",
+                        pass : "sossossos"
+                    }
+                }));
+
+                //var transporter = nodemailer.createTransport('smtps://ireceptionistcorp%40gmail.com:sossossos@smtp.gmail.com');
+
+                var mailOptions = {
+                    to: req.body.email,
+                    from: 'iReceptionistCorp@gmail.com',
+                    subject: 'Password Reset',
+                    text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                    'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                };
+
+                //s
+                transport.sendMail(mailOptions, function(err) {
+                    req.flash('info', 'An e-mail has been sent to ' + req.body.email + ' with further instructions.');
+                    console.log(err);
+                    done(err, 'done');
+                });
+            }
+        ],function(err) {
+            if (err) return next(err);
+            res.redirect('/register');
+        });
+    });
+
+    router.post('/reset/:token', function(req, res) {
+        async.waterfall([
+            function(done) {
+                var db = req.db;
+                var employees = db.get('employees');
+                try {
+
+                    employees.findAndModify({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
+                        {
+                            $set: {
+                                password: req.body.password,
+                                resetPasswordToken: token,
+                                resetPasswordExpires: Date.now() + 3600000
+                            }
+                        });
+                } catch(e){
+                    console.log("User not found");
+                    done(e, 'done');
+                    req.flash('error', 'Password reset token is invalid or has expired.');
+                    return res.redirect('/');
+                }
+
+                res.render('admin/reset', {
+                    user: req.user
+                });
+            }
+
+        ], function(err) {
+            res.redirect('/');
+        });
+    });
+
+    router.get('/reset/:email', reset.get);
 
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),

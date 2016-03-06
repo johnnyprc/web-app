@@ -25,9 +25,9 @@ exports.get = function(req,res){
                     if (err) { return next(err);  }
                     if(!results) { return next(new Error('Error finding employee'));}
 
-                        employeee = results;
-                        console.log(employeee);
-                       cb();
+                    employeee = results;
+                    console.log(employeee);
+                    cb();
 
                 });
             },
@@ -38,8 +38,8 @@ exports.get = function(req,res){
                     if (err) { return next(err); }
                     if(!results) { return next(new Error('Error finding employee'));}
 
-                         notemployee = results;
-                         cb();
+                    notemployee = results;
+                    cb();
                 });
             }
         },

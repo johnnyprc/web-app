@@ -83,7 +83,9 @@ module.exports = function (passport) {
             email: email,
             smsNotify: true,
             emailNotify: true,
-            role: 'busAdmin'
+            role: 'busAdmin',
+            resetPasswordToken: String,
+            resetPasswordExpires: Date
         };
         console.log("Adding Employee: ");
         console.log(employee);
