@@ -1,3 +1,11 @@
 tr{
     height: 55px;
 }
+
+.avg-time{
+    font-size: 75px;
+    display: inline-block;
+    left: 30%;
+    position: relative;
+    font-family: 'Oregano', cursive;
+}
