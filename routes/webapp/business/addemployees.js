@@ -73,7 +73,7 @@ exports.post = function(req,res){
        var rows = parsed.data;
        var database =  req.db;
        var employeeDB = database.get('employees');
-       var businessID = req.user[0].business;
+       var businessID = req.user[0].business.toString();
         console.log(businessID);
         //console.log(req);
 
