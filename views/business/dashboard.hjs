@@ -647,7 +647,7 @@
 
     <!--});-->
 <!--</script>-->
-    <script type="text/javascript" src="../js/dashboardsos.js"></script>
+    <script type="text/javascript" src="../js/dashboard.js"></script>
 
 
 </body>
