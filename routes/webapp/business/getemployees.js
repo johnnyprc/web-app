@@ -7,7 +7,7 @@ exports.get = function(req,res){
     var employeeDB = database.get('employees');
     var employee;
     var notemployee;
-    var businessID = req.user[0].business.toString();
+    var businessID = req.user[0].business;
 
     async.parallel({
             employee: function(cb){
@@ -50,3 +50,34 @@ exports.get = function(req,res){
 
             )}
     )};
+
+
+console.log('Get function accountsettings');
+//var eid = req.user[0]._id;
+var db = req.db;
+var employees = db.get('employees');
+
+var fname;
+var lname;
+var phone;
+var sms;
+var email;
+
+//calls find method to find  the correct employee to pull results
+employees.find({business: businessID}, function (err, result) {
+    //var emp = result[0];
+    v//ar phone = emp.phone;
+    //phone = phone.replace('1', '');
+    //phone = phone.slice(0, 3) + '-' + phone.slice(3, 6) + '-' + phone.slice(6);
+    res.render('business/dashboard', {
+        title: 'Express',
+        fname: emp.fname,
+        lname: emp.lname,
+        password: emp.password,
+        phone: phone,
+        email: emp.email,
+        smsNotify: emp.smsNotify,
+        emailNotify: emp.emailNotify,
+        message: req.flash("permission")
+    });
+});
