@@ -88,7 +88,7 @@ module.exports = function (passport) {
                     return res.redirect('/register');
                 }
                 console.log(req.body.email);
-                return done(null,req.body.email);
+                return done(null,token);
             },function(token, done) {
 
                 var transport = nodemailer.createTransport(smtpTransport({

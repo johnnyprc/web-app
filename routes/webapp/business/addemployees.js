@@ -137,7 +137,7 @@ exports.post = function(req,res){
         }
         //res.redirect('../' + req.user[0].business + '/dashboard');
         res.redirect('/');
-}
+};
 
 
  function randomToken() {
