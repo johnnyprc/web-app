@@ -13231,3 +13231,41 @@ body:not(.no-transition) #wrapper,
 	padding:0!important
 }
 
+.modal-dialog {
+    width:90%;
+    margin:auto;
+}
+
+.current-background-image-container {
+    display:inline-block;
+    border:1px solid #eeeeee;
+}
+
+.current-background-image {
+    width:300px;
+    height:300px;
+    margin:10px;
+    padding-top:120px;
+    background-image:url('http://placehold.it/300x300');
+}
+
+.template-select-container {
+    display:inline-block;
+    text-align:center;
+    margin-right:5%;
+}
+
+.template-select {
+    border:1px solid #eeeeee;
+    padding:10px;
+}
+
+.render-form {
+    border-left:1px solid #eeeeee;
+}
+
+#rendered-form {
+    border-top:1px solid #eeeeee;
+    border-bottom:1px solid #eeeeee;
+    padding:0 10px;
+}

@@ -83,7 +83,6 @@ module.exports = function (passport) {
                             }
                         });
                 } catch(e){
-                    console.log("HELLO FROM THE OTHER SIDE " + e);
                     req.flash('error', 'No account with that email address exists.');
                     done(e, 'done');
                     return res.redirect('/register');
