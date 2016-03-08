@@ -20,6 +20,7 @@ var businesssetting = require('./business/businesssetting');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
 var admin = require('./admin/admin');
+var forgotpassword = require('./business/forgotpassword');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
@@ -119,6 +120,8 @@ module.exports = function (passport) {
     router.post('/:id/addoneemployee', isLoggedInBusAdmin, addoneemployee.post);
 
     router.get('/:id/formbuilder', updateBusiness, isLoggedInBusAdmin, formbuilder.get);
+
+    router.get('/forgotpassword', forgotpassword.get);
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 

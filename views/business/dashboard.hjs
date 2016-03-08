@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="clear"></div>
                                 <div class="line"></div>
-                                <h3>Currently Registered Staff</h3>
+                                <!--<h3>Currently Registered Staff</h3>-->
                                 <div class="col_four_fifth divcenter vertical-middle">
                                     <table class="table table-striped divcenter">
                                         <thead>
