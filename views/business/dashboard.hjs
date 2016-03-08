@@ -219,43 +219,56 @@
 
                                     <div class="clear"></div>
 
-                                    <form class="nobottommargin" action="addemployees" method="post">
+                                    <form class="nobottommargin" method="post" action="addoneemployee" enctype="application/x-www-form-urlencoded">
 
                                         <div class="form-process"></div>
 
                                         <div class="col_one_fifth">
-                                            <label for="template-contactform-name">Name</label>
-                                            <input type="text" id="template-contactform-name" name="template-contactform-name"
-                                                   value="{{name}}" class="sm-form-control required" />
+                                            <label for="template-contactform-fname">First Name</label>
+                                            <input type="text" id="template-contactform-fname" name="fname"
+                                                   value="{{fname}}" class="sm-form-control required" />
                                         </div>
 
                                         <div class="col_one_fifth">
-                                            <label for="template-contactform-name">Job Title</label>
-                                            <select class="sm-form-control required">
-                                                <option value="">-- Select One --</option>
-                                                <option value="{{jobTitle}}">Masseuse</option>
-                                                <option value="{{jobTtile}}">Meditation Leader</option>
-                                                <option value="{{jobTitle}}">Yoga Instructor</option>
-                                            </select>
+                                            <label for="template-contactform-lname">Last Name</label>
+                                            <input type="text" id="template-contactform-lname" name="lname"
+                                                   value="{{lname}}" class="sm-form-control required" />
                                         </div>
+
+                                        <!--<div class="col_one_fifth">-->
+                                            <!--<label for="template-contactform-name">Job Title</label>-->
+                                            <!--<select class="sm-form-control required">-->
+                                                <!--<option value="">&#45;&#45; Select One &#45;&#45;</option>-->
+                                                <!--<option value="{{jobTitle}}">Masseuse</option>-->
+                                                <!--<option value="{{jobTtile}}">Meditation Leader</option>-->
+                                                <!--<option value="{{jobTitle}}">Yoga Instructor</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
 
                                         <div class="col_one_fifth">
                                             <label for="template-contactform-email">Email</label>
-                                            <input type="email" id="template-contactform-email" name="template-contactform-email" value="{{email}}" class="required email sm-form-control" />
+                                            <input type="email" id="template-contactform-email" name="email" value="{{email}}" class="required email sm-form-control" />
                                         </div>
 
-                                        <div class="col_one_fifth ">
-                                            <label>Permissions</label>
-                                            <select class="sm-form-control required">
-                                                <option value="">-- Select One --</option>
-                                                <option value="{{role}}">Business Owner</option>
-                                                <option value="{{role}}">Provider</option>
-                                                <option value="{{role}}">Receptionist</option>
-                                            </select>
-
+                                        <div class="col_one_fifth">
+                                            <label for="template-contactform-role">Role (busAdmin, provider, staff)</label>
+                                            <input type="text" id="template-contactform-role" name="role" value="{{role}}" class="required email sm-form-control" />
                                         </div>
+                                        <!--<div class="col_one_fifth ">-->
+                                            <!--<label>Permissions</label>-->
+                                            <!--<select class="sm-form-control required">-->
+                                                <!--<option value="">&#45;&#45; Select One &#45;&#45;</option>-->
+                                                <!--<option value="{{role}}">Business Owner</option>-->
+                                                <!--<option value="{{role}}">Provider</option>-->
+                                                <!--<option value="{{role}}">Receptionist</option>-->
+                                            <!--</select>-->
+
+                                        <!--</div>-->
+                                        <!--<div >-->
+                                            <!--<a href="#" type="addemployees" name="addemployees"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>-->
+                                        <!--</div>-->
                                         <div class="col_one_fifth col_last pull-left">
-                                            <a href="#" type="addemployees" name="addemployees"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>
+                                            <input class="btn custom-button" name="submit" type="submit" href="/addoneemployee" value="Insert">
                                         </div>
                                     </form>
 

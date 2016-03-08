@@ -67,6 +67,8 @@ exports.get = function(req,res){
  * @returns The appropriate data about the employee
  */
 exports.post = function(req,res){
+
+    console.log('breaks here');
        var parsed = baby.parse(req.body.csvEmployees);
        var rows = parsed.data;
        var database =  req.db;
@@ -87,6 +89,7 @@ exports.post = function(req,res){
             console.log(lname);
             var email = nameArr[2];
             console.log(email);
+            var role = nameArr[3];
             var token = randomToken();
             employeeDB.insert({
                 business: ObjectId(businessID),
@@ -99,7 +102,7 @@ exports.post = function(req,res){
                 smsNotify: true,
                 emailNotify: true,
                 //values of role saasAdmin, busAdmin, provider, staff, visitor
-                role: 'provider'
+                role: role
             });
 
 
