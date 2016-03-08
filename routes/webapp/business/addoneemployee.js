@@ -68,13 +68,13 @@ exports.get = function(req,res){
  */
 exports.post = function(req,res){
 
-    console.log(res);
+    //console.log(res);
     console.log('breaks here add one employee');
     //var parsed = baby.parse(req.body.csvEmployees);
     //var rows = parsed.data;
     var database =  req.db;
     var employeeDB = database.get('employees');
-    var businessID = req.user[0].business;
+    var businessID = req.user[0].business.toString();
     var fname = req.body.fname;
     var lname = req.body.lname;
     var email = req.body.email;

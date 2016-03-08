@@ -287,24 +287,29 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
+                                        {{#emps}}
                                         <tr>
-                                            <td>Dr. Peter Venkeman</td>
-                                            <td>The Boss</td>
-                                            <td>peter@sos.com</td>
-                                            <td>Business Owner</td>
+                                            <td>{{fname}}</td>
+                                            <td>{{lname}}</td>
+                                            <td>{{email}}</td>
+                                            <td>{{role}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Jane Doe</td>
-                                            <td>Yoga Instructor</td>
-                                            <td>jane@sos.com</td>
-                                            <td>Provider</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jay Gold</td>
-                                            <td>Masseuse</td>
-                                            <td>jay@sos.com</td>
-                                            <td>Provider</td>
-                                        </tr>
+                                        {{/emps}}
+
+
+                                        <!--<tr>-->
+                                            <!--<td>Jane Doe</td>-->
+                                            <!--<td>Yoga Instructor</td>-->
+                                            <!--<td>jane@sos.com</td>-->
+                                            <!--<td>Provider</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>Jay Gold</td>-->
+                                            <!--<td>Masseuse</td>-->
+                                            <!--<td>jay@sos.com</td>-->
+                                            <!--<td>Provider</td>-->
+                                        <!--</tr>-->
                                         </tbody>
                                     </table>
                                 </div>
