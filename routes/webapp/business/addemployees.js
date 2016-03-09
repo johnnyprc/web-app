@@ -49,7 +49,7 @@ exports.get = function(req,res){
             if(err){
                 throw err;
             }
-            res.render('business/dashboard',
+            res.render('business/addemployees',
                 {
                     title: 'Express',
                     notsigned: notemployee,
