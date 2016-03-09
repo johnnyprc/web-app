@@ -164,7 +164,7 @@ module.exports = function (passport) {
                     //    new: true
                     //});
                     employees.findAndModify({
-                            query: {resetPasswordToken: req.params.token/*, resetPasswordExpires: { $gt: Date.now() }*/ },
+                            query: {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
                             update: { $unset: {registrationToken: 1},
                                       $set: {password: password}
                             },
