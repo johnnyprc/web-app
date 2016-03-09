@@ -12,6 +12,8 @@ var analytics = require('./admin/analytics');
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
+var getemployees = require('./business/getemployees');
+var addoneemployee = require('./business/addoneemployee');
 var formbuilder = require('./business/formbuilder');
 var dashboard = require('./business/dashboard');
 var businesssetting = require('./business/businesssetting');
@@ -24,6 +26,7 @@ var crypto = require('crypto');
 //var analytics = require('./business/analytics');
 //var billing = require('./business/billing');
 var admin = require('./admin/admin');
+var forgotpassword = require('./business/forgotpassword');
 
 //Define the controllers for provider (Doctors or person to see visitor) process
 //var visitorassigned = require('./provider/visitorassigned');
@@ -151,8 +154,8 @@ module.exports = function (passport) {
                         {
                             $set: {
                                 password: req.body.password,
-                                resetPasswordToken: token,
-                                resetPasswordExpires: Date.now() + 3600000
+                                resetPasswordToken: undefined,
+                                resetPasswordExpires: undefined
                             }
                         });
                 } catch(e){
@@ -172,7 +175,7 @@ module.exports = function (passport) {
         });
     });
 
-    router.get('/reset/:email', reset.get);
+
 
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),
@@ -216,10 +219,18 @@ module.exports = function (passport) {
     router.get('/:id/businesssetting', updateBusiness, isLoggedInBusAdmin, businesssetting.get);
     router.post('/:id/businesssetting', isLoggedInBusAdmin,businesssetting.post);
 
-    //router.get('/:id/addemployees',isLoggedInBusAdmin, addemployees.get);
+    router.get('/:id/addemployees',isLoggedInBusAdmin, addemployees.get);
     router.post('/:id/addemployees', isLoggedInBusAdmin, addemployees.post);
 
+    router.get('/:id/addoneemployee',isLoggedInBusAdmin, addoneemployee.get);
+    router.post('/:id/addoneemployee', isLoggedInBusAdmin, addoneemployee.post);
+
     router.get('/:id/formbuilder', updateBusiness, isLoggedInBusAdmin, formbuilder.get);
+
+    router.get('/:id/getemployees', isLoggedInBusAdmin, getemployees.get);
+
+    router.get('/reset/:token', reset.get);
+
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 

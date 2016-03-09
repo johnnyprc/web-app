@@ -26,7 +26,7 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) {
-
+            password = auth.hashPassword(password);
             var business = {
                 email: email,
                 password: password,

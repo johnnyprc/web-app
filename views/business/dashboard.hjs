@@ -219,50 +219,63 @@
 
                                     <div class="clear"></div>
 
-                                    <form class="nobottommargin" action="addemployees" method="post">
+                                    <form class="nobottommargin" method="post" action="addoneemployee" enctype="application/x-www-form-urlencoded">
 
                                         <div class="form-process"></div>
 
                                         <div class="col_one_fifth">
-                                            <label for="template-contactform-name">Name</label>
-                                            <input type="text" id="template-contactform-name" name="template-contactform-name"
-                                                   value="{{name}}" class="sm-form-control required" />
+                                            <label for="template-contactform-fname">First Name</label>
+                                            <input type="text" id="template-contactform-fname" name="fname"
+                                                   value="{{fname}}" class="sm-form-control required" />
                                         </div>
 
                                         <div class="col_one_fifth">
-                                            <label for="template-contactform-name">Job Title</label>
-                                            <select class="sm-form-control required">
-                                                <option value="">-- Select One --</option>
-                                                <option value="{{jobTitle}}">Masseuse</option>
-                                                <option value="{{jobTtile}}">Meditation Leader</option>
-                                                <option value="{{jobTitle}}">Yoga Instructor</option>
-                                            </select>
+                                            <label for="template-contactform-lname">Last Name</label>
+                                            <input type="text" id="template-contactform-lname" name="lname"
+                                                   value="{{lname}}" class="sm-form-control required" />
                                         </div>
+
+                                        <!--<div class="col_one_fifth">-->
+                                            <!--<label for="template-contactform-name">Job Title</label>-->
+                                            <!--<select class="sm-form-control required">-->
+                                                <!--<option value="">&#45;&#45; Select One &#45;&#45;</option>-->
+                                                <!--<option value="{{jobTitle}}">Masseuse</option>-->
+                                                <!--<option value="{{jobTtile}}">Meditation Leader</option>-->
+                                                <!--<option value="{{jobTitle}}">Yoga Instructor</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
 
                                         <div class="col_one_fifth">
                                             <label for="template-contactform-email">Email</label>
-                                            <input type="email" id="template-contactform-email" name="template-contactform-email" value="{{email}}" class="required email sm-form-control" />
+                                            <input type="email" id="template-contactform-email" name="email" value="{{email}}" class="required email sm-form-control" />
                                         </div>
 
-                                        <div class="col_one_fifth ">
-                                            <label>Permissions</label>
-                                            <select class="sm-form-control required">
-                                                <option value="">-- Select One --</option>
-                                                <option value="{{role}}">Business Owner</option>
-                                                <option value="{{role}}">Provider</option>
-                                                <option value="{{role}}">Receptionist</option>
-                                            </select>
-
+                                        <div class="col_one_fifth">
+                                            <label for="template-contactform-role">Role (busAdmin, provider, staff)</label>
+                                            <input type="text" id="template-contactform-role" name="role" value="{{role}}" class="required email sm-form-control" />
                                         </div>
+                                        <!--<div class="col_one_fifth ">-->
+                                            <!--<label>Permissions</label>-->
+                                            <!--<select class="sm-form-control required">-->
+                                                <!--<option value="">&#45;&#45; Select One &#45;&#45;</option>-->
+                                                <!--<option value="{{role}}">Business Owner</option>-->
+                                                <!--<option value="{{role}}">Provider</option>-->
+                                                <!--<option value="{{role}}">Receptionist</option>-->
+                                            <!--</select>-->
+
+                                        <!--</div>-->
+                                        <!--<div >-->
+                                            <!--<a href="#" type="addemployees" name="addemployees"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>-->
+                                        <!--</div>-->
                                         <div class="col_one_fifth col_last pull-left">
-                                            <a href="#" type="addemployees" name="addemployees"><i class="icon-3x icon-line2-user-follow icon-align-left"></i></a>
+                                            <input class="btn custom-button" name="submit" type="submit" href="/addoneemployee" value="Insert">
                                         </div>
                                     </form>
 
                                 </div>
                                 <div class="clear"></div>
                                 <div class="line"></div>
-                                <h3>Currently Registered Staff</h3>
+                                <!--<h3>Currently Registered Staff</h3>-->
                                 <div class="col_four_fifth divcenter vertical-middle">
                                     <table class="table table-striped divcenter">
                                         <thead>
@@ -274,24 +287,29 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
+                                        {{#emps}}
                                         <tr>
-                                            <td>Dr. Peter Venkeman</td>
-                                            <td>The Boss</td>
-                                            <td>peter@sos.com</td>
-                                            <td>Business Owner</td>
+                                            <td>{{fname}}</td>
+                                            <td>{{lname}}</td>
+                                            <td>{{email}}</td>
+                                            <td>{{role}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Jane Doe</td>
-                                            <td>Yoga Instructor</td>
-                                            <td>jane@sos.com</td>
-                                            <td>Provider</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jay Gold</td>
-                                            <td>Masseuse</td>
-                                            <td>jay@sos.com</td>
-                                            <td>Provider</td>
-                                        </tr>
+                                        {{/emps}}
+
+
+                                        <!--<tr>-->
+                                            <!--<td>Jane Doe</td>-->
+                                            <!--<td>Yoga Instructor</td>-->
+                                            <!--<td>jane@sos.com</td>-->
+                                            <!--<td>Provider</td>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td>Jay Gold</td>-->
+                                            <!--<td>Masseuse</td>-->
+                                            <!--<td>jay@sos.com</td>-->
+                                            <!--<td>Provider</td>-->
+                                        <!--</tr>-->
                                         </tbody>
                                     </table>
                                 </div>
@@ -617,23 +635,24 @@
 <script src="../assets/js/form-builder.min.js"></script>
 <!-- Only include on form render page -->
 <script src="../assets/js/form-render.min.js"></script>
-<script>
-    jQuery(document).ready(function($) {
-        'use strict';
-        var template = document.getElementById('form-builder-template'),
-            formContainer = document.getElementById('rendered-form'),
-            renderBtn = document.getElementById('render-form-button');
-        $(template).formBuilder();
+<!--<script>-->
+    <!--jQuery(document).ready(function($) {-->
+        <!--'use strict';-->
+        <!--var template = document.getElementById('form-builder-template'),-->
+            <!--formContainer = document.getElementById('rendered-form'),-->
+            <!--renderBtn = document.getElementById('render-form-button');-->
+        <!--$(template).formBuilder();-->
 
-        $(renderBtn).click(function(e) {
-            e.preventDefault();
-            $(template).formRender({
-                container: $(formContainer)
-            });
-        });
+        <!--$(renderBtn).click(function(e) {-->
+            <!--e.preventDefault();-->
+            <!--$(template).formRender({-->
+                <!--container: $(formContainer)-->
+            <!--});-->
+        <!--});-->
 
-    });
+    <!--});-->
+<!--</script>-->
+    <script type="text/javascript" src="../js/dashboard.js"></script>
 
-</script>
 
 </body>
