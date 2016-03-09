@@ -80,6 +80,7 @@ module.exports = function (passport) {
                             //username: username,
                             lname: lname,
                             logo: '',
+                            billingPlan: '',
                             walkins: false
                         }, function (err, result) {
                             if (err) {
