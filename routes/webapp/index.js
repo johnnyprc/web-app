@@ -31,7 +31,7 @@ var visitorassigned = require('./provider/visitorassigned');
 var visitor = require('./staff/visitor');
 
 //Define the controllers for visitor (person checkin in) process
-var checkin = require('./visitor/checkin');
+var checkin = require('./business/checkin');
 
 
 
