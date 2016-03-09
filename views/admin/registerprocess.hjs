@@ -70,7 +70,9 @@
                     <div id="ptab1">
 
                         <p>Upload your Logo and Business information to feel at home</p>
-                        <div class="col_one_third tab-content clearfix" id="tab-register">
+
+                        <!-- FORM -->
+                        <div class="col_one_third clearfix">
                             <div class="panel panel-default nobottommargin">
                                 <div class="panel-body" style="padding: 40px;">
                                     <form method="post" action="" enctype="application/x-www-form-urlencoded" id="register-form" name="register-form" class="nobottommargin">
@@ -92,16 +94,23 @@
 
                                         <div class="col_full">
                                             <label for="register-form-phone">Phone Number:</label>
-                                            <input type="text" id="register-form-phone" name="phone" value="" class="form-control" />
+                                            <input type="text" id="register-form-phone" name="phone" value="{{phone}}" class="form-control" />
+                                        </div>
+                                        <div class="col_full nobottommargin">
+                                            <input class="btn btn-primary" name="submit" type="submit" href="/update_business" value="Save">
+
                                         </div>
 
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                         <div
                             class="col_one_fifth">
                         </div>
+
+                        <!-- LOGO -->
                         <div class="row col_last">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
