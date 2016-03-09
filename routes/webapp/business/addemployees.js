@@ -122,18 +122,7 @@ exports.post = function(req,res){
                 console.log(err);
                 done(err, 'done');
             });
-              //sendgrid.send({
-                //to: email,
-                //from: 'test@localhost',
-                //subject: 'Employee Signup',
-                //text: 'Hello ' + username + ',\n\n' + 'Please click on the following link, or paste this into your browser to complete sign-up the process: \n\n' +
-                //'http://robobetty-dev.herokuapp.com/employeeregister?token=' + token
-            //},
-            //function(err){
-            //    if (err) {
-            //        return next(err);
-            //    }
-            //  });
+
         }
         //res.redirect('../' + req.user[0].business + '/dashboard');
         res.redirect('/');
