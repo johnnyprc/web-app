@@ -8,7 +8,7 @@ var ObjectId = require('mongodb').ObjectID;
  * Takes a req and res parameters and is inputted into function to get employee, notemployee, and business data.
  *
  * @param req and res The two parameters passed in to get the apprporiate employee,
- * @returns The appropriate data about the employee
+  * @returns The appropriate data about the employee
  */
 exports.get = function(req,res){
     console.log('Get function addemployees');
@@ -25,9 +25,9 @@ exports.get = function(req,res){
                     if (err) { return next(err);  }
                     if(!results) { return next(new Error('Error finding employee'));}
 
-                    employeee = results;
-                    console.log(employeee);
-                    cb();
+                        employeee = results;
+                        console.log(employeee);
+                       cb();
 
                 });
             },
@@ -38,8 +38,8 @@ exports.get = function(req,res){
                     if (err) { return next(err); }
                     if(!results) { return next(new Error('Error finding employee'));}
 
-                    notemployee = results;
-                    cb();
+                         notemployee = results;
+                         cb();
                 });
             }
         },
@@ -49,7 +49,7 @@ exports.get = function(req,res){
             if(err){
                 throw err;
             }
-            res.render('business/addemployees',
+            res.render('business/dashboard',
                 {
                     title: 'Express',
                     notsigned: notemployee,
@@ -67,11 +67,15 @@ exports.get = function(req,res){
  * @returns The appropriate data about the employee
  */
 exports.post = function(req,res){
+
+    console.log('breaks here');
        var parsed = baby.parse(req.body.csvEmployees);
        var rows = parsed.data;
        var database =  req.db;
        var employeeDB = database.get('employees');
-       var businessID = req.user[0].business;
+       var businessID = req.user[0].business.toString();
+        console.log(businessID);
+        //console.log(req);
 
         for(var i = 0; i < rows.length; i++){
             var username = rows[i][0];
@@ -85,6 +89,7 @@ exports.post = function(req,res){
             console.log(lname);
             var email = nameArr[2];
             console.log(email);
+            var role = nameArr[3];
             var token = randomToken();
             employeeDB.insert({
                 business: ObjectId(businessID),
@@ -97,7 +102,7 @@ exports.post = function(req,res){
                 smsNotify: true,
                 emailNotify: true,
                 //values of role saasAdmin, busAdmin, provider, staff, visitor
-                role: 'provider'
+                role: role
             });
             var transport = nodemailer.createTransport(smtpTransport({
                 service:'gmail',
@@ -124,9 +129,9 @@ exports.post = function(req,res){
             });
 
         }
-        //res.redirect('../' + req.user[0].business + '/dashboard');
-        res.redirect('/');
-};
+        res.redirect('../' + req.user[0].business + '/dashboard');
+        //res.redirect('/');
+}
 
 
  function randomToken() {

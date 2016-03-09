@@ -25,7 +25,7 @@ function getTime(){
     if (minutes < 10){
         minutes = "0" + minutes
     }
-    if(hours > 11){
+    if(hours > 12){
         hours -= 12;
         what = true;
     }
@@ -165,7 +165,7 @@ function getTimeDiff(time){
         }
     }
 
-    if(curHr > 11){
+    if(curHr > 12){
         curHr -= 12;
     }
     var hrDiff = curHr - hr;
