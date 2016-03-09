@@ -26,9 +26,9 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) {
-                var db = req.db;
-                var companyName = req.body.companyName;
-                var fname = req.body.fname;
+            var db = req.db;
+            var companyName = req.body.companyName;
+            var fname = req.body.fname;
             var lname = req.body.lname;
             //var phone = req.body.phone;
 
