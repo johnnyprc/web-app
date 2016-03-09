@@ -154,8 +154,8 @@ module.exports = function (passport) {
                         {
                             $set: {
                                 password: req.body.password,
-                                resetPasswordToken: token,
-                                resetPasswordExpires: Date.now() + 3600000
+                                resetPasswordToken: undefined,
+                                resetPasswordExpires: undefined
                             }
                         });
                 } catch(e){
@@ -175,7 +175,7 @@ module.exports = function (passport) {
         });
     });
 
-    router.get('/reset/:email', reset.get);
+
 
     router.get('/login', login.get);
     router.post('/login', passport.authenticate('local-login'),
@@ -229,7 +229,8 @@ module.exports = function (passport) {
 
     router.get('/:id/getemployees', isLoggedInBusAdmin, getemployees.get);
 
-    router.get('/forgotpassword', forgotpassword.get);
+    router.get('/reset/:token', reset.get);
+
 
     //router.get('/customizetheme', isLoggedInBusAdmin, customizetheme.get);
 

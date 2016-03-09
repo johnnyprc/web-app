@@ -26,9 +26,18 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/plugins.js"></script>
 
+    <!-- SLIDER REVOLUTION 5.x SCRIPTS  -->
+    <script type="text/javascript" src="include/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="include/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="include/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="include/rs-plugin/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="include/rs-plugin/css/navigation.css">
+
     <!-- Document Title
     ============================================= -->
-    <title>Login/Register</title>
+    <title>Account Retreival</title>
 
 </head>
 
