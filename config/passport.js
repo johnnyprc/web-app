@@ -62,6 +62,7 @@ module.exports = function (passport) {
                     console.log(found);
                     return done(null, false);
                 } else {
+                    console.log('business added ' + business);
                     addBusiness(req, business, done);
                 }
             })
@@ -123,10 +124,11 @@ module.exports = function (passport) {
 
         // save the user
         businesses.insert(business, function (err, result) {
+
             if (err) {
                 throw err;
             }
-
+            console.log('business is definitely inserted');
             var businessID = result._id.toString();
             var admin = {
                 business: ObjectId(businessID),
