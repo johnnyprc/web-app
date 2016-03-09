@@ -104,6 +104,7 @@ module.exports = function (passport) {
         });
 
     router.get('/:id/admin', isLoggedInSaaSAdmin, admin.get);
+    router.post('/:id/admin', isLoggedInSaaSAdmin, admin.post);
 
     //Setup the routes for business owner (Person purchasing the product)
     router.get('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.get);
@@ -146,7 +147,7 @@ module.exports = function (passport) {
 // User will be denied access if session is not correct
 function isLoggedInSaaSAdmin(req, res, next) {
         //if user(saas admin) is authenticated in the session, carry on
-        if (req.isAuthenticated() && (req.user[0].role === 'saasAdmin')){
+        if (req.isAuthenticated() && (req.user[0].role === 'saasAdmin') || req.user[0].role === 'busAdmin'){
             return next();
         }
         // if they aren't redirect them to the home page
