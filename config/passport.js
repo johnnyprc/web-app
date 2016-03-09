@@ -6,7 +6,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var auth = require('../lib/auth');
 var ObjectId = require('mongodb').ObjectID;
-
+var async = require('async');
 //need this since we are passing in a passport dependency in app.js line 58
 module.exports = function (passport) {
 
@@ -74,7 +74,7 @@ module.exports = function (passport) {
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, email, password, done) {
-
+        password = auth.hashPassword(password);
         var employee = {
             business: ObjectId(req.business.id),
             password: password,
@@ -189,8 +189,8 @@ module.exports = function (passport) {
         },
         function (req, email, password, done) { // callback with email and password from our form
             console.log('LOCAL-LOGIN');
-
             auth.validateLogin(req.db, email, password, function (user) {
+                console.log("woop");
                 if (!user) {
                     return done(null, false, req.flash("login", "Invalid Email/Password Combo"));
                 }

@@ -8,7 +8,6 @@ var registerprocess = require('./admin/registerprocess');
 var login = require('./admin/login');
 var reset = require('./admin/reset');
 var analytics = require('./admin/analytics');
-
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
@@ -21,6 +20,7 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require("nodemailer-smtp-transport");
 var async = require('async');
 var crypto = require('crypto');
+var auth = require('../../lib/auth.js');
 //var checkindesign = require('./business/checkindesign');
 //var customizeform = require('./business/customizeform');
 //var analytics = require('./business/analytics');
@@ -148,26 +148,45 @@ module.exports = function (passport) {
             function(done) {
                 var db = req.db;
                 var employees = db.get('employees');
+                var password = auth.hashPassword(req.body.password);
+                console.log("THIS IS MY PASSWORD OH NO: " + password);
                 try {
 
-                    employees.findAndModify({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
-                        {
-                            $set: {
-                                password: req.body.password,
-                                resetPasswordToken: undefined,
-                                resetPasswordExpires: undefined
+                    //var user = employees.findAndModify({
+                    //    query: {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
+                    //    update: {
+                    //        $set: {
+                    //            password: password,
+                    //            resetPasswordToken: undefined,
+                    //            resetPasswordExpires: undefined
+                    //        }
+                    //    },
+                    //    new: true
+                    //});
+                    employees.findAndModify({
+                            query: {resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
+                            update: { $unset: {registrationToken: 1},
+                                      $set: {password: password}
+                            },
+                            new: true
+                    },
+                        function (err,user){
+                            if (err) {
+                                throw err;
                             }
-                        });
+                            return done(null,user);
+
+                        }
+                    );
+                    console.log(user);
                 } catch(e){
                     console.log("User not found");
-                    done(e, 'done');
                     req.flash('error', 'Password reset token is invalid or has expired.');
+                    done(e, 'done');
                     return res.redirect('/');
                 }
-
-                res.render('admin/reset', {
-                    user: req.user
-                });
+                console.log("Success");
+                res.redirect('/register');
             }
 
         ], function(err) {
