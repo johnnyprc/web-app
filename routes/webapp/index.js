@@ -11,6 +11,7 @@ var analytics = require('./admin/analytics');
 //Define the controllers for business owner (Person purchasing the product) process
 var accountsettings = require('./business/accountsettings');
 var addemployees = require('./business/addemployees');
+var getemployees = require('./business/getemployees');
 var addoneemployee = require('./business/addoneemployee');
 var formbuilder = require('./business/formbuilder');
 var dashboard = require('./business/dashboard');
@@ -120,6 +121,8 @@ module.exports = function (passport) {
     router.post('/:id/addoneemployee', isLoggedInBusAdmin, addoneemployee.post);
 
     router.get('/:id/formbuilder', updateBusiness, isLoggedInBusAdmin, formbuilder.get);
+
+    router.get('/:id/getemployees', isLoggedInBusAdmin, getemployees.get);
 
     router.get('/forgotpassword', forgotpassword.get);
 
