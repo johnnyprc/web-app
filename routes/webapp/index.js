@@ -28,7 +28,7 @@ var visitorassigned = require('./provider/visitorassigned');
 var visitor = require('./staff/visitor');
 
 //Define the controllers for visitor (person checkin in) process
-var checkin = require('./visitor/checkin');
+var checkin = require('./business/checkin');
 
 
 
@@ -126,6 +126,8 @@ module.exports = function (passport) {
 
     //setup the routes for visitor
     router.get('/:id/checkin', isLoggedInVisitor, checkin.get);
+
+    router.post('/:id/checkin', isLoggedInVisitor, checkin.post);
 
     router.get('/logout', function(req, res){
         req.logout();

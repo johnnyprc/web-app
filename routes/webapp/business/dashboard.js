@@ -1,7 +1,7 @@
 var auth = require('../../../lib/auth');
 
 exports.get = function (req, res) {
-    console.log('Get funciton Dashboard');
+    console.log('Get function Dashboard');
 	var employeeId = req.user[0]._id;
 	var employeename = req.user[0].fname;
 
@@ -12,3 +12,4 @@ exports.get = function (req, res) {
 		message: req.flash("permission")
 	});
 };
+

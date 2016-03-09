@@ -17,9 +17,7 @@ module.exports = function (passport) {
 // we are using named strategies since we have one for login and one for signup
 // by default, if there was no name, it would just be called 'local'
 
-
     passport.use('local-signup', new LocalStrategy({
-
             // by default, local strategy uses username and password, we will override with email
             usernameField: 'email',
             passwordField: 'password',
@@ -29,7 +27,7 @@ module.exports = function (passport) {
                 var db = req.db;
                 var companyName = req.body.companyName;
                 var fname = req.body.fname;
-            var lname = req.body.lname;
+                var lname = req.body.lname;
             //var phone = req.body.phone;
 
             // Check if any field has been left blank
@@ -98,7 +96,7 @@ module.exports = function (passport) {
                                 smsNotify: true,
                                 emailNotify: true,
                                 //values of role saasAdmin, busAdmin, provider, staff, visitor
-                                role: 'busAdmin'
+                                role: 'saasAdmin'
                             },function(err, user){
                                 if (err) {
                                     throw err;
@@ -123,8 +121,6 @@ module.exports = function (passport) {
         passReqToCallback: true
     },
         function (req,email,password,done) {
-
-
 
             var db =req.db;
             var employee = db.get('employees');
