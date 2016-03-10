@@ -7,6 +7,10 @@ window.onload = function() {
     //console.log(localStorage.getItem('companyName'));
     //console.log(localStorage.getItem('email'));
     //if(document.getElementById('register-form-firstname') != null){
+    console.log(localStorage.getItem('fname'));
+    console.log(localStorage.getItem('lname'));
+    console.log(localStorage.getItem('companyName'));
+    console.log(localStorage.getItem('email'));
     document.getElementById('register-form-fname').value = localStorage.getItem('fname');
     //}
     document.getElementById('register-form-lname').value = localStorage.getItem('lname');
@@ -14,6 +18,7 @@ window.onload = function() {
     document.getElementById('register-form-email').value = localStorage.getItem('email');
 
 }
+
 //
 //window.addEventListener('storage', function(e) {
 //    document.querySelector('.form-control').textContent = e.key;
