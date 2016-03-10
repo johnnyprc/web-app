@@ -128,7 +128,7 @@
                         <div class="slider-caption slider-caption-center" style="transform: translate(0px, -6.71px); opacity: 1.60401; top: 146.5px;">
                             <h2 data-caption-animate="fadeInUp" class="fadeInUp animated">iReceptionist</h2>
                             <p data-caption-animate="fadeInUp" data-caption-delay="200" class="fadeInUp animated">Creating a streamlined office environment was never so Easy &amp; Interactive.</p>
-                            <form action="#" method="post" role="form" class="landing-wide-form clearfix">
+                            <form id='landing-form' action="#" method="post" role="form" class="landing-wide-form clearfix">
                                 <div class="col_four_fifth nobottommargin">
                                     <div class="col_one_third nobottommargin">
                                         <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Name*">
@@ -626,6 +626,7 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/landing.js"></script>
 
 </body>
 </html>
