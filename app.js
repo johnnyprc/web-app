@@ -30,19 +30,21 @@ var businesses = db.get('businesses');
 var employee = db.get('employees');
 
 //passport functions to Serialize and Deserialize users
-passport.serializeUser(function(user, done) {
-        done(null, user._id);
-    });
+passport.serializeUser(function (user, done) {
+    done(null, user._id);
+});
 
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
 
-    employee.find({_id: id}, function (err, user){
-            if(err){ done(err);}
+    employee.find({_id: id}, function (err, user) {
+        if (err) {
+            done(err);
+        }
 
-            if(user){
-                done(null,user);
-            }
+        if (user) {
+            done(null, user);
+        }
     });
 });
 
@@ -61,21 +63,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Not sure what this does but I believe it allows you to upload images
 app.use(multer({
-  dest: __dirname + '/public/images/uploads/',
-  onFileUploadStart: function (file) {
-    console.log(file.mimetype);
-    if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
-      return false;
-    } else {
-      console.log(file.fieldname + ' is starting ...');
+    dest: __dirname + '/public/images/uploads/',
+    onFileUploadStart: function (file) {
+        console.log(file.mimetype);
+        if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
+            return false;
+        } else {
+            console.log(file.fieldname + ' is starting ...');
+        }
+    },
+    onFileUploadData: function (file, data) {
+        console.log(data.length + ' of ' + file.fieldname + ' arrived');
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path);
     }
-  },
-  onFileUploadData: function (file, data) {
-    console.log(data.length + ' of ' + file.fieldname + ' arrived');
-  },
-  onFileUploadComplete: function (file) {
-    console.log(file.fieldname + ' uploaded to  ' + file.path);
-  }
 }));
 
 //so... when only using router, for some reason deserialize wont work
@@ -93,7 +95,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 //Access control required for routes and passport
-app.all('*',function(req, res, next) {
+app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'fonts.googleapis.com');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Origin, X-Requested-With, Accept');
