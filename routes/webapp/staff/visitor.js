@@ -78,8 +78,8 @@ exports.get = function (req, res) {
                 message: req.flash("Fetched all appointments")
             });
 
-        });
-    )};
+        })
+    };
 
 
 
