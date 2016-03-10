@@ -249,18 +249,11 @@
                                             <th>Job Title</th>
                                             <th>Email</th>
                                             <th>Permissions</th>
+                                            <th>Edit</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        {{#emps}}
-                                        <tr>
-                                            <td>{{fname}}</td>
-                                            <td>{{lname}}</td>
-                                            <td>{{email}}</td>
-                                            <td>{{role}}</td>
-                                        </tr>
-                                        {{/emps}}
 
                                         {{#emps}}
                                         <tr>
@@ -268,35 +261,20 @@
                                             <td>{{lname}}</td>
                                             <td>{{email}}</td>
                                             <td>{{role}}</td>
+                                            <td><form method="post" action="">
+                                                <input type="hidden" name="emps"  class="form-control" value="{{emps}}" />
+                                                <input type="hidden" name="empID" class="form-control" value="{{_id}}" />
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown">Edit <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><input value="Remove" id="remove" type="submit" style="width: 174px;"></li>
+                                                        <li><a href="#" type="submit">Another action</a></li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                            </td>
                                         </tr>
                                         {{/emps}}
-
-                                        {{#emps}}
-                                        <tr>
-                                            <td>{{fname}}</td>
-                                            <td>{{lname}}</td>
-                                            <td>{{email}}</td>
-                                            <td>{{role}}</td>
-                                        </tr>
-                                        {{/emps}}
-
-                                        {{#emps}}
-                                        <tr>
-                                            <td>{{fname}}</td>
-                                            <td>{{lname}}</td>
-                                            <td>{{email}}</td>
-                                            <td>{{role}}</td>
-                                        </tr>
-                                        {{/emps}}
-
-
-
-                                        <!--<tr>-->
-                                            <!--<td>Jay Gold</td>-->
-                                            <!--<td>Masseuse</td>-->
-                                            <!--<td>jay@sos.com</td>-->
-                                            <!--<td>Provider</td>-->
-                                        <!--</tr>-->
                                         </tbody>
                                     </table>
                                 </div>

@@ -108,6 +108,7 @@ module.exports = function (passport) {
 
     //Setup the routes for business owner (Person purchasing the product)
     router.get('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.get);
+    router.post('/:id/dashboard', updateBusiness, isLoggedInBusAdmin, dashboard.post);
 
     router.get('/:id/accountSettings', updateBusiness, isLoggedInBusAdmin, accountsettings.get);
     router.post('/:id/accountSettings', isLoggedInBusAdmin, accountsettings.post);
