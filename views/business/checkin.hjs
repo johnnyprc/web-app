@@ -74,6 +74,11 @@
             </div>
         </div>
     </div>
+    <form method="post" action="checkin" enctype="application/x-www-form-urlencoded">
+        <input type="text" name="fullName" placeholder="John Smith"/>
+        <input type="text" name="phone" placeholder="123-456-7890"/>
+        <input class="btn custom-button" type="submit" value="checkin" href="/checkin" name="submit">
+    </form>
 
     <script type="text/javascript">
         $('[data-toggle=popover]').popover();
