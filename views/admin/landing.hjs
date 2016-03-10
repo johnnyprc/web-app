@@ -131,7 +131,7 @@
                             <form id='landing-form' action="#" method="post" role="form" class="landing-wide-form clearfix">
                                 <div class="col_four_fifth nobottommargin">
                                     <div class="col_one_third nobottommargin">
-                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Name*">
+                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Full Name*">
                                     </div>
                                     <div class="col_one_third nobottommargin">
                                         <input type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
