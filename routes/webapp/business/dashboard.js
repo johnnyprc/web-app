@@ -1,3 +1,5 @@
+var auth = require('../../../lib/auth');
+
 exports.get = function (req, res) {
     console.log('Get function getemployees');
     var database = req.db;

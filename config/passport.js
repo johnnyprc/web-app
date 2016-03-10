@@ -125,8 +125,6 @@ module.exports = function (passport) {
     },
         function (req,email,password,done) {
 
-
-
             var db =req.db;
             var employee = db.get('employees');
 

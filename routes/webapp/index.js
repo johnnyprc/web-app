@@ -138,6 +138,8 @@ module.exports = function (passport) {
     //setup the routes for visitor
     router.get('/:id/checkin', isLoggedInVisitor, checkin.get);
 
+    router.post('/:id/checkin', isLoggedInVisitor, checkin.post);
+
     router.get('/logout', function(req, res){
         req.logout();
         res.redirect('/');

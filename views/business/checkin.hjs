@@ -63,22 +63,29 @@
 
 <body background="../images/landing/sloth3.jpg">
 
+<form method="post" action="checkin" enctype="application/x-www-form-urlencoded">
+    <input type="text" name="fullName" placeholder="John Smith"/>
+    <input type="text" name="phone" placeholder="123-456-7890"/>
+    <input class="btn custom-button" type="submit" value="checkin" href="/checkin" name="submit">
+</form>
 
 
-<div style="height: 200px; width: 500px;  position:absolute; top:246px; left:535px;">
+<!--<div style="height: 200px; width: 500px;  position:absolute; top:246px; left:535px;">-->
 
-    <p>  <input type="text" style=" font-size:25px"  name="LastName" size="16"/>  </p>
-</div>
+    <!--<p>  <input type="text" style=" font-size:20px"  name="LastName" size="30" placeholder=" &nbsp; John Smith"/>  </p>-->
+<!--</div>-->
 
 
-<div style=" height: 200px; width: 500px;  position:absolute; top:330px; left:535px;">
+<!--<div style=" height: 200px; width: 500px;  position:absolute; top:330px; left:535px;">-->
 
-    <p>  <input type="text" style=" font-size:25px"  name="Cellphone" size="16"/>  </p>
-</div>
+    <!--<p>  <input type="text" style=" font-size:20px"  name="Cellphone" size="30" placeholder=" &nbsp; (123)-456-7890"/>  </p>-->
+
+<!--</div>-->
 
 
 <div style="height: 50px; width: 130px;  position:absolute; top:420px; left:540px;">
-    <input type="button" class="button" data-toggle="modal" data-target=".bs-example-modal-lg"value="Check in">
+
+
 
     <!-- Large modal -->
     <!--<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>-->
@@ -89,10 +96,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Checked in!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Thank you checking in!</p>
+                        <h4 class="modal-title" id="myModalLabel">Checking in, thank you!</h4>
                     </div>
                 </div>
             </div>
