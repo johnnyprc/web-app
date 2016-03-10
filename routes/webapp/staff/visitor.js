@@ -14,17 +14,20 @@
 //    res.render('staff/visitor',{
 //    });
 //};
+var async = require('async');
+
 exports.get = function(req,res){
     console.log('Get function displayVisitorQueue');
     var database =  req.db;
     var visitorDB = database.get('visitor');
     var visitor;
-    var notVisitor;
+    var employeeDB = database.get('employees');
+
     var businessID = req.user[0].business.toString();
-    console.log(businessID);
+
     async.parallel({
             employee: function(cb){
-                employeeDB.find({registrationToken: {$exists: false}, business: ObjectId(businessID)},function (err,results){
+                employeeDB.find({registrationToken: {$exists: false}, business: (businessID)},function (err,results){
 
                     if (err) { return next(err);  }
                     if(!results) { return next(new Error('Error finding employee'));}
@@ -36,7 +39,7 @@ exports.get = function(req,res){
                 });
             },
             nonemployee: function(cb){
-                employeeDB.find({registrationToken: {$exists: true}, business: ObjectId(businessID)}, function (err,results){
+                employeeDB.find({registrationToken: {$exists: true}, business: (businessID)}, function (err,results){
 
 
                     if (err) { return next(err); }
