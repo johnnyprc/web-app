@@ -148,6 +148,26 @@
             </tr>
             </thead>
             <tbody id="all">
+            {{#appts}}
+            <tr>
+                <td class="name">{{visitor}}</td>
+                <td></td>
+                <td class="asignee">
+                    <div class="sort-contacts-bytype-dropdown dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="dropdown-label">{{provider}}</span><b class="caret"></b></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="dropdown test"></i>Dr. Test test</a></li>
+                            <li><a href="#"><i class="dropdown peter"></i>Dr. Peter Parker</a></li>
+                            <li><a href="#"><i class="dropdown richard"></i>Dr. Richard Best</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>{{time}}</td>
+                <td><button class="button button-3d button-mini button-rounded button-green">Checkin</button></td>
+            </tr>
+            {{/appts}}
+            <!--
             <tr id="tr-mark">
                 <td class="name" id="mark">Mark Darmadi</td>
                 <td id="mark-status"></td>
@@ -164,6 +184,7 @@
                 <td>5:12 PM</td>
                 <td id="button-row-mark"><button class="button button-3d button-mini button-rounded button-green" id="mark-button">Checkin</button></td>
             </tr>
+
             <tr id="tr-sean">
                 <td class="name" id="sean">Sean Ippolito</td>
                 <td id="sean-status"></td>
@@ -248,6 +269,7 @@
                 <td>None</td>
                 <td id="button-row-kappa"><button class="button button-3d button-mini button-rounded button-green"id="kappa-button">Checkin</button></td>
             </tr>
+            -->
             </tbody>
         </table>
     </div>
