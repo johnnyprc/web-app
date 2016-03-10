@@ -135,6 +135,7 @@ module.exports = function (passport) {
 
     //setup the routes for staff
     router.get('/:id/visitor', updateBusiness, isLoggedInStaff, visitor.get);
+    router.post('/:id/visitor', updateBusiness, isLoggedInStaff, visitor.post);
 
     //setup the routes for visitor
     router.get('/:id/checkin', isLoggedInVisitor, checkin.get);

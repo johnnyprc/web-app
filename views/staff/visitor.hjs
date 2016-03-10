@@ -76,13 +76,38 @@
             <h1>Check-ins</h1>
             <ol class="breadcrumb">
                 <li>
+                    <form action="" method="post" enctype="application/x-www-form-urlencoded">
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    Name: <input type="text" name="name" value="{{name}}">
+                                </li>
+                                <li>
+                                    Provider:
+                                    <input value="{{provider}}" list="providers" name="provider"/>
+                                    <datalist id="providers">
+                                        <option value="{{provider}}"> {{provider}}</option>
+                                    </datalist>
+                                </li>
+
+                                <li>Time: <input type="time" name="time" value="{{time}}"/></li>
+                            </ul>
+
+
+                    <input class="button button-3d button-rounded button-green" name="submit" type="submit"  value="Make Appointment">
+
+                </form>
+                </li>
+
+                <li>
                     <button class="button button-3d button-rounded button-aqua" data-toggle="modal" data-target="#myModal">Upload CSV</button>
                 </li>
-                <div class="searchSpan pull-left">
+                <li><div class="searchSpan pull-left">
                     <form class="search-form" id="searchForm">
                         <input id="search" class="gate form-control search-input" type="text" placeholder="Search...">
                     </form>
                 </div>
+                </li>
                 <li><span id="time_span"></span></li>
             </ol>
         </div>

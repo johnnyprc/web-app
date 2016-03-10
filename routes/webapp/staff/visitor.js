@@ -56,9 +56,33 @@ exports.get = function(req,res){
             }
             res.render('staff/visitor',
                 {
-                    title: 'Visitor Queue',
-                    notsigned: notemployee,
-                    signed: employeee
+                    provider: 'Kurt'
                 }
             )}
     )};
+
+
+
+exports.post = function (req, res) {
+
+    var appointmentDB = req.db.get('appointment');
+    var businessID = req.user[0].business.toString();
+
+    var time = req.body.time;
+    var provider = req.body.provider;
+    var name = req.body.name;
+
+    appointmentDB.insert({
+        privider: provider,
+        time: time,
+        name: name,
+        business: businessID
+    });
+
+    res.render('staff/visitor',
+        {
+            provider: 'Kurt'
+        }
+    )
+
+};
