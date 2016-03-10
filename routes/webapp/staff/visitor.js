@@ -71,16 +71,15 @@ exports.get = function (req, res) {
 
     apptDB.find( { business: bid }, {status: 'waiting'} )
         .on('success', function(appointments) {
-            var providersDB = database.get('employees');
-
-            providersDB.find( {business: bid}, {role: 'provider'} )
-                .on('success', function(providers) {
+            //var providersDB = database.get('employees');
+            //
+            //providersDB.find( {business: bid}, {role: 'provider'} )
+            //    .on('success', function(providers) {
                 res.render('staff/visitor', {
                     appts: appointments,
-                    provider: providers,
                     message: req.flash("Fetched all appointments")
                 });
-            });
         });
+        //});
 
 };

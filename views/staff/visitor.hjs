@@ -130,11 +130,11 @@
                 <td class="asignee">
                     <div class="sort-contacts-bytype-dropdown dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="dropdown-label">{{provider}}</span><b class="caret"></b></a>
+                            <span class="dropdown-label">{{assignedTo}}</span><b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            {{#provider}}
-                            <li><a href="#"><i class="dropdown test"></i>{{email}}</a></li>
-                            {{/provider}}
+                            {{#providers.length}}
+                            {{#providers}}<li><a href="#"><i class="dropdown test"></i>{{.}}</a></li>{{/providers}}
+                            {{/providers.length}}
                         </ul>
                     </div>
                 </td>
