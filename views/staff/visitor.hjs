@@ -125,16 +125,16 @@
             <tbody id="all">
             {{#appts}}
             <tr>
-                <td class="name">{{visitor}}</td>
-                <td></td>
+                <td id="mark-status" class="name">{{visitor}}</td>
+                <td><!-- Checked in time --></td>
                 <td class="asignee">
                     <div class="sort-contacts-bytype-dropdown dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="dropdown-label">{{provider}}</span><b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"><i class="dropdown test"></i>Dr. Test test</a></li>
-                            <li><a href="#"><i class="dropdown peter"></i>Dr. Peter Parker</a></li>
-                            <li><a href="#"><i class="dropdown richard"></i>Dr. Richard Best</a></li>
+                            {{#provider}}
+                            <li><a href="#"><i class="dropdown test"></i>{{email}}</a></li>
+                            {{/provider}}
                         </ul>
                     </div>
                 </td>
