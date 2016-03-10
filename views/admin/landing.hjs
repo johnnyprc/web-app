@@ -131,17 +131,17 @@
                             <form id='landing-form' action="#" method="post" role="form" class="landing-wide-form clearfix">
                                 <div class="col_four_fifth nobottommargin">
                                     <div class="col_one_third nobottommargin">
-                                        <input id="landing-name" type="text" class="form-control input-lg not-dark" value="" placeholder="First & Last Name*">
+                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Your Name*">
                                     </div>
                                     <div class="col_one_third nobottommargin">
-                                        <input id="landing-email" type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
+                                        <input type="email" class="form-control input-lg not-dark" value="" placeholder="Your Email*">
                                     </div>
                                     <div class="col_one_third col_last nobottommargin">
-                                        <input id="landing-companyName" type="text" class="form-control input-lg not-dark" value="" placeholder="Company Name*">
+                                        <input type="text" class="form-control input-lg not-dark" value="" placeholder="Company Name*">
                                     </div>
                                 </div>
                                 <div class="col_one_fifth col_last nobottommargin">
-                                    <button id="landing-register" class="btn btn-lg btn-danger btn-block nomargin" value="submit" type="submit" style="">REGISTER</button>
+                                    <button class="btn btn-lg btn-danger btn-block nomargin" value="submit" type="submit" style="">REGISTER</button>
                                 </div>
                             </form>
                         </div>
