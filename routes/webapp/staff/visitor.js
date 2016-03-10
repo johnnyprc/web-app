@@ -16,49 +16,67 @@
 //};
 var async = require('async');
 
-exports.get = function(req,res){
-    console.log('Get function displayVisitorQueue');
-    var database =  req.db;
-    var visitorDB = database.get('visitor');
-    var visitor;
-    var employeeDB = database.get('employees');
+//exports.get = function(req,res){
+//    console.log('Get function displayVisitorQueue');
+//    var database =  req.db;
+//    var visitorDB = database.get('visitor');
+//    var visitor;
+//    var employeeDB = database.get('employees');
+//
+//    var businessID = req.user[0].business.toString();
+//
+//    async.parallel({
+//            employee: function(cb){
+//                employeeDB.find({registrationToken: {$exists: false}, business: (businessID)},function (err,results){
+//
+//                    if (err) { return next(err);  }
+//                    if(!results) { return next(new Error('Error finding employee'));}
+//
+//                    employeee = results;
+//                    console.log(employeee);
+//                    cb();
+//
+//                });
+//            },
+//            nonemployee: function(cb){
+//                employeeDB.find({registrationToken: {$exists: true}, business: (businessID)}, function (err,results){
+//
+//
+//                    if (err) { return next(err); }
+//                    if(!results) { return next(new Error('Error finding employee'));}
+//
+//                    notemployee = results;
+//                    cb();
+//                });
+//            }
+//        },
+//        function(err,results){
+//            if(err){
+//                throw err;
+//            }
+//            res.render('staff/visitor',
+//                {
+//                    title: 'Visitor Queue',
+//                    notsigned: notemployee,
+//                    signed: employeee
+//                }
+//            )}
+//    )};
 
-    var businessID = req.user[0].business.toString();
+exports.get = function (req, res) {
+    console.log('Get function VisitorQueue');
+    var database = req.db;
+    var apptDB = database.get('appointment');
 
-    async.parallel({
-            employee: function(cb){
-                employeeDB.find({registrationToken: {$exists: false}, business: (businessID)},function (err,results){
+    var bid = req.user[0].business;
 
-                    if (err) { return next(err);  }
-                    if(!results) { return next(new Error('Error finding employee'));}
+    apptDB.find( { business: bid }, {state: 'waiting'} )
+        .on('success', function(appointments) {
 
-                    employeee = results;
-                    console.log(employeee);
-                    cb();
+            res.render('staff/visitor', {
+                appts: appointments,
+                message: req.flash("Fetched all appointments")
+            });
 
-                });
-            },
-            nonemployee: function(cb){
-                employeeDB.find({registrationToken: {$exists: true}, business: (businessID)}, function (err,results){
-
-
-                    if (err) { return next(err); }
-                    if(!results) { return next(new Error('Error finding employee'));}
-
-                    notemployee = results;
-                    cb();
-                });
-            }
-        },
-        function(err,results){
-            if(err){
-                throw err;
-            }
-            res.render('staff/visitor',
-                {
-                    title: 'Visitor Queue',
-                    notsigned: notemployee,
-                    signed: employeee
-                }
-            )}
-    )};
+        });
+};
